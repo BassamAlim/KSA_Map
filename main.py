@@ -1,7 +1,7 @@
 import json
 
-x = '{"name":"john", "age":"30", "city":"New York"}'
 
-y = json.loads(x)
+with open('Cities.json', encoding='utf-8') as file:
+    text = json.load(file)
 
-print(y["age"])
+print(text[0])
