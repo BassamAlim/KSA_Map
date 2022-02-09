@@ -1,0 +1,17 @@
+[
+  {
+    "region_id": 0,
+    "region_name": "الرياض",
+    "cities": [
+      {
+        "city_id": 0,
+        "city_name": "الرياض",
+        "neighbors": [
+          {
+
+          }
+        ]
+      }
+    ]
+  }
+]
