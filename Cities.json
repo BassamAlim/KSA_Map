@@ -2,7 +2,7 @@
   {
     "city_id": 0,
     "region_id": 0,
-    "city_name": "الرياض",
+    "name": "الرياض",
     "neighbors": [
       {
         "city_id": 0,
@@ -21,7 +21,7 @@
   {
     "city_id": 1,
     "region_id": 0,
-    "city_name": "الدرعيه",
+    "name": "الدرعيه",
     "neighbors": [
       {
         "city_id": 0,
@@ -40,7 +40,7 @@
   {
     "city_id": 2,
     "region_id": 0,
-    "city_name": "الخرج",
+    "name": "الخرج",
     "neighbors": [
       {
         "city_id": 0,
@@ -59,7 +59,7 @@
   {
     "city_id": 3,
     "region_id": 0,
-    "city_name": "الدوادمي",
+    "name": "الدوادمي",
     "neighbors": [
       {
         "city_id": 0,
@@ -78,7 +78,7 @@
   {
     "city_id": 4,
     "region_id": 0,
-    "city_name": "المجمعه",
+    "name": "المجمعه",
     "neighbors": [
       {
         "city_id": 0,
@@ -97,7 +97,7 @@
   {
     "city_id": 5,
     "region_id": 0,
-    "city_name": "القويعيه",
+    "name": "القويعيه",
     "neighbors": [
       {
         "city_id": 0,
@@ -116,7 +116,7 @@
   {
     "city_id": 6,
     "region_id": 0,
-    "city_name": "وادي الدواسر",
+    "name": "وادي الدواسر",
     "neighbors": [
       {
         "city_id": 0,
@@ -135,7 +135,7 @@
   {
     "city_id": 7,
     "region_id": 0,
-    "city_name": "الافلاج",
+    "name": "الافلاج",
     "neighbors": [
       {
         "city_id": 0,
@@ -154,7 +154,7 @@
   {
     "city_id": 8,
     "region_id": 0,
-    "city_name": "الزلفي",
+    "name": "الزلفي",
     "neighbors": [
       {
         "city_id": 0,
@@ -173,7 +173,7 @@
   {
     "city_id": 9,
     "region_id": 0,
-    "city_name": "شقراء",
+    "name": "شقراء",
     "neighbors": [
       {
         "city_id": 0,
@@ -192,7 +192,7 @@
   {
     "city_id": 10,
     "region_id": 0,
-    "city_name": "حوطه بني تميم",
+    "name": "حوطه بني تميم",
     "neighbors": [
       {
         "city_id": 0,
@@ -211,7 +211,7 @@
   {
     "city_id": 11,
     "region_id": 0,
-    "city_name": "عفيف",
+    "name": "عفيف",
     "neighbors": [
       {
         "city_id": 0,
@@ -230,7 +230,7 @@
   {
     "city_id": 12,
     "region_id": 0,
-    "city_name": "السليل",
+    "name": "السليل",
     "neighbors": [
       {
         "city_id": 0,
@@ -249,7 +249,7 @@
   {
     "city_id": 13,
     "region_id": 0,
-    "city_name": "ضرما",
+    "name": "ضرما",
     "neighbors": [
       {
         "city_id": 0,
@@ -268,7 +268,7 @@
   {
     "city_id": 14,
     "region_id": 0,
-    "city_name": "المزاحميه",
+    "name": "المزاحميه",
     "neighbors": [
       {
         "city_id": 0,
@@ -287,7 +287,7 @@
   {
     "city_id": 15,
     "region_id": 0,
-    "city_name": "رماح",
+    "name": "رماح",
     "neighbors": [
       {
         "city_id": 0,
@@ -306,7 +306,7 @@
   {
     "city_id": 16,
     "region_id": 0,
-    "city_name": "ثادق",
+    "name": "ثادق",
     "neighbors": [
       {
         "city_id": 0,
@@ -325,7 +325,7 @@
   {
     "city_id": 17,
     "region_id": 0,
-    "city_name": "حريملاء",
+    "name": "حريملاء",
     "neighbors": [
       {
         "city_id": 0,
@@ -344,7 +344,7 @@
   {
     "city_id": 18,
     "region_id": 0,
-    "city_name": "الحريق",
+    "name": "الحريق",
     "neighbors": [
       {
         "city_id": 0,
@@ -363,7 +363,7 @@
   {
     "city_id": 19,
     "region_id": 0,
-    "city_name": "الغاط",
+    "name": "الغاط",
     "neighbors": [
       {
         "city_id": 0,
@@ -382,7 +382,7 @@
   {
     "city_id": 20,
     "region_id": 0,
-    "city_name": "مرات",
+    "name": "مرات",
     "neighbors": [
       {
         "city_id": 0,
@@ -401,7 +401,7 @@
   {
     "city_id": 0,
     "region_id": 21,
-    "city_name": "الدلم",
+    "name": "الدلم",
     "neighbors": [
       {
         "city_id": 0,
@@ -420,7 +420,7 @@
   {
     "city_id": 0,
     "region_id": 22,
-    "city_name": "الرين",
+    "name": "الرين",
     "neighbors": [
       {
         "city_id": 0,
@@ -440,7 +440,7 @@
   {
     "city_id": 1,
     "region_id": 23,
-    "city_name": "",
+    "name": "",
     "neighbors": [
       {
         "city_id": 0,
@@ -459,7 +459,7 @@
   {
     "city_id": 1,
     "region_id": 23,
-    "city_name": "",
+    "name": "",
     "neighbors": [
       {
         "city_id": 0,
@@ -478,7 +478,7 @@
   {
     "city_id": 1,
     "region_id": 23,
-    "city_name": "",
+    "name": "",
     "neighbors": [
       {
         "city_id": 0,
@@ -497,7 +497,7 @@
   {
     "city_id": 1,
     "region_id": 23,
-    "city_name": "",
+    "name": "",
     "neighbors": [
       {
         "city_id": 0,
@@ -516,7 +516,7 @@
   {
     "city_id": 1,
     "region_id": 23,
-    "city_name": "",
+    "name": "",
     "neighbors": [
       {
         "city_id": 0,
@@ -535,7 +535,7 @@
   {
     "city_id": 1,
     "region_id": 23,
-    "city_name": "",
+    "name": "",
     "neighbors": [
       {
         "city_id": 0,
@@ -554,7 +554,7 @@
   {
     "city_id": 1,
     "region_id": 23,
-    "city_name": "",
+    "name": "",
     "neighbors": [
       {
         "city_id": 0,
@@ -573,7 +573,7 @@
   {
     "city_id": 1,
     "region_id": 23,
-    "city_name": "",
+    "name": "",
     "neighbors": [
       {
         "city_id": 0,
@@ -592,7 +592,7 @@
   {
     "city_id": 1,
     "region_id": 23,
-    "city_name": "",
+    "name": "",
     "neighbors": [
       {
         "city_id": 0,
@@ -611,7 +611,7 @@
   {
     "city_id": 1,
     "region_id": 23,
-    "city_name": "",
+    "name": "",
     "neighbors": [
       {
         "city_id": 0,
@@ -630,7 +630,7 @@
   {
     "city_id": 1,
     "region_id": 23,
-    "city_name": "",
+    "name": "",
     "neighbors": [
       {
         "city_id": 0,
@@ -649,7 +649,7 @@
   {
     "city_id": 1,
     "region_id": 23,
-    "city_name": "",
+    "name": "",
     "neighbors": [
       {
         "city_id": 0,
@@ -668,7 +668,7 @@
   {
     "city_id": 1,
     "region_id": 23,
-    "city_name": "",
+    "name": "",
     "neighbors": [
       {
         "city_id": 0,
@@ -687,7 +687,7 @@
   {
     "city_id": 1,
     "region_id": 23,
-    "city_name": "",
+    "name": "",
     "neighbors": [
       {
         "city_id": 0,
@@ -706,7 +706,7 @@
   {
     "city_id": 1,
     "region_id": 23,
-    "city_name": "",
+    "name": "",
     "neighbors": [
       {
         "city_id": 0,
@@ -725,7 +725,7 @@
   {
     "city_id": 1,
     "region_id": 23,
-    "city_name": "",
+    "name": "",
     "neighbors": [
       {
         "city_id": 0,
@@ -744,7 +744,7 @@
   {
     "city_id": 1,
     "region_id": 23,
-    "city_name": "",
+    "name": "",
     "neighbors": [
       {
         "city_id": 0,
@@ -763,7 +763,7 @@
   {
     "city_id": 1,
     "region_id": 23,
-    "city_name": "",
+    "name": "",
     "neighbors": [
       {
         "city_id": 0,
@@ -782,7 +782,7 @@
   {
     "city_id": 1,
     "region_id": 23,
-    "city_name": "",
+    "name": "",
     "neighbors": [
       {
         "city_id": 0,
