@@ -5,11 +5,43 @@
     "name": "الرياض",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 1,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 2,
+        "distance": 0
+      },
+      {
+        "cid": 4,
+        "distance": 0
+      },
+      {
+        "cid": 10,
+        "distance": 0
+      },
+      {
+        "cid": 13,
+        "distance": 0
+      },
+      {
+        "cid": 14,
+        "distance": 0
+      },
+      {
+        "cid": 15,
+        "distance": 0
+      },
+      {
+        "cid": 17,
+        "distance": 0
+      },
+      {
+        "cid": 21,
+        "distance": 0
+      },
+      {
+        "cid": 69,
         "distance": 0
       }
     ]
@@ -20,11 +52,19 @@
     "name": "الدرعية",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 13,
+        "distance": 0
+      },
+      {
+        "cid": 14,
+        "distance": 0
+      },
+      {
+        "cid": 17,
         "distance": 0
       }
     ]
@@ -35,11 +75,15 @@
     "name": "الخرج",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 21,
+        "distance": 0
+      },
+      {
+        "cid": 69,
         "distance": 0
       }
     ]
@@ -50,11 +94,31 @@
     "name": "الدوادمي",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 5,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 9,
+        "distance": 0
+      },
+      {
+        "cid": 11,
+        "distance": 0
+      },
+      {
+        "cid": 20,
+        "distance": 0
+      },
+      {
+        "cid": 22,
+        "distance": 0
+      },
+      {
+        "cid": 55,
+        "distance": 0
+      },
+      {
+        "cid": 67,
         "distance": 0
       }
     ]
@@ -65,11 +129,27 @@
     "name": "المجمعة",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 9,
+        "distance": 0
+      },
+      {
+        "cid": 15,
+        "distance": 0
+      },
+      {
+        "cid": 16,
+        "distance": 0
+      },
+      {
+        "cid": 19,
+        "distance": 0
+      },
+      {
+        "cid": 70,
         "distance": 0
       }
     ]
@@ -80,11 +160,31 @@
     "name": "القويعية",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 3,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 9,
+        "distance": 0
+      },
+      {
+        "cid": 13,
+        "distance": 0
+      },
+      {
+        "cid": 14,
+        "distance": 0
+      },
+      {
+        "cid": 20,
+        "distance": 0
+      },
+      {
+        "cid": 22,
+        "distance": 0
+      },
+      {
+        "cid": 36,
         "distance": 0
       }
     ]
@@ -95,11 +195,35 @@
     "name": "وادي الدواسر",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 12,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 22,
+        "distance": 0
+      },
+      {
+        "cid": 33,
+        "distance": 0
+      },
+      {
+        "cid": 80,
+        "distance": 0
+      },
+      {
+        "cid": 84,
+        "distance": 0
+      },
+      {
+        "cid": 133,
+        "distance": 0
+      },
+      {
+        "cid": 136,
+        "distance": 0
+      },
+      {
+        "cid": 138,
         "distance": 0
       }
     ]
@@ -110,11 +234,15 @@
     "name": "الافلاج",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 10,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 12,
+        "distance": 0
+      },
+      {
+        "cid": 22,
         "distance": 0
       }
     ]
@@ -125,11 +253,27 @@
     "name": "الزلفي",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 19,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 52,
+        "distance": 0
+      },
+      {
+        "cid": 63,
+        "distance": 0
+      },
+      {
+        "cid": 64,
+        "distance": 0
+      },
+      {
+        "cid": 66,
+        "distance": 0
+      },
+      {
+        "cid": 70,
         "distance": 0
       }
     ]
@@ -140,11 +284,31 @@
     "name": "شقراء",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 3,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 4,
+        "distance": 0
+      },
+      {
+        "cid": 16,
+        "distance": 0
+      },
+      {
+        "cid": 17,
+        "distance": 0
+      },
+      {
+        "cid": 20,
+        "distance": 0
+      },
+      {
+        "cid": 55,
+        "distance": 0
+      },
+      {
+        "cid": 64,
         "distance": 0
       }
     ]
@@ -155,11 +319,19 @@
     "name": "حوطة بني تميم",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 7,
+        "distance": 0
+      },
+      {
+        "cid": 18,
+        "distance": 0
+      },
+      {
+        "cid": 21,
         "distance": 0
       }
     ]
@@ -170,11 +342,23 @@
     "name": "عفيف",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 3,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 32,
+        "distance": 0
+      },
+      {
+        "cid": 36,
+        "distance": 0
+      },
+      {
+        "cid": 43,
+        "distance": 0
+      },
+      {
+        "cid": 67,
         "distance": 0
       }
     ]
@@ -185,11 +369,35 @@
     "name": "السليل",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 6,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 7,
+        "distance": 0
+      },
+      {
+        "cid": 132,
+        "distance": 0
+      },
+      {
+        "cid": 133,
+        "distance": 0
+      },
+      {
+        "cid": 134,
+        "distance": 0
+      },
+      {
+        "cid": 136,
+        "distance": 0
+      },
+      {
+        "cid": 137,
+        "distance": 0
+      },
+      {
+        "cid": 138,
         "distance": 0
       }
     ]
@@ -200,11 +408,31 @@
     "name": "ضرما",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 1,
+        "distance": 0
+      },
+      {
+        "cid": 5,
+        "distance": 0
+      },
+      {
+        "cid": 14,
+        "distance": 0
+      },
+      {
+        "cid": 16,
+        "distance": 0
+      },
+      {
+        "cid": 17,
+        "distance": 0
+      },
+      {
+        "cid": 20,
         "distance": 0
       }
     ]
@@ -215,11 +443,27 @@
     "name": "المزاحمية",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 1,
+        "distance": 0
+      },
+      {
+        "cid": 5,
+        "distance": 0
+      },
+      {
+        "cid": 13,
+        "distance": 0
+      },
+      {
+        "cid": 18,
+        "distance": 0
+      },
+      {
+        "cid": 22,
         "distance": 0
       }
     ]
@@ -230,11 +474,35 @@
     "name": "رماح",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 4,
+        "distance": 0
+      },
+      {
+        "cid": 16,
+        "distance": 0
+      },
+      {
+        "cid": 17,
+        "distance": 0
+      },
+      {
+        "cid": 70,
+        "distance": 0
+      },
+      {
+        "cid": 71,
+        "distance": 0
+      },
+      {
+        "cid": 74,
+        "distance": 0
+      },
+      {
+        "cid": 77,
         "distance": 0
       }
     ]
@@ -245,11 +513,23 @@
     "name": "ثادق",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 4,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 9,
+        "distance": 0
+      },
+      {
+        "cid": 13,
+        "distance": 0
+      },
+      {
+        "cid": 17,
+        "distance": 0
+      },
+      {
+        "cid": 20,
         "distance": 0
       }
     ]
@@ -260,11 +540,35 @@
     "name": "حريملاء",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 1,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 9,
+        "distance": 0
+      },
+      {
+        "cid": 13,
+        "distance": 0
+      },
+      {
+        "cid": 15,
+        "distance": 0
+      },
+      {
+        "cid": 16,
+        "distance": 0
+      },
+      {
+        "cid": 20,
+        "distance": 0
+      },
+      {
+        "cid": 70,
+        "distance": 0
+      },
+      {
+        "cid": 74,
         "distance": 0
       }
     ]
@@ -275,11 +579,15 @@
     "name": "الحريق",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 10,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 14,
+        "distance": 0
+      },
+      {
+        "cid": 22,
         "distance": 0
       }
     ]
@@ -290,11 +598,27 @@
     "name": "الغاط",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 4,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 8,
+        "distance": 0
+      },
+      {
+        "cid": 52,
+        "distance": 0
+      },
+      {
+        "cid": 63,
+        "distance": 0
+      },
+      {
+        "cid": 64,
+        "distance": 0
+      },
+      {
+        "cid": 66,
         "distance": 0
       }
     ]
@@ -305,11 +629,31 @@
     "name": "مرات",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 3,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 5,
+        "distance": 0
+      },
+      {
+        "cid": 9,
+        "distance": 0
+      },
+      {
+        "cid": 13,
+        "distance": 0
+      },
+      {
+        "cid": 16,
+        "distance": 0
+      },
+      {
+        "cid": 17,
+        "distance": 0
+      },
+      {
+        "cid": 55,
         "distance": 0
       }
     ]
@@ -320,11 +664,15 @@
     "name": "الدلم",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 2,
+        "distance": 0
+      },
+      {
+        "cid": 10,
         "distance": 0
       }
     ]
@@ -335,11 +683,27 @@
     "name": "الرين",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 5,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 6,
+        "distance": 0
+      },
+      {
+        "cid": 13,
+        "distance": 0
+      },
+      {
+        "cid": 14,
+        "distance": 0
+      },
+      {
+        "cid": 18,
+        "distance": 0
+      },
+      {
+        "cid": 33,
         "distance": 0
       }
     ]
@@ -350,11 +714,19 @@
     "name": "مكة المكرمة",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 25,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 27,
+        "distance": 0
+      },
+      {
+        "cid": 29,
+        "distance": 0
+      },
+      {
+        "cid": 35,
         "distance": 0
       }
     ]
@@ -365,11 +737,27 @@
     "name": "جدة",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 27,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 28,
+        "distance": 0
+      },
+      {
+        "cid": 29,
+        "distance": 0
+      },
+      {
+        "cid": 30,
+        "distance": 0
+      },
+      {
+        "cid": 31,
+        "distance": 0
+      },
+      {
+        "cid": 35,
         "distance": 0
       }
     ]
@@ -380,11 +768,23 @@
     "name": "الطائف",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 23,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 34,
+        "distance": 0
+      },
+      {
+        "cid": 36,
+        "distance": 0
+      },
+      {
+        "cid": 37,
+        "distance": 0
+      },
+      {
+        "cid": 43,
         "distance": 0
       }
     ]
@@ -395,11 +795,39 @@
     "name": "القنفذة",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 27,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 38,
+        "distance": 0
+      },
+      {
+        "cid": 82,
+        "distance": 0
+      },
+      {
+        "cid": 89,
+        "distance": 0
+      },
+      {
+        "cid": 91,
+        "distance": 0
+      },
+      {
+        "cid": 92,
+        "distance": 0
+      },
+      {
+        "cid": 142,
+        "distance": 0
+      },
+      {
+        "cid": 147,
+        "distance": 0
+      },
+      {
+        "cid": 148,
         "distance": 0
       }
     ]
@@ -410,11 +838,27 @@
     "name": "الليث",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 23,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 24,
+        "distance": 0
+      },
+      {
+        "cid": 26,
+        "distance": 0
+      },
+      {
+        "cid": 35,
+        "distance": 0
+      },
+      {
+        "cid": 144,
+        "distance": 0
+      },
+      {
+        "cid": 148,
         "distance": 0
       }
     ]
@@ -425,11 +869,23 @@
     "name": "رابغ",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 24,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 30,
+        "distance": 0
+      },
+      {
+        "cid": 41,
+        "distance": 0
+      },
+      {
+        "cid": 44,
+        "distance": 0
+      },
+      {
+        "cid": 47,
         "distance": 0
       }
     ]
@@ -440,11 +896,27 @@
     "name": "الجموم",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 23,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 24,
+        "distance": 0
+      },
+      {
+        "cid": 30,
+        "distance": 0
+      },
+      {
+        "cid": 31,
+        "distance": 0
+      },
+      {
+        "cid": 35,
+        "distance": 0
+      },
+      {
+        "cid": 43,
         "distance": 0
       }
     ]
@@ -455,11 +927,27 @@
     "name": "خليص",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 24,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 28,
+        "distance": 0
+      },
+      {
+        "cid": 29,
+        "distance": 0
+      },
+      {
+        "cid": 31,
+        "distance": 0
+      },
+      {
+        "cid": 43,
+        "distance": 0
+      },
+      {
+        "cid": 47,
         "distance": 0
       }
     ]
@@ -470,11 +958,23 @@
     "name": "الكامل",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 24,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 29,
+        "distance": 0
+      },
+      {
+        "cid": 30,
+        "distance": 0
+      },
+      {
+        "cid": 43,
+        "distance": 0
+      },
+      {
+        "cid": 47,
         "distance": 0
       }
     ]
@@ -485,11 +985,27 @@
     "name": "الخرمة",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 5,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 11,
+        "distance": 0
+      },
+      {
+        "cid": 33,
+        "distance": 0
+      },
+      {
+        "cid": 34,
+        "distance": 0
+      },
+      {
+        "cid": 36,
+        "distance": 0
+      },
+      {
+        "cid": 43,
         "distance": 0
       }
     ]
@@ -500,11 +1016,31 @@
     "name": "رنية",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 6,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 7,
+        "distance": 0
+      },
+      {
+        "cid": 22,
+        "distance": 0
+      },
+      {
+        "cid": 32,
+        "distance": 0
+      },
+      {
+        "cid": 34,
+        "distance": 0
+      },
+      {
+        "cid": 80,
+        "distance": 0
+      },
+      {
+        "cid": 143,
         "distance": 0
       }
     ]
@@ -515,11 +1051,31 @@
     "name": "تربة",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 25,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 32,
+        "distance": 0
+      },
+      {
+        "cid": 33,
+        "distance": 0
+      },
+      {
+        "cid": 37,
+        "distance": 0
+      },
+      {
+        "cid": 80,
+        "distance": 0
+      },
+      {
+        "cid": 143,
+        "distance": 0
+      },
+      {
+        "cid": 145,
         "distance": 0
       }
     ]
@@ -530,11 +1086,19 @@
     "name": "بحرة",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 23,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 24,
+        "distance": 0
+      },
+      {
+        "cid": 27,
+        "distance": 0
+      },
+      {
+        "cid": 29,
         "distance": 0
       }
     ]
@@ -542,14 +1106,26 @@
   {
     "cid": 36,
     "rid": 1,
-    "name": "الموية",
+    "name": "المويه",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 5,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 11,
+        "distance": 0
+      },
+      {
+        "cid": 25,
+        "distance": 0
+      },
+      {
+        "cid": 32,
+        "distance": 0
+      },
+      {
+        "cid": 43,
         "distance": 0
       }
     ]
@@ -560,11 +1136,23 @@
     "name": "ميسان",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 25,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 34,
+        "distance": 0
+      },
+      {
+        "cid": 39,
+        "distance": 0
+      },
+      {
+        "cid": 141,
+        "distance": 0
+      },
+      {
+        "cid": 145,
         "distance": 0
       }
     ]
@@ -575,11 +1163,31 @@
     "name": "العرضيات",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 88,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 89,
+        "distance": 0
+      },
+      {
+        "cid": 92,
+        "distance": 0
+      },
+      {
+        "cid": 94,
+        "distance": 0
+      },
+      {
+        "cid": 140,
+        "distance": 0
+      },
+      {
+        "cid": 142,
+        "distance": 0
+      },
+      {
+        "cid": 147,
         "distance": 0
       }
     ]
@@ -590,11 +1198,11 @@
     "name": "أضم",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 37,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 148,
         "distance": 0
       }
     ]
@@ -605,11 +1213,31 @@
     "name": "المدينة المنورة",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 42,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 43,
+        "distance": 0
+      },
+      {
+        "cid": 44,
+        "distance": 0
+      },
+      {
+        "cid": 45,
+        "distance": 0
+      },
+      {
+        "cid": 46,
+        "distance": 0
+      },
+      {
+        "cid": 47,
+        "distance": 0
+      },
+      {
+        "cid": 109,
         "distance": 0
       }
     ]
@@ -620,11 +1248,19 @@
     "name": "ينبع",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 28,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 44,
+        "distance": 0
+      },
+      {
+        "cid": 48,
+        "distance": 0
+      },
+      {
+        "cid": 99,
         "distance": 0
       }
     ]
@@ -635,11 +1271,35 @@
     "name": "العلا",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 45,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 48,
+        "distance": 0
+      },
+      {
+        "cid": 95,
+        "distance": 0
+      },
+      {
+        "cid": 96,
+        "distance": 0
+      },
+      {
+        "cid": 97,
+        "distance": 0
+      },
+      {
+        "cid": 98,
+        "distance": 0
+      },
+      {
+        "cid": 106,
+        "distance": 0
+      },
+      {
+        "cid": 109,
         "distance": 0
       }
     ]
@@ -650,11 +1310,27 @@
     "name": "المهد",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 11,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 29,
+        "distance": 0
+      },
+      {
+        "cid": 36,
+        "distance": 0
+      },
+      {
+        "cid": 40,
+        "distance": 0
+      },
+      {
+        "cid": 46,
+        "distance": 0
+      },
+      {
+        "cid": 47,
         "distance": 0
       }
     ]
@@ -665,11 +1341,19 @@
     "name": "بدر",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 28,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 40,
+        "distance": 0
+      },
+      {
+        "cid": 41,
+        "distance": 0
+      },
+      {
+        "cid": 47,
         "distance": 0
       }
     ]
@@ -680,11 +1364,23 @@
     "name": "خيبر",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 40,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 42,
+        "distance": 0
+      },
+      {
+        "cid": 48,
+        "distance": 0
+      },
+      {
+        "cid": 98,
+        "distance": 0
+      },
+      {
+        "cid": 109,
         "distance": 0
       }
     ]
@@ -695,11 +1391,19 @@
     "name": "الحناكية",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 40,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 43,
+        "distance": 0
+      },
+      {
+        "cid": 65,
+        "distance": 0
+      },
+      {
+        "cid": 109,
         "distance": 0
       }
     ]
@@ -710,11 +1414,27 @@
     "name": "وادي الفرع",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 28,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 30,
+        "distance": 0
+      },
+      {
+        "cid": 31,
+        "distance": 0
+      },
+      {
+        "cid": 40,
+        "distance": 0
+      },
+      {
+        "cid": 43,
+        "distance": 0
+      },
+      {
+        "cid": 44,
         "distance": 0
       }
     ]
@@ -725,11 +1445,23 @@
     "name": "العيص",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 40,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 41,
+        "distance": 0
+      },
+      {
+        "cid": 42,
+        "distance": 0
+      },
+      {
+        "cid": 45,
+        "distance": 0
+      },
+      {
+        "cid": 99,
         "distance": 0
       }
     ]
@@ -740,11 +1472,31 @@
     "name": "بريدة",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 50,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 51,
+        "distance": 0
+      },
+      {
+        "cid": 52,
+        "distance": 0
+      },
+      {
+        "cid": 56,
+        "distance": 0
+      },
+      {
+        "cid": 58,
+        "distance": 0
+      },
+      {
+        "cid": 61,
+        "distance": 0
+      },
+      {
+        "cid": 63,
         "distance": 0
       }
     ]
@@ -755,11 +1507,19 @@
     "name": "القرعاء",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 49,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 51,
+        "distance": 0
+      },
+      {
+        "cid": 56,
+        "distance": 0
+      },
+      {
+        "cid": 61,
         "distance": 0
       }
     ]
@@ -770,11 +1530,31 @@
     "name": "شرى",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 49,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 58,
+        "distance": 0
+      },
+      {
+        "cid": 59,
+        "distance": 0
+      },
+      {
+        "cid": 61,
+        "distance": 0
+      },
+      {
+        "cid": 103,
+        "distance": 0
+      },
+      {
+        "cid": 105,
+        "distance": 0
+      },
+      {
+        "cid": 112,
         "distance": 0
       }
     ]
@@ -785,11 +1565,11 @@
     "name": "عنيزة",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -800,11 +1580,11 @@
     "name": "الرس",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -815,11 +1595,11 @@
     "name": "المذنب",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -830,11 +1610,11 @@
     "name": "الملقاء",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -845,11 +1625,11 @@
     "name": "البكيرية",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -860,11 +1640,11 @@
     "name": "البدائع",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -875,11 +1655,11 @@
     "name": "الأسياح",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -890,11 +1670,11 @@
     "name": "قبة",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -905,11 +1685,11 @@
     "name": "البتراء",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -920,11 +1700,11 @@
     "name": "المخرم",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -935,11 +1715,11 @@
     "name": "رياض الخبراء",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -950,11 +1730,11 @@
     "name": "الشماسية",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -965,11 +1745,11 @@
     "name": "ام حزم",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -980,11 +1760,11 @@
     "name": "النقرة",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -995,11 +1775,11 @@
     "name": "العقلة",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1010,11 +1790,11 @@
     "name": "ضرية",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1025,11 +1805,11 @@
     "name": "الدمام",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1040,11 +1820,11 @@
     "name": "الأحساء",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1055,11 +1835,11 @@
     "name": "حفر الباطن",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1070,11 +1850,11 @@
     "name": "الجبيل",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1085,11 +1865,11 @@
     "name": "القطيف",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1100,11 +1880,11 @@
     "name": "الخبر",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1115,11 +1895,11 @@
     "name": "الخفجي",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1130,11 +1910,11 @@
     "name": "رأس تنورة",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1145,11 +1925,11 @@
     "name": "بقيق",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1160,11 +1940,11 @@
     "name": "النعيرية",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1175,11 +1955,11 @@
     "name": "أبها",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1190,11 +1970,11 @@
     "name": "خميس مشيط",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1205,11 +1985,11 @@
     "name": "بيشة",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1220,11 +2000,11 @@
     "name": "النماص",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1235,11 +2015,11 @@
     "name": "محايل",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1250,11 +2030,11 @@
     "name": "سراة عبيدة",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1265,11 +2045,11 @@
     "name": "تثليث",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1280,11 +2060,11 @@
     "name": "رجال المع",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1295,11 +2075,11 @@
     "name": "احد رفيدة",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1310,11 +2090,11 @@
     "name": "ظهران الجنوب",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1325,11 +2105,11 @@
     "name": "بالقرن",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1340,11 +2120,11 @@
     "name": "المجاردة",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1355,11 +2135,11 @@
     "name": "طريب",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1370,11 +2150,11 @@
     "name": "البرك",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1385,11 +2165,11 @@
     "name": "بارق",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1400,11 +2180,11 @@
     "name": "تنومة",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1415,11 +2195,11 @@
     "name": "الحرجة",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1430,11 +2210,11 @@
     "name": "تبوك",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1445,11 +2225,11 @@
     "name": "الوجه",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1460,11 +2240,11 @@
     "name": "ضباء",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1475,11 +2255,11 @@
     "name": "تيماء",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1490,11 +2270,11 @@
     "name": "املج",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1505,11 +2285,11 @@
     "name": "حقل",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1520,11 +2300,11 @@
     "name": "البدع",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1535,11 +2315,11 @@
     "name": "حائل",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1550,11 +2330,11 @@
     "name": "بقعاء",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1565,11 +2345,11 @@
     "name": "الغزالة",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1580,11 +2360,11 @@
     "name": "الشنان",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1595,11 +2375,11 @@
     "name": "الشملي",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1610,11 +2390,11 @@
     "name": "موقق",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1625,11 +2405,11 @@
     "name": "سميراء",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1640,11 +2420,11 @@
     "name": "الحائط",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1655,11 +2435,11 @@
     "name": "السليمي",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1670,11 +2450,11 @@
     "name": "عرعر",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1685,11 +2465,11 @@
     "name": "رفحاء",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1700,11 +2480,11 @@
     "name": "طريف",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1715,11 +2495,11 @@
     "name": "العويقلية",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1730,11 +2510,11 @@
     "name": "جازان",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1745,11 +2525,11 @@
     "name": "صبياء",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1760,11 +2540,11 @@
     "name": "ابو عريش",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1775,11 +2555,11 @@
     "name": "صامطة",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1790,11 +2570,11 @@
     "name": "الحرث",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1805,11 +2585,11 @@
     "name": "ضمد",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1820,11 +2600,11 @@
     "name": "الريث",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1835,11 +2615,11 @@
     "name": "بيش",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1850,11 +2630,11 @@
     "name": "فرسان",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1865,11 +2645,11 @@
     "name": "الدائر",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1880,11 +2660,11 @@
     "name": "احد المسارحة",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1895,11 +2675,11 @@
     "name": "العيدابي",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1910,11 +2690,11 @@
     "name": "العارضة",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1925,11 +2705,11 @@
     "name": "الدرب",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1940,11 +2720,11 @@
     "name": "الطوال",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1955,11 +2735,11 @@
     "name": "هروب",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1970,11 +2750,11 @@
     "name": "فيفا",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -1985,11 +2765,11 @@
     "name": "نجران",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -2000,11 +2780,11 @@
     "name": "شرورة",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -2015,11 +2795,11 @@
     "name": "حبونا",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -2030,11 +2810,11 @@
     "name": "بدر الجنور",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -2045,11 +2825,11 @@
     "name": "يدمة",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -2060,11 +2840,11 @@
     "name": "ثار",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -2075,11 +2855,11 @@
     "name": "خباش",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -2090,11 +2870,11 @@
     "name": "الباحة",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -2105,11 +2885,11 @@
     "name": "بلجرشي",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -2120,11 +2900,11 @@
     "name": "المندق",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -2135,11 +2915,11 @@
     "name": "المخواة",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -2150,11 +2930,11 @@
     "name": "العقيف",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -2165,11 +2945,11 @@
     "name": "قلوة",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -2180,11 +2960,11 @@
     "name": "القري",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -2195,11 +2975,11 @@
     "name": "بني حسن",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -2210,11 +2990,11 @@
     "name": "فرعة غامد الزناد",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -2225,11 +3005,11 @@
     "name": "الحجرة",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -2240,11 +3020,11 @@
     "name": "سكاكا",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -2255,11 +3035,11 @@
     "name": "القريات",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -2270,11 +3050,11 @@
     "name": "دومة الجندل",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
@@ -2285,11 +3065,11 @@
     "name": "طبرجل",
     "neighbors": [
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       },
       {
-        "city_id": 0,
+        "cid": 0,
         "distance": 0
       }
     ]
