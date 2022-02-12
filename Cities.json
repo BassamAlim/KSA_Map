@@ -6,43 +6,43 @@
     "neighbors": [
       {
         "cid": 1,
-        "distance": 0
+        "distance": 39.72
       },
       {
         "cid": 2,
-        "distance": 0
+        "distance": 87.03
       },
       {
         "cid": 4,
-        "distance": 0
+        "distance": 217.64
       },
       {
         "cid": 10,
-        "distance": 0
+        "distance": 142.98
       },
       {
         "cid": 13,
-        "distance": 0
+        "distance": 82.3
       },
       {
         "cid": 14,
-        "distance": 0
+        "distance": 110.27
       },
       {
         "cid": 15,
-        "distance": 0
+        "distance": 128.32
       },
       {
         "cid": 17,
-        "distance": 0
+        "distance": 109.59
       },
       {
         "cid": 21,
-        "distance": 0
+        "distance": 98.13
       },
       {
         "cid": 69,
-        "distance": 0
+        "distance": 371.08
       }
     ]
   },
@@ -53,19 +53,19 @@
     "neighbors": [
       {
         "cid": 0,
-        "distance": 0
+        "distance": 38.17
       },
       {
         "cid": 13,
-        "distance": 0
+        "distance": 97.94
       },
       {
         "cid": 14,
-        "distance": 0
+        "distance": 55.34
       },
       {
         "cid": 17,
-        "distance": 0
+        "distance": 74.05
       }
     ]
   },
@@ -76,15 +76,15 @@
     "neighbors": [
       {
         "cid": 0,
-        "distance": 0
+        "distance": 84.39
       },
       {
         "cid": 21,
-        "distance": 0
+        "distance": 118.49
       },
       {
         "cid": 69,
-        "distance": 0
+        "distance": 373.65
       }
     ]
   },
@@ -95,31 +95,31 @@
     "neighbors": [
       {
         "cid": 5,
-        "distance": 0
+        "distance": 610.3
       },
       {
         "cid": 9,
-        "distance": 0
+        "distance": 128.07
       },
       {
         "cid": 11,
-        "distance": 0
+        "distance": 170.74
       },
       {
         "cid": 20,
-        "distance": 0
+        "distance": 160.58
       },
       {
         "cid": 22,
-        "distance": 0
+        "distance": 200.21
       },
       {
         "cid": 55,
-        "distance": 0
+        "distance": 244.11
       },
       {
         "cid": 67,
-        "distance": 0
+        "distance": 173.8
       }
     ]
   },
@@ -130,27 +130,27 @@
     "neighbors": [
       {
         "cid": 0,
-        "distance": 0
+        "distance": 219.38
       },
       {
         "cid": 9,
-        "distance": 0
+        "distance": 88.38
       },
       {
         "cid": 15,
-        "distance": 0
+        "distance": 234.95
       },
       {
         "cid": 16,
-        "distance": 0
+        "distance": 108.74
       },
       {
         "cid": 19,
-        "distance": 0
+        "distance": 50.22
       },
       {
         "cid": 70,
-        "distance": 0
+        "distance": 272.61
       }
     ]
   },
@@ -161,31 +161,31 @@
     "neighbors": [
       {
         "cid": 3,
-        "distance": 0
+        "distance": 133.61
       },
       {
         "cid": 9,
-        "distance": 0
+        "distance": 181.78
       },
       {
         "cid": 13,
-        "distance": 0
+        "distance": 119.55
       },
       {
         "cid": 14,
-        "distance": 0
+        "distance": 118.86
       },
       {
         "cid": 20,
-        "distance": 0
+        "distance": 152.37
       },
       {
         "cid": 22,
-        "distance": 0
+        "distance": 80.18
       },
       {
         "cid": 36,
-        "distance": 0
+        "distance": 427.51
       }
     ]
   },
@@ -196,35 +196,35 @@
     "neighbors": [
       {
         "cid": 12,
-        "distance": 0
+        "distance": 88.44
       },
       {
         "cid": 22,
-        "distance": 0
+        "distance": 517.33
       },
       {
         "cid": 33,
-        "distance": 0
+        "distance": 238.85
       },
       {
         "cid": 80,
-        "distance": 0
+        "distance": 314.62
       },
       {
         "cid": 84,
-        "distance": 0
+        "distance": 189.33
       },
       {
         "cid": 133,
-        "distance": 0
+        "distance": 533.81
       },
       {
         "cid": 136,
-        "distance": 0
+        "distance": 227.82
       },
       {
         "cid": 138,
-        "distance": 0
+        "distance": 439.56
       }
     ]
   },
@@ -235,15 +235,15 @@
     "neighbors": [
       {
         "cid": 10,
-        "distance": 0
+        "distance": 159.28
       },
       {
         "cid": 12,
-        "distance": 0
+        "distance": 259.81
       },
       {
         "cid": 22,
-        "distance": 0
+        "distance": 301.57
       }
     ]
   },
@@ -254,27 +254,23 @@
     "neighbors": [
       {
         "cid": 19,
-        "distance": 0
+        "distance": 46.39
       },
       {
         "cid": 52,
-        "distance": 0
+        "distance": 103.52
       },
       {
         "cid": 63,
-        "distance": 0
-      },
-      {
-        "cid": 64,
-        "distance": 0
+        "distance": 73.8
       },
       {
         "cid": 66,
-        "distance": 0
+        "distance": 355.52
       },
       {
         "cid": 70,
-        "distance": 0
+        "distance": 297.94
       }
     ]
   },
@@ -285,31 +281,31 @@
     "neighbors": [
       {
         "cid": 3,
-        "distance": 0
+        "distance": 127.48
       },
       {
         "cid": 4,
-        "distance": 0
+        "distance": 86.52
       },
       {
         "cid": 16,
-        "distance": 0
+        "distance": 84.88
       },
       {
         "cid": 17,
-        "distance": 0
+        "distance": 105.42
       },
       {
         "cid": 20,
-        "distance": 0
+        "distance": 36.86
       },
       {
         "cid": 55,
-        "distance": 0
+        "distance": 241.7
       },
       {
         "cid": 64,
-        "distance": 0
+        "distance": 103.55
       }
     ]
   },
@@ -320,19 +316,19 @@
     "neighbors": [
       {
         "cid": 0,
-        "distance": 0
+        "distance": 156.51
       },
       {
         "cid": 7,
-        "distance": 0
+        "distance": 143.95
       },
       {
         "cid": 18,
-        "distance": 0
+        "distance": 62.78
       },
       {
         "cid": 21,
-        "distance": 0
+        "distance": 91.08
       }
     ]
   },
@@ -343,23 +339,23 @@
     "neighbors": [
       {
         "cid": 3,
-        "distance": 0
+        "distance": 171.63
       },
       {
         "cid": 32,
-        "distance": 0
+        "distance": 322.67
       },
       {
         "cid": 36,
-        "distance": 0
+        "distance": 608.46
       },
       {
         "cid": 43,
-        "distance": 0
+        "distance": 227.08
       },
       {
         "cid": 67,
-        "distance": 0
+        "distance": 102.78
       }
     ]
   },
@@ -370,35 +366,35 @@
     "neighbors": [
       {
         "cid": 6,
-        "distance": 0
+        "distance": 86.72
       },
       {
         "cid": 7,
-        "distance": 0
+        "distance": 243.66
       },
       {
         "cid": 132,
-        "distance": 0
+        "distance": 451.31
       },
       {
         "cid": 133,
-        "distance": 0
+        "distance": 528.75
       },
       {
         "cid": 134,
-        "distance": 0
+        "distance": 387.48
       },
       {
         "cid": 136,
-        "distance": 0
+        "distance": 222.76
       },
       {
         "cid": 137,
-        "distance": 0
+        "distance": 330.29
       },
       {
         "cid": 138,
-        "distance": 0
+        "distance": 434.5
       }
     ]
   },
@@ -409,15 +405,15 @@
     "neighbors": [
       {
         "cid": 0,
-        "distance": 0
+        "distance": 72.94
       },
       {
         "cid": 1,
-        "distance": 0
+        "distance": 70.38
       },
       {
         "cid": 5,
-        "distance": 0
+        "distance": 139.84
       },
       {
         "cid": 14,
