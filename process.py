@@ -72,7 +72,6 @@ def expand(node, visited, algo):
     for neighbor_cid in neighbors:
         counter += 1
         if in_history(neighbor_cid, visited) or (node.parent is not None and node.parent == neighbor_cid):
-
             continue
         successors.append(make_node(neighbor_cid, node, cities[node.cid]['neighbors'][counter]['distance']))
     return successors
