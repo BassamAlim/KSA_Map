@@ -96,19 +96,7 @@ class Ui_MainWindow(object):
             self.comboBox.addItem(_translate("MainWindow", region))
             self.comboBox_4.addItem(_translate("MainWindow", region))
 
-        """MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.comboBox.setItemText(0, _translate("MainWindow", "الرياض"))
-        self.comboBox.setItemText(1, _translate("MainWindow", "جدة"))
-        self.comboBox.setItemText(2, _translate("MainWindow", "مكة"))
-        self.comboBox_2.setItemText(0, _translate("MainWindow", "الرياض"))
-        self.comboBox_2.setItemText(1, _translate("MainWindow", "جدة"))
-        self.comboBox_2.setItemText(2, _translate("MainWindow", "مكة"))
-        self.comboBox_3.setItemText(0, _translate("MainWindow", "الرياض"))
-        self.comboBox_3.setItemText(1, _translate("MainWindow", "جدة"))
-        self.comboBox_3.setItemText(2, _translate("MainWindow", "مكة"))
-        self.comboBox_4.setItemText(0, _translate("MainWindow", "الرياض"))
-        self.comboBox_4.setItemText(1, _translate("MainWindow", "جدة"))
-        self.comboBox_4.setItemText(2, _translate("MainWindow", "مكة"))"""
+
         self.textBrowser.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"

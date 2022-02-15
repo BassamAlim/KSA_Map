@@ -1,26 +1,18 @@
 class Node:
     cid = -1
-    city_name = ''
-    parent = ''
-    neighbors = []
+    name = ''
+    parent = object
     path_cost = 0
 
-    def __init__(self, cid, cname, parent, neighbors, path_cost):
+    def __init__(self, cid, cname, parent, path_cost):
         self.cid = cid
-        self.city_name = cname
-        self.parent_id = parent
-        self.neighbors = neighbors
+        self.name = cname
+        self.parent = parent
         self.path_cost = path_cost
 
 
 class Result:
-    route = 0
+    route = []
     distance = 0
     nodes_num = 0
-    fringe_max_size = 0
-
-    def __init__(self, route, distance, nodes_num, fringe_max_size):
-        self.route = route
-        self.distance = distance
-        self.nodes_num = nodes_num
-        self.fringe_max_size = fringe_max_size
+    fringe_max_size = 1
