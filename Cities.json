@@ -41,6 +41,10 @@
         "distance": 98.13
       },
       {
+        "cid": 68,
+        "distance": 414.71
+      },
+      {
         "cid": 69,
         "distance": 371.08
       }
@@ -216,15 +220,15 @@
       },
       {
         "cid": 133,
-        "distance": 533.81
+        "distance": 534
       },
       {
         "cid": 136,
-        "distance": 227.82
+        "distance": 228
       },
       {
         "cid": 138,
-        "distance": 439.56
+        "distance": 440
       }
     ]
   },
@@ -374,27 +378,27 @@
       },
       {
         "cid": 132,
-        "distance": 451.31
+        "distance": 452
       },
       {
         "cid": 133,
-        "distance": 528.75
+        "distance": 529
       },
       {
         "cid": 134,
-        "distance": 387.48
+        "distance": 388
       },
       {
         "cid": 136,
-        "distance": 222.76
+        "distance": 223
       },
       {
         "cid": 137,
-        "distance": 330.29
+        "distance": 331
       },
       {
         "cid": 138,
-        "distance": 434.5
+        "distance": 435
       }
     ]
   },
@@ -778,6 +782,10 @@
       {
         "cid": 43,
         "distance": 348.11
+      },
+      {
+        "cid": 145,
+        "distance": 193
       }
     ]
   },
@@ -804,11 +812,11 @@
       },
       {
         "cid": 91,
-        "distance": 173.42
+        "distance": 173
       },
       {
         "cid": 92,
-        "distance": 135.2
+        "distance": 135
       },
       {
         "cid": 142,
@@ -821,6 +829,10 @@
       {
         "cid": 148,
         "distance": 157.01
+      },
+      {
+        "cid": 144,
+        "distance": 138
       }
     ]
   },
@@ -852,6 +864,10 @@
       {
         "cid": 148,
         "distance": 133.96
+      },
+      {
+        "cid" : 147,
+        "distance": 209
       }
     ]
   },
@@ -1156,7 +1172,7 @@
       },
       {
         "cid": 92,
-        "distance": 91.66
+        "distance": 91
       },
       {
         "cid": 94,
@@ -1264,27 +1280,27 @@
       },
       {
         "cid": 95,
-        "distance": 337.76
+        "distance": 338
       },
       {
         "cid": 96,
-        "distance": 245.84
+        "distance": 245
       },
       {
         "cid": 97,
-        "distance": 329.4
+        "distance": 329
       },
       {
         "cid": 98,
-        "distance": 188.45
+        "distance": 188
       },
       {
         "cid": 106,
-        "distance": 274.04
+        "distance": 274
       },
       {
         "cid": 109,
-        "distance": 386.88
+        "distance": 387
       }
     ]
   },
@@ -1361,11 +1377,15 @@
       },
       {
         "cid": 98,
-        "distance": 264.41
+        "distance": 263
       },
       {
         "cid": 109,
         "distance": 160.11
+      },
+      {
+        "cid": 106,
+        "distance": 314
       }
     ]
   },
@@ -1482,6 +1502,10 @@
       {
         "cid": 63,
         "distance": 33.76
+      },
+      {
+        "cid": 102,
+        "distance": 269
       }
     ]
   },
@@ -1531,7 +1555,7 @@
       },
       {
         "cid": 103,
-        "distance": 168.11
+        "distance": 168
       },
       {
         "cid": 105,
@@ -1539,7 +1563,7 @@
       },
       {
         "cid": 112,
-        "distance": 404.12
+        "distance": 408
       }
     ]
   },
@@ -1549,12 +1573,40 @@
     "name": "عنيزة",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 49,
+        "distance": 40
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 63,
+        "distance": 53
+      },
+      {
+        "cid": 8,
+        "distance": 109.23
+      },
+      {
+        "cid": 66,
+        "distance": 113.43
+      },
+      {
+        "cid": 19,
+        "distance": 112
+      },
+      {
+        "cid": 64,
+        "distance": 105.45
+      },
+      {
+        "cid": 54,
+        "distance": 37.75
+      },
+      {
+        "cid": 57,
+        "distance": 34
+      },
+      {
+        "cid": 56,
+        "distance": 46.3
       }
     ]
   },
@@ -1564,12 +1616,24 @@
     "name": "الرس",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 62,
+        "distance": 26
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 57,
+        "distance":30
+      },
+      {
+        "cid": 60,
+        "distance":72
+      },
+      {
+        "cid": 55,
+        "distance":110.29
+      },
+      {
+        "cid": 67,
+        "distance":165
       }
     ]
   },
@@ -1579,12 +1643,16 @@
     "name": "المذنب",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 52,
+        "distance": 37.75
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 64,
+        "distance": 43
+      },
+      {
+        "cid": 55,
+        "distance": 79.28
       }
     ]
   },
@@ -1594,12 +1662,32 @@
     "name": "الملقاء",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 9,
+        "distance": 241.7
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 20,
+        "distance": 276.37
+      },
+      {
+        "cid": 3,
+        "distance": 244.11
+      },
+      {
+        "cid": 64,
+        "distance": 116
+      },
+      {
+        "cid": 54,
+        "distance": 79.28
+      },
+      {
+        "cid": 53,
+        "distance":110.29
+      },
+      {
+        "cid": 57,
+        "distance":138.32
       }
     ]
   },
@@ -1609,12 +1697,32 @@
     "name": "البكيرية",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 52,
+        "distance": 46.3
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 50,
+        "distance": 39.11
+      },
+      {
+        "cid": 49,
+        "distance": 41.36
+      },
+      {
+        "cid": 63,
+        "distance": 80
+      },
+      {
+        "cid": 57,
+        "distance": 32
+      },
+      {
+        "cid": 62,
+        "distance": 16.44
+      },
+      {
+        "cid": 108,
+        "distance": 156
       }
     ]
   },
@@ -1624,12 +1732,20 @@
     "name": "البدائع",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 53,
+        "distance": 30
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 62,
+        "distance": 26
+      },
+      {
+        "cid": 56,
+        "distance": 32
+      },
+      {
+        "cid": 52,
+        "distance": 34
       }
     ]
   },
@@ -1639,12 +1755,24 @@
     "name": "الأسياح",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 63,
+        "distance": 74
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 49,
+        "distance": 65.3
+      },
+      {
+        "cid": 59,
+        "distance": 79
+      },
+      {
+        "cid": 61,
+        "distance": 152.12
+      },
+      {
+        "cid": 51,
+        "distance": 118.34
       }
     ]
   },
@@ -1654,12 +1782,24 @@
     "name": "قبة",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 51,
+        "distance": 143.11
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 58,
+        "distance": 79
+      },
+      {
+        "cid": 70,
+        "distance": 241
+      },
+      {
+        "cid": 112,
+        "distance": 359
+      },
+      {
+        "cid": 51,
+        "distance": 408
       }
     ]
   },
@@ -1669,12 +1809,24 @@
     "name": "البتراء",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 62,
+        "distance": 64
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 53,
+        "distance": 71
+      },
+      {
+        "cid": 108,
+        "distance": 78
+      },
+      {
+        "cid": 65,
+        "distance": 163
+      },
+      {
+        "cid": 67,
+        "distance": 163
       }
     ]
   },
@@ -1684,12 +1836,28 @@
     "name": "المخرم",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 49,
+        "distance": 97.47
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 50,
+        "distance": 72
+      },
+      {
+        "cid": 51,
+        "distance": 108.37
+      },
+      {
+        "cid": 58,
+        "distance": 152.12
+      },
+      {
+        "cid": 105,
+        "distance": 101.58
+      },
+      {
+        "cid": 108,
+        "distance": 261
       }
     ]
   },
@@ -1699,12 +1867,20 @@
     "name": "رياض الخبراء",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 53,
+        "distance":26
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 56,
+        "distance": 16.44
+      },
+      {
+        "cid": 57,
+        "distance": 26
+      },
+      {
+        "cid": 60,
+        "distance": 64
       }
     ]
   },
@@ -1714,12 +1890,28 @@
     "name": "الشماسية",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 49,
+        "distance": 33.76
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 52,
+        "distance": 53
+      },
+      {
+        "cid": 58,
+        "distance": 74
+      },
+      {
+        "cid": 8,
+        "distance": 73.8
+      },
+      {
+        "cid": 64,
+        "distance": 77
+      },
+      {
+        "cid": 66,
+        "distance": 89
       }
     ]
   },
@@ -1729,12 +1921,24 @@
     "name": "ام حزم",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 63,
+        "distance": 77
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 54,
+        "distance": 43
+      },
+      {
+        "cid": 19,
+        "distance": 49.93
+      },
+      {
+        "cid": 9,
+        "distance": 103.55
+      },
+      {
+        "cid": 4,
+        "distance": 103.55
       }
     ]
   },
@@ -1744,12 +1948,32 @@
     "name": "النقرة",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 60,
+        "distance": 163
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 46,
+        "distance": 150.91
+      },
+      {
+        "cid": 104,
+        "distance": 167
+      },
+      {
+        "cid": 106,
+        "distance": 210
+      },
+      {
+        "cid": 108,
+        "distance": 255
+      },
+      {
+        "cid": 110,
+        "distance": 94
+      },
+      {
+        "cid": 109,
+        "distance": 126
       }
     ]
   },
@@ -1759,12 +1983,16 @@
     "name": "العقلة",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 8,
+        "distance": 355.52
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 19,
+        "distance": 30.82
+      },
+      {
+        "cid": 63,
+        "distance": 89
       }
     ]
   },
@@ -1774,12 +2002,20 @@
     "name": "ضرية",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 60,
+        "distance": 163
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 11,
+        "distance": 102.78
+      },
+      {
+        "cid": 3,
+        "distance": 173.8
+      },
+      {
+        "cid": 53,
+        "distance": 165
       }
     ]
   },
@@ -1789,12 +2025,24 @@
     "name": "الدمام",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 72,
+        "distance": 15.99
+      },
+      {
+        "cid": 73,
+        "distance": 25.71
+      },
+      {
+        "cid": 76,
+        "distance": 69.19
+      },
+      {
+        "cid": 69,
+        "distance": 171.29
       },
       {
         "cid": 0,
-        "distance": 0
+        "distance": 414.71
       }
     ]
   },
@@ -1804,12 +2052,24 @@
     "name": "الأحساء",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 76,
+        "distance": 100.22
+      },
+      {
+        "cid": 68,
+        "distance": 171.29
+      },
+      {
+        "cid": 73,
+        "distance": 172.89
       },
       {
         "cid": 0,
-        "distance": 0
+        "distance": 371.08
+      },
+      {
+        "cid": 2,
+        "distance": 373.65
       }
     ]
   },
@@ -1819,12 +2079,24 @@
     "name": "حفر الباطن",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 74,
+        "distance": 288
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 77,
+        "distance": 273
+      },
+      {
+        "cid": 4,
+        "distance": 272.61
+      },
+      {
+        "cid": 59,
+        "distance": 241
+      },
+      {
+        "cid": 112,
+        "distance": 277
       }
     ]
   },
@@ -1834,13 +2106,26 @@
     "name": "الجبيل",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 15,
+        "distance": 485.02
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 72,
+        "distance": 71.36
+      },
+      {
+        "cid": 74,
+        "distance": 235.51
+      },
+      {
+        "cid": 75,
+        "distance": 88.15
+      },
+      {
+        "cid": 77,
+        "distance": 152.27
       }
+
     ]
   },
   {
@@ -1849,12 +2134,16 @@
     "name": "القطيف",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 75,
+        "distance": 61.5
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 68,
+        "distance": 15.99
+      },
+      {
+        "cid": 71,
+        "distance": 71.36
       }
     ]
   },
@@ -1864,12 +2153,12 @@
     "name": "الخبر",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 68,
+        "distance": 25.71
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 76,
+        "distance": 88.12
       }
     ]
   },
@@ -1879,12 +2168,24 @@
     "name": "الخفجي",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 70,
+        "distance": 288
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 71,
+        "distance": 235.51
+      },
+      {
+        "cid": 77,
+        "distance": 131.18
+      },
+      {
+        "cid": 17,
+        "distance": 436.56
+      },
+      {
+        "cid": 15,
+        "distance": 397.02
       }
     ]
   },
@@ -1894,12 +2195,12 @@
     "name": "رأس تنورة",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 72,
+        "distance": 61.5
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 71,
+        "distance": 88.15
       }
     ]
   },
@@ -1909,12 +2210,20 @@
     "name": "بقيق",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 69,
+        "distance": 100.22
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 73,
+        "distance": 88.12
+      },
+      {
+        "cid":68 ,
+        "distance": 69.19
+      },
+      {
+        "cid":77 ,
+        "distance": 275.61
       }
     ]
   },
@@ -1924,12 +2233,24 @@
     "name": "النعيرية",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 70,
+        "distance": 273
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 15,
+        "distance": 297.32
+      },
+      {
+        "cid": 71,
+        "distance": 152.27
+      },
+      {
+        "cid": 74,
+        "distance": 131.18
+      },
+      {
+        "cid":76 ,
+        "distance": 275.61
       }
     ]
   },
@@ -1939,12 +2260,28 @@
     "name": "أبها",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 93,
+        "distance": 120
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 128,
+        "distance": 90
+      },
+      {
+        "cid": 79,
+        "distance": 30
+      },
+      {
+        "cid": 86,
+        "distance": 40
+      },
+      {
+        "cid": 82,
+        "distance": 82
+      },
+      {
+        "cid": 85,
+        "distance": 74
       }
     ]
   },
@@ -1954,12 +2291,24 @@
     "name": "خميس مشيط",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 78,
+        "distance": 30
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 86,
+        "distance": 15
+      },
+      {
+        "cid": 90,
+        "distance": 66
+      },
+      {
+        "cid": 84,
+        "distance": 202
+      },
+      {
+        "cid": 80,
+        "distance": 220
       }
     ]
   },
@@ -1969,12 +2318,24 @@
     "name": "بيشة",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 33,
+        "distance": 167
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 84,
+        "distance": 150
+      },
+      {
+        "cid": 88,
+        "distance": 120
+      },
+      {
+        "cid": 79,
+        "distance": 220
+      },
+      {
+        "cid": 90,
+        "distance": 255
       }
     ]
   },
@@ -1984,12 +2345,16 @@
     "name": "النماص",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 88,
+        "distance": 86
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 89,
+        "distance": 36
+      },
+      {
+        "cid": 93,
+        "distance": 26
       }
     ]
   },
@@ -1999,12 +2364,24 @@
     "name": "محايل",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 92,
+        "distance": 51
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 93,
+        "distance": 67
+      },
+      {
+        "cid": 85,
+        "distance": 74
+      },
+      {
+        "cid": 78,
+        "distance": 82
+      },
+      {
+        "cid": 91,
+        "distance": 95
       }
     ]
   },
@@ -2014,12 +2391,36 @@
     "name": "سراة عبيدة",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 90,
+        "distance": 70
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 86,
+        "distance": 50
+      },
+      {
+        "cid": 94,
+        "distance": 37
+      },
+      {
+        "cid": 135,
+        "distance": 89
+      },
+      {
+        "cid": 121,
+        "distance": 131
+      },
+      {
+        "cid": 124,
+        "distance": 143
+      },
+      {
+        "cid": 136,
+        "distance": 203
+      },
+      {
+        "cid": 137,
+        "distance": 183
       }
     ]
   },
@@ -2029,12 +2430,32 @@
     "name": "تثليث",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 80,
+        "distance": 150
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 6,
+        "distance": 189.3
+      },
+      {
+        "cid": 90,
+        "distance": 132
+      },
+      {
+        "cid": 136 ,
+        "distance": 227
+      },
+      {
+        "cid": 79,
+        "distance": 202
+      },
+      {
+        "cid": 137,
+        "distance": 327
+      },
+      {
+        "cid": 135,
+        "distance": 261
       }
     ]
   },
@@ -2044,12 +2465,20 @@
     "name": "رجال المع",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 78,
+        "distance": 74
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 82,
+        "distance": 74
+      },
+      {
+        "cid": 91,
+        "distance": 162
+      },
+      {
+        "cid": 128,
+        "distance": 56
       }
     ]
   },
@@ -2059,12 +2488,16 @@
     "name": "احد رفيدة",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 78,
+        "distance": 40
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 79,
+        "distance": 15
+      },
+      {
+        "cid": 83,
+        "distance": 50
       }
     ]
   },
@@ -2074,12 +2507,28 @@
     "name": "ظهران الجنوب",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 94,
+        "distance": 39
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 135,
+        "distance": 50
+      },
+      {
+        "cid": 132,
+        "distance": 101
+      },
+      {
+        "cid": 121,
+        "distance": 120
+      },
+      {
+        "cid": 124,
+        "distance": 132
+      },
+      {
+        "cid": 131,
+        "distance": 154
       }
     ]
   },
@@ -2089,12 +2538,28 @@
     "name": "بالقرن",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 80,
+        "distance": 120
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 81,
+        "distance": 86
+      },
+      {
+        "cid": 89,
+        "distance": 95
+      },
+      {
+        "cid": 140 ,
+        "distance": 132
+      },
+      {
+        "cid": 38,
+        "distance": 65
+      },
+      {
+        "cid": 92,
+        "distance": 100
       }
     ]
   },
@@ -2104,12 +2569,24 @@
     "name": "المجاردة",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 88,
+        "distance": 95
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 92,
+        "distance": 29
+      },
+      {
+        "cid": 81,
+        "distance": 36
+      },
+      {
+        "cid": 38,
+        "distance": 72
+      },
+      {
+        "cid": 26,
+        "distance": 122.2
       }
     ]
   },
@@ -2119,12 +2596,20 @@
     "name": "طريب",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 83,
+        "distance": 70
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 79,
+        "distance": 66
+      },
+      {
+        "cid": 136,
+        "distance": 163
+      },
+      {
+        "cid": 137,
+        "distance": 183
       }
     ]
   },
@@ -2134,12 +2619,22 @@
     "name": "البرك",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 82,
+        "distance": 95
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 128,
+        "distance": 112
+      },
+
+      {
+        "cid": 85,
+        "distance": 162
+      },
+
+      {
+        "cid": 26,
+        "distance": 176
       }
     ]
   },
@@ -2149,12 +2644,24 @@
     "name": "بارق",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 89,
+        "distance": 29
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 93,
+        "distance": 44
+      },
+      {
+        "cid": 82,
+        "distance": 51
+      },
+      {
+        "cid": 26,
+        "distance": 135
+      },
+      {
+        "cid": 38,
+        "distance": 91
       }
     ]
   },
@@ -2164,13 +2671,23 @@
     "name": "تنومة",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 78,
+        "distance": 120
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 81,
+        "distance": 26
+      },
+      {
+        "cid": 92,
+        "distance": 44
+      },
+
+      {
+        "cid": 82,
+        "distance": 67
       }
+
     ]
   },
   {
@@ -2179,12 +2696,24 @@
     "name": "الحرجة",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 83,
+        "distance": 37
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 87,
+        "distance": 39
+      },
+      {
+        "cid": 135,
+        "distance": 47
+      },
+      {
+        "cid": 121,
+        "distance": 154
+      },
+      {
+        "cid": 124,
+        "distance": 165
       }
     ]
   },
@@ -2194,13 +2723,41 @@
     "name": "تبوك",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 96,
+        "distance": 324
+      },
+
+      {
+        "cid": 97,
+        "distance": 196
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 100,
+        "distance": 235.5
+      },
+
+      {
+        "cid": 101,
+        "distance": 241
+      },
+      {
+        "cid": 42,
+        "distance": 338
+      },
+      {
+        "cid" : 98,
+        "distance": 261
+      },
+      {
+        "cid" : 151,
+        "distance": 424
+      },
+      {
+        "cid" : 152,
+        "distance": 469
       }
+
+
     ]
   },
   {
@@ -2209,12 +2766,20 @@
     "name": "الوجه",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 97,
+        "distance": 150
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 95,
+        "distance": 324
+      },
+      {
+        "cid": 99,
+        "distance": 166
+      },
+      {
+        "cid": 42,
+        "distance": 245
       }
     ]
   },
@@ -2224,12 +2789,27 @@
     "name": "ضباء",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 101,
+        "distance": 175
+      },
+
+      {
+        "cid": 96,
+        "distance": 150
+      },
+
+      {
+        "cid": 95,
+        "distance": 198
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 42,
+        "distance": 329
+      },
+
+      {
+        "cid": 100,
+        "distance": 274.08
       }
     ]
   },
@@ -2239,12 +2819,32 @@
     "name": "تيماء",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 42,
+        "distance": 188
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 95,
+        "distance": 261
+      },
+      {
+        "cid": 99,
+        "distance": 166
+      },
+      {
+        "cid": 106,
+        "distance": 269
+      },
+      {
+        "cid": 45,
+        "distance": 263
+      },
+      {
+        "cid" : 151,
+        "distance": 604
+      },
+      {
+        "cid" : 152,
+        "distance": 466
       }
     ]
   },
@@ -2254,12 +2854,16 @@
     "name": "املج",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 41,
+        "distance": 169
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 48,
+        "distance": 100
+      },
+      {
+        "cid": 98,
+        "distance": 166
       }
     ]
   },
@@ -2269,12 +2873,16 @@
     "name": "حقل",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 101,
+        "distance": 116
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 95,
+        "distance": 235.5
+      },
+      {
+        "cid": 97,
+        "distance": 274.08
       }
     ]
   },
@@ -2284,12 +2892,16 @@
     "name": "البدع",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 100,
+        "distance": 116
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 97,
+        "distance": 175
+      },
+      {
+        "cid": 95,
+        "distance": 241
       }
     ]
   },
@@ -2299,12 +2911,32 @@
     "name": "حائل",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 107,
+        "distance": 69
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 106,
+        "distance": 173
+      },
+      {
+        "cid": 103,
+        "distance":99
+      },
+      {
+        "cid": 105,
+        "distance":92
+      },
+      {
+        "cid": 108,
+        "distance":137
+      },
+      {
+        "cid": 104,
+        "distance":105
+      },
+      {
+        "cid": 49,
+        "distance":269
       }
     ]
   },
@@ -2314,12 +2946,36 @@
     "name": "بقعاء",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 112,
+        "distance": 318
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 59,
+        "distance": 279
+      },
+      {
+        "cid": 114,
+        "distance": 387
+      },
+      {
+        "cid": 51,
+        "distance": 168
+      },
+      {
+        "cid": 102,
+        "distance": 99
+      },
+      {
+        "cid": 105,
+        "distance": 101
+      },
+      {
+        "cid": 149,
+        "distance": 440
+      },
+      {
+        "cid": 151,
+        "distance": 416
       }
     ]
   },
@@ -2329,12 +2985,36 @@
     "name": "الغزالة",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 102,
+        "distance": 105
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 107,
+        "distance": 81
+      },
+      {
+        "cid": 105,
+        "distance": 173
+      },
+      {
+        "cid": 108,
+        "distance": 109
+      },
+      {
+        "cid": 110,
+        "distance": 74
+      },
+      {
+        "cid": 65,
+        "distance": 167
+      },
+      {
+        "cid": 106,
+        "distance": 187
+      },
+      {
+        "cid": 109,
+        "distance": 147
       }
     ]
   },
@@ -2344,12 +3024,32 @@
     "name": "الشنان",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 51,
+        "distance": 103.11
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 104,
+        "distance": 173
+      },
+      {
+        "cid": 61,
+        "distance": 101.58
+      },
+      {
+        "cid": 103,
+        "distance": 101
+      },
+      {
+        "cid": 108,
+        "distance": 103
+      },
+      {
+        "cid": 102,
+        "distance": 92
+      },
+      {
+        "cid": 112,
+        "distance": 396
       }
     ]
   },
@@ -2359,12 +3059,28 @@
     "name": "الشملي",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 42,
+        "distance": 274
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 104,
+        "distance": 187
+      },
+      {
+        "cid": 102,
+        "distance": 173
+      },
+      {
+        "cid": 107,
+        "distance": 115
+      },
+      {
+        "cid": 109,
+        "distance": 110
+      },
+      {
+        "cid": 45,
+        "distance": 314
       }
     ]
   },
@@ -2374,12 +3090,20 @@
     "name": "موقق",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 102,
+        "distance": 69
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 106,
+        "distance": 115
+      },
+      {
+        "cid": 104,
+        "distance": 81
+      },
+      {
+        "cid": 151,
+        "distance": 377
       }
     ]
   },
@@ -2389,12 +3113,32 @@
     "name": "سميراء",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 102,
+        "distance": 137
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 104,
+        "distance": 109
+      },
+      {
+        "cid": 105,
+        "distance": 103
+      },
+      {
+        "cid": 60,
+        "distance": 78
+      },
+      {
+        "cid": 61,
+        "distance": 261
+      },
+      {
+        "cid": 56,
+        "distance": 156
+      },
+      {
+        "cid": 65,
+        "distance": 255
       }
     ]
   },
@@ -2404,12 +3148,36 @@
     "name": "الحائط",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 42,
+        "distance": 387
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 45,
+        "distance": 162
+      },
+      {
+        "cid": 110,
+        "distance": 140
+      },
+      {
+        "cid": 40,
+        "distance": 215.02
+      },
+      {
+        "cid": 104,
+        "distance": 147
+      },
+      {
+        "cid": 106,
+        "distance": 110
+      },
+      {
+        "cid":46,
+        "distance":136.26
+      },
+      {
+        "cid": 65,
+        "distance": 126
       }
     ]
   },
@@ -2419,12 +3187,16 @@
     "name": "السليمي",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 104,
+        "distance": 74
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 65,
+        "distance": 94
+      },
+      {
+        "cid": 109,
+        "distance": 140
       }
     ]
   },
@@ -2434,12 +3206,20 @@
     "name": "عرعر",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 113,
+        "distance": 243.33
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 149,
+        "distance": 163.44
+      },
+      {
+        "cid": 114,
+        "distance": 137
+      },
+      {
+        "cid": 151,
+        "distance": 204.36
       }
     ]
   },
@@ -2449,12 +3229,28 @@
     "name": "رفحاء",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 103,
+        "distance": 318
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 114,
+        "distance": 153
+      },
+      {
+        "cid": 70,
+        "distance": 277
+      },
+      {
+        "cid": 149,
+        "distance": 414
+      },
+      {
+        "cid": 59,
+        "distance": 359
+      },
+      {
+        "cid": 105,
+        "distance": 396
       }
     ]
   },
@@ -2464,12 +3260,12 @@
     "name": "طريف",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 111,
+        "distance": 243.33
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 150,
+        "distance": 160
       }
     ]
   },
@@ -2479,12 +3275,24 @@
     "name": "العويقلية",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 103,
+        "distance": 387
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 111,
+        "distance": 137
+      },
+      {
+        "cid": 149,
+        "distance": 352
+      },
+      {
+        "cid": 112,
+        "distance": 153
+      },
+      {
+        "cid": 103,
+        "distance": 387
       }
     ]
   },
@@ -2494,12 +3302,20 @@
     "name": "جازان",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 116,
+        "distance": 36
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 117,
+        "distance": 34
+      },
+      {
+        "cid": 125,
+        "distance": 53
+      },
+      {
+        "cid": 123,
+        "distance": 60
       }
     ]
   },
@@ -2509,12 +3325,28 @@
     "name": "صبياء",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 115,
+        "distance": 36
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 117,
+        "distance": 36
+      },
+      {
+        "cid": 122,
+        "distance": 34
+      },
+      {
+        "cid": 120,
+        "distance": 24
+      },
+      {
+        "cid": 126,
+        "distance": 38
+      },
+      {
+        "cid": 130,
+        "distance": 56
       }
     ]
   },
@@ -2524,12 +3356,24 @@
     "name": "ابو عريش",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 115,
+        "distance": 34
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 116,
+        "distance": 36
+      },
+      {
+        "cid": 120,
+        "distance": 29
+      },
+      {
+        "cid": 127,
+        "distance": 28
+      },
+      {
+        "cid": 125,
+        "distance": 37
       }
     ]
   },
@@ -2539,12 +3383,16 @@
     "name": "صامطة",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 125,
+        "distance": 14
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 129,
+        "distance": 13
+      },
+      {
+        "cid": 119,
+        "distance": 40
       }
     ]
   },
@@ -2554,12 +3402,16 @@
     "name": "الحرث",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 118,
+        "distance": 40
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 127,
+        "distance": 44
+      },
+      {
+        "cid": 125,
+        "distance": 39
       }
     ]
   },
@@ -2569,12 +3421,16 @@
     "name": "ضمد",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 116,
+        "distance": 24
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 126,
+        "distance": 33
+      },
+      {
+        "cid": 117,
+        "distance": 29
       }
     ]
   },
@@ -2584,12 +3440,28 @@
     "name": "الريث",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 130,
+        "distance": 62
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 122,
+        "distance": 65
+      },
+      {
+        "cid": 128,
+        "distance": 98
+      },
+      {
+        "cid": 124,
+        "distance": 75
+      },
+      {
+        "cid": 83,
+        "distance": 131
+      },
+      {
+        "cid": 87,
+        "distance": 120
       }
     ]
   },
@@ -2599,12 +3471,20 @@
     "name": "بيش",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 116,
+        "distance": 34
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 121,
+        "distance": 65
+      },
+      {
+        "cid": 128,
+        "distance": 54
+      },
+      {
+        "cid": 130,
+        "distance": 62
       }
     ]
   },
@@ -2614,12 +3494,8 @@
     "name": "فرسان",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
-      },
-      {
-        "cid": 0,
-        "distance": 0
+        "cid": 115,
+        "distance": 60
       }
     ]
   },
@@ -2629,12 +3505,28 @@
     "name": "الدائر",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 131,
+        "distance": 22
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 126,
+        "distance": 34
+      },
+      {
+        "cid": 127,
+        "distance": 47
+      },
+      {
+        "cid": 121,
+        "distance": 75
+      },
+      {
+        "cid": 87,
+        "distance": 132
+      },
+      {
+        "cid": 83,
+        "distance": 143
       }
     ]
   },
@@ -2644,12 +3536,20 @@
     "name": "احد المسارحة",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 118,
+        "distance": 14
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 117,
+        "distance": 37
+      },
+      {
+        "cid": 119,
+        "distance": 39
+      },
+      {
+        "cid": 115,
+        "distance": 53
       }
     ]
   },
@@ -2659,12 +3559,28 @@
     "name": "العيدابي",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 124,
+        "distance": 34
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 116,
+        "distance": 38
+      },
+      {
+        "cid": 120,
+        "distance": 33
+      },
+      {
+        "cid": 130,
+        "distance": 30
+      },
+      {
+        "cid": 131,
+        "distance": 31
+      },
+      {
+        "cid": 127,
+        "distance": 37
       }
     ]
   },
@@ -2674,12 +3590,24 @@
     "name": "العارضة",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 124,
+        "distance": 47
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 126,
+        "distance": 37
+      },
+      {
+        "cid": 131,
+        "distance": 38
+      },
+      {
+        "cid": 119,
+        "distance": 44
+      },
+      {
+        "cid": 117,
+        "distance": 28
       }
     ]
   },
@@ -2689,12 +3617,28 @@
     "name": "الدرب",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 122,
+        "distance": 54
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 121,
+        "distance": 98
+      },
+      {
+        "cid": 78,
+        "distance": 90
+      },
+      {
+        "cid": 85,
+        "distance": 56
+      },
+      {
+        "cid": 91,
+        "distance": 112
+      },
+      {
+        "cid": 130,
+        "distance": 111
       }
     ]
   },
@@ -2704,12 +3648,8 @@
     "name": "الطوال",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
-      },
-      {
-        "cid": 0,
-        "distance": 0
+        "cid": 118,
+        "distance": 13
       }
     ]
   },
@@ -2719,12 +3659,24 @@
     "name": "هروب",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 126,
+        "distance": 30
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 128,
+        "distance": 111
+      },
+      {
+        "cid": 121,
+        "distance": 62
+      },
+      {
+        "cid": 122,
+        "distance": 62
+      },
+      {
+        "cid": 116,
+        "distance": 56
       }
     ]
   },
@@ -2734,12 +3686,20 @@
     "name": "فيفا",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 124,
+        "distance": 22
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 126,
+        "distance": 31
+      },
+      {
+        "cid": 127,
+        "distance": 38
+      },
+      {
+        "cid": 87,
+        "distance": 154
       }
     ]
   },
@@ -2749,12 +3709,24 @@
     "name": "نجران",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 134,
+        "distance": 70
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 87,
+        "distance": 101
+      },
+      {
+        "cid": 135,
+        "distance": 116
+      },
+      {
+        "cid": 138,
+        "distance": 67
+      },
+      {
+        "cid": 12,
+        "distance": 452
       }
     ]
   },
@@ -2764,12 +3736,20 @@
     "name": "شرورة",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 138,
+        "distance": 288
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 136,
+        "distance": 427
+      },
+      {
+        "cid": 12,
+        "distance": 528
+      },
+      {
+        "cid": 6,
+        "distance": 534
       }
     ]
   },
@@ -2779,27 +3759,55 @@
     "name": "حبونا",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 132,
+        "distance": 70
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 12,
+        "distance": 388
+      },
+      {
+        "cid": 137,
+        "distance": 34
+      },
+      {
+        "cid":135,
+        "distance": 69
+      },
+      {
+        "cid": 138,
+        "distance": 102
       }
     ]
   },
   {
     "cid": 135,
     "rid": 10,
-    "name": "بدر الجنور",
+    "name": "بدر الجنوب",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 132,
+        "distance": 116
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 134,
+        "distance": 69
+      },
+      {
+        "cid": 94,
+        "distance": 47
+      },
+      {
+        "cid": 87,
+        "distance": 50
+      },
+      {
+        "cid": 83,
+        "distance": 89
+      },
+      {
+        "cid": 84,
+        "distance": 261
       }
     ]
   },
@@ -2809,12 +3817,32 @@
     "name": "يدمة",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 12,
+        "distance": 223
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 6,
+        "distance": 228
+      },
+      {
+        "cid": 84,
+        "distance": 327
+      },
+      {
+        "cid": 90,
+        "distance": 163
+      },
+      {
+        "cid": 83,
+        "distance": 203
+      },
+      {
+        "cid": 137,
+        "distance": 74
+      },
+      {
+        "cid": 138,
+        "distance": 147
       }
     ]
   },
@@ -2824,12 +3852,32 @@
     "name": "ثار",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 12,
+        "distance": 331
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 134,
+        "distance": 34
+      },
+      {
+        "cid": 84,
+        "distance": 227
+      },
+      {
+        "cid": 136,
+        "distance": 74
+      },
+      {
+        "cid": 83,
+        "distance": 183
+      },
+      {
+        "cid": 138,
+        "distance": 99
+      },
+      {
+        "cid": 90,
+        "distance": 183
       }
     ]
   },
@@ -2839,12 +3887,32 @@
     "name": "خباش",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 132,
+        "distance": 67
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 6,
+        "distance": 440
+      },
+      {
+        "cid": 12,
+        "distance": 435
+      },
+      {
+        "cid": 134,
+        "distance": 102
+      },
+      {
+        "cid": 136,
+        "distance": 147
+      },
+      {
+        "cid": 137,
+        "distance": 99
+      },
+      {
+        "cid": 133,
+        "distance": 280
       }
     ]
   },
@@ -2854,12 +3922,28 @@
     "name": "الباحة",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 140,
+        "distance": 31
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 142,
+        "distance": 50
+      },
+      {
+        "cid": 143,
+        "distance": 43
+      },
+      {
+        "cid": 145,
+        "distance": 35
+      },
+      {
+        "cid": 146,
+        "distance": 28
+      },
+      {
+        "cid": 144,
+        "distance": 47
       }
     ]
   },
@@ -2869,12 +3953,24 @@
     "name": "بلجرشي",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 139,
+        "distance": 31
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 142,
+        "distance": 41
+      },
+      {
+        "cid": 38,
+        "distance": 81.39
+      },
+      {
+        "cid": 88,
+        "distance": 132
+      },
+      {
+        "cid": 143,
+        "distance": 64
       }
     ]
   },
@@ -2884,12 +3980,20 @@
     "name": "المندق",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 145,
+        "distance": 42
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 37,
+        "distance": 112.91
+      },
+      {
+        "cid": 142,
+        "distance":78
+      },
+      {
+        "cid": 146,
+        "distance":12
       }
     ]
   },
@@ -2899,27 +4003,43 @@
     "name": "المخواة",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 139,
+        "distance": 50
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 140,
+        "distance": 41
+      },
+      {
+        "cid": 146,
+        "distance": 66
+      },
+      {
+        "cid": 144,
+        "distance": 34
+      },
+      {
+        "cid": 26,
+        "distance": 106.67
       }
     ]
   },
   {
     "cid": 143,
     "rid": 11,
-    "name": "العقيف",
+    "name": "العقيق",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 139,
+        "distance": 43
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 140,
+        "distance": 64
+      },
+      {
+        "cid": 34,
+        "distance": 143.66
       }
     ]
   },
@@ -2929,12 +4049,28 @@
     "name": "قلوة",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 139,
+        "distance": 47
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 146,
+        "distance": 50
+      },
+      {
+        "cid": 142,
+        "distance": 34
+      },
+      {
+        "cid": 148,
+        "distance": 45
+      },
+      {
+        "cid": 27,
+        "distance": 143.18
+      },
+      {
+        "cid": 26,
+        "distance": 138
       }
     ]
   },
@@ -2944,12 +4080,24 @@
     "name": "القري",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 139,
+        "distance": 35
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 141,
+        "distance": 42
+      },
+      {
+        "cid": 37,
+        "distance": 132.54
+      },
+      {
+        "cid": 34,
+        "distance": 176
+      },
+      {
+        "cid": 25,
+        "distance": 193
       }
     ]
   },
@@ -2959,12 +4107,20 @@
     "name": "بني حسن",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 141,
+        "distance": 12
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 139,
+        "distance": 28
+      },
+      {
+        "cid": 142,
+        "distance": 66
+      },
+      {
+        "cid": 144,
+        "distance": 50
       }
     ]
   },
@@ -2974,13 +4130,24 @@
     "name": "فرعة غامد الزناد",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 38,
+        "distance": 36.21
+      },
+
+      {
+        "cid": 142,
+        "distance": 71
+      },
+
+      {
+        "cid": 26,
+        "distance": 142.48
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid" : 27,
+        "distance": 209
       }
+
     ]
   },
   {
@@ -2989,12 +4156,22 @@
     "name": "الحجرة",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 39,
+        "distance": 38.43
+      }
+    ,
+      {
+        "cid": 144,
+        "distance": 45
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 27,
+        "distance": 133.96
+      },
+
+      {
+        "cid": 26,
+        "distance": 157.01
       }
     ]
   },
@@ -3004,12 +4181,26 @@
     "name": "سكاكا",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 151,
+        "distance": 48
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 111,
+        "distance": 163.44
+      },
+
+      {
+        "cid": 103,
+        "distance": 440
+      },
+
+      {
+        "cid": 114,
+        "distance": 352
+      },
+      {
+        "cid": 112,
+        "distance": 414
       }
     ]
   },
@@ -3019,12 +4210,12 @@
     "name": "القريات",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 152,
+        "distance": 132
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 113,
+        "distance":160
       }
     ]
   },
@@ -3034,12 +4225,28 @@
     "name": "دومة الجندل",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 152,
+        "distance": 195
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 103,
+        "distance": 416
+      },
+      {
+        "cid": 149,
+        "distance": 48
+      },
+      {
+        "cid": 111,
+        "distance": 204.36
+      },
+      {
+        "cid" : 98,
+        "distance": 604
+      },
+      {
+        "cid" : 95,
+        "distance": 424
       }
     ]
   },
@@ -3049,12 +4256,20 @@
     "name": "طبرجل",
     "neighbors": [
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 150,
+        "distance": 132
       },
       {
-        "cid": 0,
-        "distance": 0
+        "cid": 151,
+        "distance": 195
+      },
+      {
+        "cid" : 95,
+        "distance": 469
+      },
+      {
+        "cid" : 98,
+        "distance": 466
       }
     ]
   }
