@@ -1,14 +1,14 @@
 class Node:
     cid = -1
     name = ''
-    parent = object
     path_cost = 0
+    parent = object
 
-    def __init__(self, cid, cname, parent, path_cost):
+    def __init__(self, cid, cname, path_cost, parent):
         self.cid = cid
         self.name = cname
-        self.parent = parent
         self.path_cost = path_cost
+        self.parent = parent
 
 
 class Result:

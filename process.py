@@ -1,7 +1,7 @@
+import itertools
 import json
 import queue
 from enum import Enum
-
 import models
 
 
@@ -26,6 +26,7 @@ def return_result(node, result, algo):
         else:
             print('//////////   IDS   //////////')
         print('Route:')
+        result.distance = node.path_cost
         calc_and_display_route(node, result)
         print('Fringe Max Size: ' + str(result.fringe_max_size))
         print('Number Of Nodes: ' + str(result.nodes_num))
@@ -37,12 +38,11 @@ def calc_and_display_route(node, result):
         return
     calc_and_display_route(node.parent, result)
     result.route.append(node)
-    result.distance += node.path_cost
-    print("CID: " + str(node.cid) + ", Name: " + node.name)
+    print('CID: ' + str(node.cid) + ', Name: ' + node.name + ', Path Cost: ' + str(node.path_cost))
 
 
-def make_node(cid, parent, path_cost):
-    return models.Node(cid, cities[cid]['name'], parent, path_cost)
+def make_node(cid, path_cost, parent):
+    return models.Node(cid, cities[cid]['name'], path_cost, parent)
 
 
 def successor_function(cid):
@@ -59,84 +59,85 @@ def in_history(cid, visited):
     return False
 
 
-def insert_all(neighbors, fringe, result):
-    for neighbor in neighbors:
-        fringe.put_nowait(neighbor)
-    result.fringe_max_size = max(result.fringe_max_size, fringe.qsize())
+tie_breaker = itertools.count()
 
 
-def expand(node, visited, algo):
-    successors = []
-    neighbors = successor_function(node.cid)
+def expand(node, fringe, visited, result, algo):
     counter = -1
-    for neighbor_cid in neighbors:
+    for neighbor_cid in successor_function(node.cid):
         counter += 1
         if in_history(neighbor_cid, visited) or (node.parent is not None and node.parent == neighbor_cid):
             continue
-        successors.append(make_node(neighbor_cid, node, cities[node.cid]['neighbors'][counter]['distance']))
-    return successors
+        path_cost = node.path_cost + cities[node.cid]['neighbors'][counter]['distance']
+        if algo == Algorithms.BFS:
+            fringe.put(make_node(neighbor_cid, path_cost, node))
+        elif algo == Algorithms.UCS:
+            new_node = make_node(neighbor_cid, path_cost, node)
+            count = next(tie_breaker)
+            fringe.put((path_cost, count, new_node))
+        else:
+            pass
+        result.nodes_num += 1
+    result.fringe_max_size = max(result.fringe_max_size, fringe.qsize())
 
 
 class Process:
-    cities = []
     start = -1
     destination = -1
 
     def __init__(self, start_city, end_city):
         self.start = start_city
         self.destination = end_city
-        start_node = make_node(start_city, None, 0)
+        start_node = make_node(start_city, 0, None)
         self.bfs(start_node)
-        #self.ucs(start_node)
-        #self.ids(start_node)
+        self.ucs(start_node)
+        # self.ids(start_node)
 
     def bfs(self, node):
         result = models.Result
         fringe = queue.Queue()
         visited = []
-        fringe.put_nowait(node)
+        fringe.put(node)
+        result.nodes_num += 1
         while True:
             if fringe.empty():
                 return_result(None, result, Algorithms.BFS)
                 break
-            new_node = fringe.get_nowait()  # RemoveFirst
-            result.nodes_num += 1
+            new_node = fringe.get()  # RemoveFirst
             if self.goal_test(new_node.cid):
                 return_result(new_node, result, Algorithms.BFS)
                 break
             visited.append(new_node.cid)
-            insert_all(expand(new_node, visited, Algorithms.BFS), fringe, result)
+            expand(new_node, fringe, visited, result, Algorithms.BFS)
 
     def ucs(self, node):
         result = models.Result
-        fringe = queue.PriorityQueue
+        fringe = queue.PriorityQueue()
         visited = []
-        fringe.put_nowait(node, 0)
-        """""
+        fringe.put((0, 0, node))
+        result.nodes_num += 1
         while True:
             if fringe.empty():
-                return_result(None, result, Algorithms.BFS)
+                return_result(None, result, Algorithms.UCS)
                 break
-            new_node = fringe.get_nowait()  # RemoveFirst
-            result.nodes_num += 1
+            new_node = fringe.get()[2]  # RemoveFirst
             if self.goal_test(new_node.cid):
-                return_result(new_node, result, Algorithms.BFS)
+                return_result(new_node, result, Algorithms.UCS)
                 break
             visited.append(new_node.cid)
-            insert_all(expand(new_node, visited, Algorithms.BFS), fringe, result)
-            """""
+            expand(new_node, fringe, visited, result, Algorithms.UCS)
 
     def ids(self, node):
         result = models.Result
         fringe = queue.Queue()
         visited = []
-        fringe.put_nowait(node)
+        fringe.put(node)
         """""
         while True:
             if fringe.empty():
                 return_result(None, result, Algorithms.BFS)
                 break
-            new_node = fringe.get_nowait()  # RemoveFirst
+            new_node = fringe.get()  # RemoveFirst
             result.nodes_num += 1
             if self.goal_test(new_node.cid):
                 return_result(new_node, result, Algorithms.BFS)
