@@ -71,8 +71,7 @@ def expand(node, fringe, visited, output, algo):
         path_cost = node.path_cost + cities[node.cid]['neighbors'][counter]['distance']
         if algo == Algorithms.UCS:
             new_node = make_node(neighbor_cid, path_cost, node)
-            count = next(tie_breaker)
-            fringe.put((path_cost, count, new_node))
+            fringe.put((path_cost, next(tie_breaker), new_node))
         else:
             fringe.put(make_node(neighbor_cid, path_cost, node, node.depth+1))
         output.nodes_num += 1
@@ -126,18 +125,18 @@ class Process:
             expand(new_node, fringe, visited, output, Algorithms.UCS)
 
     def ids(self, node):
+        output = models.Output
         depth = 0
         while True:
-            result = self.dls(node, depth)
+            result = self.dls(node, output, depth)
             if result[0] != 'cutoff':
                 show_output(result[1], result[2], Algorithms.IDS)
                 break
             depth += 1
 
-    def dls(self, node, limit):
+    def dls(self, node, output, limit):
         fringe = queue.Queue()
         visited = []
-        output = models.Output
         fringe.put(node)
         output.nodes_num += 1
         return self.rec_dls(node, fringe, visited, output, limit)
