@@ -69,13 +69,18 @@ def expand(node, fringe, visited, output, algo):
         if in_history(neighbor_cid, visited) or (node.parent is not None and node.parent == neighbor_cid):
             continue
         path_cost = node.path_cost + cities[node.cid]['neighbors'][counter]['distance']
-        if algo == Algorithms.UCS:
+        if algo == Algorithms.BFS:
+            fringe.put(make_node(neighbor_cid, path_cost, node, node.depth + 1))
+        elif algo == Algorithms.UCS:
             new_node = make_node(neighbor_cid, path_cost, node)
             fringe.put((path_cost, next(tie_breaker), new_node))
         else:
-            fringe.put(make_node(neighbor_cid, path_cost, node, node.depth+1))
+            fringe.append(make_node(neighbor_cid, path_cost, node, node.depth + 1))
         output.nodes_num += 1
-    output.fringe_max_size = max(output.fringe_max_size, fringe.qsize())
+    if algo == Algorithms.IDS:
+        output.fringe_max_size = max(output.fringe_max_size, len(fringe))
+    else:
+        output.fringe_max_size = max(output.fringe_max_size, fringe.qsize())
 
 
 class Process:
@@ -128,13 +133,34 @@ class Process:
         output = models.Output
         depth = 0
         while True:
-            result = self.new_dls(node, output, depth)
+            result = self.dls(node, output, depth)
             if result[0] != 'cutoff':
                 show_output(result[1], result[2], Algorithms.IDS)
                 break
             depth += 1
 
-    def dls(self, node, output, limit):
+    def dls(self, start_node, output, limit):
+        fringe = []
+        visited = []
+        fringe.append(start_node)
+        output.nodes_num += 1
+        cutoff = False
+        while True:
+            if len(fringe) == 0:
+                if cutoff:
+                    return 'cutoff', None, output
+                else:
+                    return 'failure', None, output
+            current_node = fringe.pop()
+            visited.append(current_node.cid)
+            if self.goal_test(current_node.cid):
+                return 'soln', current_node, output
+            elif current_node.depth == limit:
+                cutoff = True
+            else:
+                expand(current_node, fringe, visited, output, Algorithms.IDS)
+
+    def old_dls(self, node, output, limit):
         fringe = queue.Queue()
         visited = []
         fringe.put(node)
@@ -161,23 +187,6 @@ class Process:
             return 'cutoff', node, output
         else:
             return 'failure', node, output
-
-    def new_dls(self, start_node, output, limit):
-        fringe = queue.Queue()
-        visited = []
-        fringe.put(start_node)
-        output.nodes_num += 1
-        while True:
-            if fringe.empty():
-                return 'failure', None, output
-            current_node = fringe.get()
-            visited.append(current_node.cid)
-            if self.goal_test(current_node.cid):
-                return 'soln', current_node, output
-            elif current_node.depth == limit:
-                return 'cutoff', current_node, output
-            else:
-                expand(current_node, fringe, visited, output, Algorithms.IDS)
 
     def goal_test(self, cid):
         if cid == self.destination:
