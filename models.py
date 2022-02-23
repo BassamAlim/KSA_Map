@@ -1,8 +1,8 @@
 class Node:
     cid = -1
-    name = ''
+    name = str()
     path_cost = 0
-    parent = object
+    parent = object()
     depth = 0
 
     def __init__(self, cid, cname, path_cost, parent, depth=0):

@@ -22,7 +22,7 @@ _translate = QtCore.QCoreApplication.translate
 
 
 def formulate_route(route):
-    string = ''
+    string = str()
     for element in route:
         string += element.name + ' -> '
     return string[:-3]

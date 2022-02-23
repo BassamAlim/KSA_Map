@@ -29,7 +29,7 @@ def bfs(start_city, destination_city):
     start_node = make_node(start_city, 0, None)
     fringe = queue.Queue()
     visited = []
-    output = models.Output
+    output = models.Output()
     fringe.put(start_node)
     while True:
         if fringe.empty():
@@ -45,7 +45,7 @@ def ucs(start_city, destination_city):
     start_node = make_node(start_city, 0, None)
     fringe = queue.PriorityQueue()
     visited = []
-    output = models.Output
+    output = models.Output()
     fringe.put((0, 0, start_node))
     while True:
         if fringe.empty():
@@ -59,7 +59,7 @@ def ucs(start_city, destination_city):
 
 def ids(start_city, destination_city):
     start_node = make_node(start_city, 0, None)
-    output = models.Output
+    output = models.Output()
     depth = 0
     while True:
         result = dls(start_node, destination_city, output, depth)
@@ -132,6 +132,7 @@ def pack_output(node, output):
         return 'failure', output
     else:
         output.distance = node.path_cost
+        output.route = []
         calc_route(node, output)
         return 'success', output
 
@@ -141,36 +142,3 @@ def calc_route(node, output):
         return
     calc_route(node.parent, output)
     output.route.append(node)
-
-
-"""
-class Process:
-
-    def old_dls(self, node, output, limit):
-        fringe = queue.Queue()
-        visited = []
-        fringe.put(node)
-        output.nodes_num += 1
-        return self.rec_dls(node, fringe, visited, output, limit)
-
-    def rec_dls(self, node, fringe, visited, output, limit):
-        cutoff_occurred = False
-        if goal_test(node.cid):
-            return 'soln', node, output
-        elif node.depth == limit:
-            return 'cutoff', node, output
-        else:
-            expand(node, fringe, visited, output, Algorithms.IDS)
-            while not fringe.empty():
-                successor = fringe.get()  # RemoveFirst
-                visited.append(successor.cid)
-                result = self.rec_dls(successor, fringe, visited, output, limit)
-                if result[0] == 'cutoff':
-                    cutoff_occurred = True
-                elif result[0] == 'soln':
-                    return result
-        if cutoff_occurred:
-            return 'cutoff', node, output
-        else:
-            return 'failure', node, output
-"""
