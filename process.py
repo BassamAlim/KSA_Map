@@ -128,7 +128,7 @@ class Process:
         output = models.Output
         depth = 0
         while True:
-            result = self.dls(node, output, depth)
+            result = self.new_dls(node, output, depth)
             if result[0] != 'cutoff':
                 show_output(result[1], result[2], Algorithms.IDS)
                 break
@@ -161,6 +161,23 @@ class Process:
             return 'cutoff', node, output
         else:
             return 'failure', node, output
+
+    def new_dls(self, start_node, output, limit):
+        fringe = queue.Queue()
+        visited = []
+        fringe.put(start_node)
+        output.nodes_num += 1
+        while True:
+            if fringe.empty():
+                return 'failure', None, output
+            current_node = fringe.get()
+            visited.append(current_node.cid)
+            if self.goal_test(current_node.cid):
+                return 'soln', current_node, output
+            elif current_node.depth == limit:
+                return 'cutoff', current_node, output
+            else:
+                expand(current_node, fringe, visited, output, Algorithms.IDS)
 
     def goal_test(self, cid):
         if cid == self.destination:
