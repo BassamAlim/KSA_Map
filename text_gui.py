@@ -10,18 +10,11 @@ root.geometry("200x200")
 
 def begin():
     process.Process(start_drop.current(), dest_drop.current())
-    label.config(text=clicked.get())
 
 
 with open('Cities.json', encoding='utf-8') as file:
     cities = json.load(file)
 
-
-# datatype of menu text
-clicked = StringVar()
-
-# initial menu text
-clicked.set("Monday")
 
 items = []
 for city in cities:
@@ -43,10 +36,6 @@ dest_drop.pack()
 
 # Create button, it will change label text
 Button(root, text="click Me", command=begin).pack()
-
-# Create Label
-label = Label(root, text=" ")
-label.pack()
 
 # Execute tkinter
 root.mainloop()

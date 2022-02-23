@@ -16,5 +16,5 @@ class Node:
 class Output:
     route = []
     distance = 0
-    nodes_num = 0
+    nodes_num = 1
     fringe_max_size = 1
