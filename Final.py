@@ -52,7 +52,7 @@ class Ui_MainWindow(object):
         self.label_2.setAlignment(QtCore.Qt.AlignCenter)
         self.label_2.setObjectName("label_2")
         self.label_3 = QtWidgets.QLabel(self.centralwidget)
-        self.label_3.setGeometry(QtCore.QRect(420, 10, 341, 51))
+        self.label_3.setGeometry(QtCore.QRect(420, 10, 441, 51))
         font = QtGui.QFont()
         font.setPointSize(11)
         self.label_3.setFont(font)
