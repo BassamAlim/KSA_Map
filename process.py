@@ -16,7 +16,7 @@ with open('Cities.json', encoding='utf-8') as file:
 
 
 def make_node(cid, path_cost, parent, depth=0):
-    return models.Node(cid, cities[cid]['name'], path_cost, parent, depth)
+    return models.Node(cid, path_cost, parent, depth)
 
 
 def goal_test(destination, cid):
@@ -31,30 +31,29 @@ def bfs(start_city, destination_city):
     visited = []
     output = models.Output()
     fringe.put(start_node)
+    visited.append(start_city)
     while True:
         if fringe.empty():
             return pack_output(None, output)
-        new_node = fringe.get()  # RemoveFirst
-        if goal_test(destination_city, new_node.cid):
-            return pack_output(new_node, output)
-        visited.append(new_node.cid)
-        expand(new_node, fringe, visited, output, Algorithms.BFS)
+        node = remove_first(fringe, Algorithms.BFS)
+        if goal_test(destination_city, node.cid):
+            return pack_output(node, output)
+        expand(node, fringe, visited, output, Algorithms.BFS)
 
 
 def ucs(start_city, destination_city):
-    start_node = make_node(start_city, 0, None)
     fringe = queue.PriorityQueue()
     visited = []
     output = models.Output()
-    fringe.put((0, 0, start_node))
+    fringe.put((0, 0, make_node(start_city, 0, None)))
+    visited.append(start_city)
     while True:
         if fringe.empty():
             return pack_output(None, output)
-        new_node = fringe.get()[2]  # RemoveFirst
-        if goal_test(destination_city, new_node.cid):
-            return pack_output(new_node, output)
-        visited.append(new_node.cid)
-        expand(new_node, fringe, visited, output, Algorithms.UCS)
+        node = remove_first(fringe, Algorithms.UCS)
+        if goal_test(destination_city, node.cid):
+            return pack_output(node, output)
+        expand(node, fringe, visited, output, Algorithms.UCS)
 
 
 def ids(start_city, destination_city):
@@ -69,43 +68,39 @@ def ids(start_city, destination_city):
 
 
 def dls(start_node, destination_city, output, limit):
+    cutoff = False
     fringe = []
     visited = []
     fringe.append(start_node)
-    cutoff = False
+    visited.append(start_node.cid)
     while True:
         if len(fringe) == 0:
             if cutoff:
                 return 'cutoff', None, output
             else:
                 return 'failure', None, output
-        current_node = fringe.pop()
-        visited.append(current_node.cid)
-        if goal_test(destination_city, current_node.cid):
-            return 'soln', current_node, output
-        elif current_node.depth == limit:
+        node = remove_first(fringe, Algorithms.IDS)
+        if goal_test(destination_city, node.cid):
+            return 'soln', node, output
+        elif node.depth == limit:
             cutoff = True
         else:
-            expand(current_node, fringe, visited, output, Algorithms.IDS)
+            expand(node, fringe, visited, output, Algorithms.IDS)
 
 
 tie_breaker = itertools.count()
 
 
 def expand(node, fringe, visited, output, algo):
-    counter = -1
-    for neighbor_cid in successor_function(node.cid):
-        counter += 1
-        if in_history(neighbor_cid, visited) or (node.parent is not None and node.parent == neighbor_cid):
-            continue
-        path_cost = node.path_cost + cities[node.cid]['neighbors'][counter]['distance']
+    for neighbor in successor_function(node.cid, visited):
+        path_cost = node.path_cost + neighbor[1]
         if algo == Algorithms.BFS:
-            fringe.put(make_node(neighbor_cid, path_cost, node, node.depth + 1))
+            fringe.put(make_node(neighbor[0], path_cost, node, node.depth+1))
         elif algo == Algorithms.UCS:
-            new_node = make_node(neighbor_cid, path_cost, node)
-            fringe.put((path_cost, next(tie_breaker), new_node))
+            fringe.put((path_cost, next(tie_breaker), make_node(neighbor[0], path_cost, node)))
         else:
-            fringe.append(make_node(neighbor_cid, path_cost, node, node.depth + 1))
+            fringe.append(make_node(neighbor[0], path_cost, node, node.depth+1))
+        visited.append(neighbor[0])
         output.nodes_num += 1
     if algo == Algorithms.IDS:
         output.fringe_max_size = max(output.fringe_max_size, len(fringe))
@@ -113,11 +108,21 @@ def expand(node, fringe, visited, output, algo):
         output.fringe_max_size = max(output.fringe_max_size, fringe.qsize())
 
 
-def successor_function(cid):
+def successor_function(cid, visited):
     neighbors = []
     for neighbor in cities[cid]['neighbors']:
-        neighbors.append(neighbor['cid'])
+        if not in_history(neighbor['cid'], visited):
+            neighbors.append((neighbor['cid'], neighbor['distance']))
     return neighbors
+
+
+def remove_first(fringe, algo):
+    if algo == Algorithms.BFS:
+        return fringe.get()
+    elif algo == Algorithms.UCS:
+        return fringe.get()[2]
+    else:
+        return fringe.pop()
 
 
 def in_history(cid, visited):
