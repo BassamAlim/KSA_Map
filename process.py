@@ -51,6 +51,7 @@ def ucs(start_city, destination_city):
         if fringe.empty():
             return pack_output(None, output)
         node = remove_first(fringe, Algorithms.UCS)
+        visited.append(node.cid)
         if goal_test(destination_city, node.cid):
             return pack_output(node, output)
         expand(node, fringe, visited, output, Algorithms.UCS)
@@ -96,11 +97,12 @@ def expand(node, fringe, visited, output, algo):
         path_cost = node.path_cost + neighbor[1]
         if algo == Algorithms.BFS:
             fringe.put(make_node(neighbor[0], path_cost, node, node.depth+1))
+            visited.append(neighbor[0])
         elif algo == Algorithms.UCS:
             fringe.put((path_cost, next(tie_breaker), make_node(neighbor[0], path_cost, node)))
         else:
             fringe.append(make_node(neighbor[0], path_cost, node, node.depth+1))
-        visited.append(neighbor[0])
+            visited.append(neighbor[0])
         output.nodes_num += 1
     if algo == Algorithms.IDS:
         output.fringe_max_size = max(output.fringe_max_size, len(fringe))
