@@ -58,9 +58,9 @@ def ucs(start_city, destination_city):
 
 
 def ids(start_city, destination_city):
-    start_node = make_node(start_city, 0, None)
     output = models.Output()
-    depth = 0
+    start_node = make_node(start_city, 0, None, 1)
+    depth = 1
     while True:
         result = dls(start_node, destination_city, output, depth)
         if result[0] != 'cutoff':
