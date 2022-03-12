@@ -6,9 +6,11 @@ import models
 
 
 class Algorithms(Enum):
-    BFS = 'BFS'
-    UCS = 'UCS'
-    IDS = 'IDS'
+    BFS = 'Breadth First Search'
+    UCS = 'Uniform Cost Search'
+    IDS = 'Iterative Deepening Search'
+    Greedy = 'Greedy'
+    A_Star = 'A*'
 
 
 with open('Cities.json', encoding='utf-8') as file:
@@ -89,6 +91,14 @@ def dls(start_node, destination_city, output, limit):
             expand(node, fringe, visited, output, Algorithms.IDS)
 
 
+def greedy(start_city, destination_city):
+    pass
+
+
+def a_star(start_city, destination_city):
+    pass
+
+
 tie_breaker = itertools.count()
 
 
@@ -96,12 +106,12 @@ def expand(node, fringe, visited, output, algo):
     for neighbor in successor_function(node.cid, visited):
         path_cost = node.path_cost + neighbor[1]
         if algo == Algorithms.BFS:
-            fringe.put(make_node(neighbor[0], path_cost, node, node.depth+1))
+            fringe.put(make_node(neighbor[0], path_cost, node, node.depth + 1))
             visited.append(neighbor[0])
         elif algo == Algorithms.UCS:
             fringe.put((path_cost, next(tie_breaker), make_node(neighbor[0], path_cost, node)))
         else:
-            fringe.append(make_node(neighbor[0], path_cost, node, node.depth+1))
+            fringe.append(make_node(neighbor[0], path_cost, node, node.depth + 1))
             visited.append(neighbor[0])
         output.nodes_num += 1
     if algo == Algorithms.IDS:
@@ -116,6 +126,10 @@ def successor_function(cid, visited):
         if not in_history(neighbor['cid'], visited):
             neighbors.append((neighbor['cid'], neighbor['distance']))
     return neighbors
+
+
+def calc_heuristic(x1, y1, x2, y2):
+    return pow(pow(x2 - x1, 2) + pow(y2 - y1, 2), 0.5)
 
 
 def remove_first(fringe, algo):
