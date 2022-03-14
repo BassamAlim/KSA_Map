@@ -2412,8 +2412,8 @@
     "cid": 78,
     "rid": 5,
     "name": "أبها",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 18.2465,
+    "longitude": 42.5117,
     "neighbors": [
       {
         "cid": 93,
@@ -2445,8 +2445,8 @@
     "cid": 79,
     "rid": 5,
     "name": "خميس مشيط",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 18.3093,
+    "longitude": 42.7662,
     "neighbors": [
       {
         "cid": 78,
@@ -2474,8 +2474,8 @@
     "cid": 80,
     "rid": 5,
     "name": "بيشة",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 19.9764,
+    "longitude": 42.5902,
     "neighbors": [
       {
         "cid": 33,
@@ -2503,8 +2503,8 @@
     "cid": 81,
     "rid": 5,
     "name": "النماص",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 19.1134,
+    "longitude": 42.1671,
     "neighbors": [
       {
         "cid": 88,
@@ -2524,8 +2524,8 @@
     "cid": 82,
     "rid": 5,
     "name": "محايل",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 18.5474,
+    "longitude": 42.0534,
     "neighbors": [
       {
         "cid": 92,
@@ -2553,8 +2553,8 @@
     "cid": 83,
     "rid": 5,
     "name": "سراة عبيدة",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 18.0993,
+    "longitude": 43.1166,
     "neighbors": [
       {
         "cid": 90,
@@ -2594,8 +2594,8 @@
     "cid": 84,
     "rid": 5,
     "name": "تثليث",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 19.5342,
+    "longitude": 43.5030,
     "neighbors": [
       {
         "cid": 80,
@@ -2631,8 +2631,8 @@
     "cid": 85,
     "rid": 5,
     "name": "رجال المع",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 18.1522,
+    "longitude": 42.1573,
     "neighbors": [
       {
         "cid": 78,
@@ -2656,8 +2656,8 @@
     "cid": 86,
     "rid": 5,
     "name": "احد رفيدة",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 18.1952,
+    "longitude": 42.8205,
     "neighbors": [
       {
         "cid": 78,
@@ -2677,8 +2677,8 @@
     "cid": 87,
     "rid": 5,
     "name": "ظهران الجنوب",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 17.6652,
+    "longitude": 43.5174,
     "neighbors": [
       {
         "cid": 94,
@@ -2710,8 +2710,8 @@
     "cid": 88,
     "rid": 5,
     "name": "بالقرن",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 19.5730,
+    "longitude": 41.9990,
     "neighbors": [
       {
         "cid": 80,
@@ -2743,8 +2743,8 @@
     "cid": 89,
     "rid": 5,
     "name": "المجاردة",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 19.1284,
+    "longitude": 41.9246,
     "neighbors": [
       {
         "cid": 88,
@@ -2772,8 +2772,8 @@
     "cid": 90,
     "rid": 5,
     "name": "طريب",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 19.2117,
+    "longitude": 43.2522,
     "neighbors": [
       {
         "cid": 83,
@@ -2797,8 +2797,8 @@
     "cid": 91,
     "rid": 5,
     "name": "البرك",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 18.2071,
+    "longitude": 41.5363,
     "neighbors": [
       {
         "cid": 82,
@@ -2822,8 +2822,8 @@
     "cid": 92,
     "rid": 5,
     "name": "بارق",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 18.9305,
+    "longitude": 41.9296,
     "neighbors": [
       {
         "cid": 89,
@@ -2851,8 +2851,8 @@
     "cid": 93,
     "rid": 5,
     "name": "تنومة",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 18.9290,
+    "longitude": 42.1770,
     "neighbors": [
       {
         "cid": 78,
@@ -2876,8 +2876,8 @@
     "cid": 94,
     "rid": 5,
     "name": "الحرجة",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 17.9204,
+    "longitude": 43.3729,
     "neighbors": [
       {
         "cid": 83,
@@ -2905,8 +2905,8 @@
     "cid": 95,
     "rid": 6,
     "name": "تبوك",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 28.3835,
+    "longitude": 36.5662,
     "neighbors": [
       {
         "cid": 96,
@@ -2946,8 +2946,8 @@
     "cid": 96,
     "rid": 6,
     "name": "الوجه",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 26.2366,
+    "longitude": 36.4689,
     "neighbors": [
       {
         "cid": 97,
@@ -2971,8 +2971,8 @@
     "cid": 97,
     "rid": 6,
     "name": "ضباء",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 27.3457,
+    "longitude": 35.7243,
     "neighbors": [
       {
         "cid": 101,
@@ -3000,8 +3000,8 @@
     "cid": 98,
     "rid": 6,
     "name": "تيماء",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 27.6122,
+    "longitude": 38.5165,
     "neighbors": [
       {
         "cid": 42,
@@ -3037,8 +3037,8 @@
     "cid": 99,
     "rid": 6,
     "name": "املج",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 25.0500,
+    "longitude": 37.2651,
     "neighbors": [
       {
         "cid": 41,
@@ -3058,8 +3058,8 @@
     "cid": 100,
     "rid": 6,
     "name": "حقل",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 29.2864,
+    "longitude": 34.9451,
     "neighbors": [
       {
         "cid": 101,
@@ -3079,8 +3079,8 @@
     "cid": 101,
     "rid": 6,
     "name": "البدع",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 28.4788,
+    "longitude": 35.0202,
     "neighbors": [
       {
         "cid": 100,
@@ -3100,8 +3100,8 @@
     "cid": 102,
     "rid": 7,
     "name": "حائل",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 27.5114,
+    "longitude": 41.7208,
     "neighbors": [
       {
         "cid": 107,
@@ -3137,8 +3137,8 @@
     "cid": 103,
     "rid": 7,
     "name": "بقعاء",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 27.8869,
+    "longitude": 42.4135,
     "neighbors": [
       {
         "cid": 112,
@@ -3178,8 +3178,8 @@
     "cid": 104,
     "rid": 7,
     "name": "الغزالة",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 26.7922,
+    "longitude": 41.3160,
     "neighbors": [
       {
         "cid": 102,
@@ -3219,8 +3219,8 @@
     "cid": 105,
     "rid": 7,
     "name": "الشنان",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 27.1781,
+    "longitude": 42.4430,
     "neighbors": [
       {
         "cid": 51,
@@ -3256,8 +3256,8 @@
     "cid": 106,
     "rid": 7,
     "name": "الشملي",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 26.8578,
+    "longitude": 40.3293,
     "neighbors": [
       {
         "cid": 42,
@@ -3289,8 +3289,8 @@
     "cid": 107,
     "rid": 7,
     "name": "موقق",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 27.3782,
+    "longitude": 41.1804,
     "neighbors": [
       {
         "cid": 102,
@@ -3314,8 +3314,8 @@
     "cid": 108,
     "rid": 7,
     "name": "سميراء",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 26.4957,
+    "longitude": 42.1252,
     "neighbors": [
       {
         "cid": 102,
@@ -3351,8 +3351,8 @@
     "cid": 109,
     "rid": 7,
     "name": "الحائط",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 25.9933,
+    "longitude": 40.4669,
     "neighbors": [
       {
         "cid": 42,
@@ -3392,8 +3392,8 @@
     "cid": 110,
     "rid": 7,
     "name": "السليمي",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 26.2896,
+    "longitude": 41.3661,
     "neighbors": [
       {
         "cid": 104,
@@ -3413,8 +3413,8 @@
     "cid": 111,
     "rid": 8,
     "name": "عرعر",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 30.9599,
+    "longitude": 41.0596,
     "neighbors": [
       {
         "cid": 113,
@@ -3438,8 +3438,8 @@
     "cid": 112,
     "rid": 8,
     "name": "رفحاء",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 29.6273,
+    "longitude": 43.5193,
     "neighbors": [
       {
         "cid": 103,
@@ -3471,8 +3471,8 @@
     "cid": 113,
     "rid": 8,
     "name": "طريف",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 31.6661,
+    "longitude": 38.6635,
     "neighbors": [
       {
         "cid": 111,
@@ -3488,8 +3488,8 @@
     "cid": 114,
     "rid": 8,
     "name": "العويقلية",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 30.3548,
+    "longitude": 42.2461,
     "neighbors": [
       {
         "cid": 103,
@@ -3517,8 +3517,8 @@
     "cid": 115,
     "rid": 9,
     "name": "جازان",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 16.8894,
+    "longitude": 42.5706,
     "neighbors": [
       {
         "cid": 116,
@@ -3542,8 +3542,8 @@
     "cid": 116,
     "rid": 9,
     "name": "صبياء",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 17.1548,
+    "longitude": 42.6269,
     "neighbors": [
       {
         "cid": 115,
@@ -3575,8 +3575,8 @@
     "cid": 117,
     "rid": 9,
     "name": "ابو عريش",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 16.9692,
+    "longitude": 42.8443,
     "neighbors": [
       {
         "cid": 115,
@@ -3604,8 +3604,8 @@
     "cid": 118,
     "rid": 9,
     "name": "صامطة",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 16.6018,
+    "longitude": 42.9354,
     "neighbors": [
       {
         "cid": 125,
@@ -3625,8 +3625,8 @@
     "cid": 119,
     "rid": 9,
     "name": "الحرث",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 16.8137,
+    "longitude": 43.1553,
     "neighbors": [
       {
         "cid": 118,
@@ -3646,8 +3646,8 @@
     "cid": 120,
     "rid": 9,
     "name": "ضمد",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 17.1090,
+    "longitude": 42.7760,
     "neighbors": [
       {
         "cid": 116,
@@ -3667,8 +3667,8 @@
     "cid": 121,
     "rid": 9,
     "name": "الريث",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 17.6170,
+    "longitude": 42.8297,
     "neighbors": [
       {
         "cid": 130,
@@ -3700,8 +3700,8 @@
     "cid": 122,
     "rid": 9,
     "name": "بيش",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 17.3740,
+    "longitude": 42.5363,
     "neighbors": [
       {
         "cid": 116,
@@ -3725,8 +3725,8 @@
     "cid": 123,
     "rid": 9,
     "name": "فرسان",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 16.7058,
+    "longitude": 41.9833,
     "neighbors": [
       {
         "cid": 115,
@@ -3738,8 +3738,8 @@
     "cid": 124,
     "rid": 9,
     "name": "الدائر",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 17.2354,
+    "longitude": 43.1166,
     "neighbors": [
       {
         "cid": 131,
@@ -3771,8 +3771,8 @@
     "cid": 125,
     "rid": 9,
     "name": "احد المسارحة",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 16.7112,
+    "longitude": 42.9538,
     "neighbors": [
       {
         "cid": 118,
@@ -3796,8 +3796,8 @@
     "cid": 126,
     "rid": 9,
     "name": "العيدابي",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 17.2377,
+    "longitude": 42.9393,
     "neighbors": [
       {
         "cid": 124,
@@ -3829,8 +3829,8 @@
     "cid": 127,
     "rid": 9,
     "name": "العارضة",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 17.0379,
+    "longitude": 43.0486,
     "neighbors": [
       {
         "cid": 124,
@@ -3858,8 +3858,8 @@
     "cid": 128,
     "rid": 9,
     "name": "الدرب",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 17.7336,
+    "longitude": 42.2658,
     "neighbors": [
       {
         "cid": 122,
@@ -3891,8 +3891,8 @@
     "cid": 129,
     "rid": 9,
     "name": "الطوال",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 16.5279,
+    "longitude": 42.9733,
     "neighbors": [
       {
         "cid": 118,
@@ -3904,8 +3904,8 @@
     "cid": 130,
     "rid": 9,
     "name": "هروب",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 17.4350,
+    "longitude": 42.8857,
     "neighbors": [
       {
         "cid": 126,
@@ -3933,8 +3933,8 @@
     "cid": 131,
     "rid": 9,
     "name": "فيفا",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 17.2473,
+    "longitude": 43.1069,
     "neighbors": [
       {
         "cid": 124,
@@ -3958,8 +3958,8 @@
     "cid": 132,
     "rid": 10,
     "name": "نجران",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 17.5656,
+    "longitude": 44.2289,
     "neighbors": [
       {
         "cid": 134,
@@ -3987,8 +3987,8 @@
     "cid": 133,
     "rid": 10,
     "name": "شرورة",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 17.4850,
+    "longitude": 47.1167,
     "neighbors": [
       {
         "cid": 138,
@@ -4012,8 +4012,8 @@
     "cid": 134,
     "rid": 10,
     "name": "حبونا",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 17.8411,
+    "longitude": 44.0247,
     "neighbors": [
       {
         "cid": 132,
@@ -4041,8 +4041,8 @@
     "cid": 135,
     "rid": 10,
     "name": "بدر الجنوب",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 17.8803,
+    "longitude": 43.7190,
     "neighbors": [
       {
         "cid": 132,
@@ -4074,8 +4074,8 @@
     "cid": 136,
     "rid": 10,
     "name": "يدمة",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 18.5316,
+    "longitude": 44.2289,
     "neighbors": [
       {
         "cid": 12,
@@ -4111,8 +4111,8 @@
     "cid": 137,
     "rid": 10,
     "name": "ثار",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 17.9809,
+    "longitude": 44.1055,
     "neighbors": [
       {
         "cid": 12,
@@ -4148,8 +4148,8 @@
     "cid": 138,
     "rid": 10,
     "name": "خباش",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 17.5575,
+    "longitude": 44.7475,
     "neighbors": [
       {
         "cid": 132,
@@ -4185,8 +4185,8 @@
     "cid": 139,
     "rid": 11,
     "name": "الباحة",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 20.0217,
+    "longitude": 41.4713,
     "neighbors": [
       {
         "cid": 140,
@@ -4218,8 +4218,8 @@
     "cid": 140,
     "rid": 11,
     "name": "بلجرشي",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 19.8649,
+    "longitude": 41.5812,
     "neighbors": [
       {
         "cid": 139,
@@ -4247,8 +4247,8 @@
     "cid": 141,
     "rid": 11,
     "name": "المندق",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 20.1083,
+    "longitude": 41.2859,
     "neighbors": [
       {
         "cid": 145,
@@ -4272,8 +4272,8 @@
     "cid": 142,
     "rid": 11,
     "name": "المخواة",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 19.7254,
+    "longitude": 41.3210,
     "neighbors": [
       {
         "cid": 139,
@@ -4301,8 +4301,8 @@
     "cid": 143,
     "rid": 11,
     "name": "العقيق",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 24.7741,
+    "longitude": 46.6310,
     "neighbors": [
       {
         "cid": 139,
@@ -4322,8 +4322,8 @@
     "cid": 144,
     "rid": 11,
     "name": "قلوة",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 19.9254,
+    "longitude": 41.1603,
     "neighbors": [
       {
         "cid": 139,
@@ -4355,8 +4355,8 @@
     "cid": 145,
     "rid": 11,
     "name": "القري",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 24.6279,
+    "longitude": 46.7153,
     "neighbors": [
       {
         "cid": 139,
@@ -4384,8 +4384,8 @@
     "cid": 146,
     "rid": 11,
     "name": "بني حسن",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 27.9314,
+    "longitude": 30.8752,
     "neighbors": [
       {
         "cid": 141,
@@ -4409,8 +4409,8 @@
     "cid": 147,
     "rid": 11,
     "name": "فرعة غامد الزناد",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 19.3690,
+    "longitude": 41.2032,
     "neighbors": [
       {
         "cid": 38,
@@ -4434,8 +4434,8 @@
     "cid": 148,
     "rid": 11,
     "name": "الحجرة",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 20.2337,
+    "longitude": 41.0570,
     "neighbors": [
       {
         "cid": 39,
@@ -4460,8 +4460,8 @@
     "cid": 149,
     "rid": 12,
     "name": "سكاكا",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 29.8780,
+    "longitude": 40.1043,
     "neighbors": [
       {
         "cid": 151,
@@ -4489,8 +4489,8 @@
     "cid": 150,
     "rid": 12,
     "name": "القريات",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 31.3296,
+    "longitude": 37.3614,
     "neighbors": [
       {
         "cid": 152,
@@ -4506,8 +4506,8 @@
     "cid": 151,
     "rid": 12,
     "name": "دومة الجندل",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 29.8108,
+    "longitude": 39.8888,
     "neighbors": [
       {
         "cid": 152,
@@ -4539,8 +4539,8 @@
     "cid": 152,
     "rid": 12,
     "name": "طبرجل",
-    "latitude": 0.0,
-    "longitude": 0.0,
+    "latitude": 30.5155,
+    "longitude": 38.2216,
     "neighbors": [
       {
         "cid": 150,
