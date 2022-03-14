@@ -493,7 +493,7 @@ class UiMainWindow(object):
         print("IDS: " + str(time.time()-before))
         if ids_output[0] == 'success':
             self.show_ids(ids_output[1], price)
-        
+
         before = time.time()
         greedy_output = processor.greedy(start_city, destination_city)
         print("Greedy: " + str(time.time() - before))
