@@ -1,5 +1,6 @@
 import itertools
 import json
+import math
 import queue
 from enum import Enum
 import models
@@ -109,13 +110,16 @@ def greedy(start_city, destination_city):
         if fringe.empty():
             return pack_output(None, output)
         node = remove_first(fringe, Algorithms.Greedy)
-        visited.append(node.cid)
         if goal_test(destination_city, node.cid):
             return pack_output(node, output)
         expand(node, fringe, visited, output, Algorithms.Greedy)
 
 
 def a_star(start_city, destination_city):
+    global x2
+    global y2
+    x2 = cities[destination_city]['latitude']
+    y2 = cities[destination_city]['longitude']
     fringe = queue.PriorityQueue()
     visited = []
     output = models.Output()
@@ -135,7 +139,7 @@ tie_breaker = itertools.count()
 
 
 def expand(node, fringe, visited, output, algo):
-    for neighbor in successor_function(node.cid, visited):
+    for neighbor in successor_function(node, visited):
         path_cost = node.path_cost + neighbor[1]
         if algo == Algorithms.BFS:
             fringe.put(make_node(neighbor[0], path_cost, node, node.depth + 1))
@@ -148,6 +152,7 @@ def expand(node, fringe, visited, output, algo):
         elif algo == Algorithms.Greedy:
             h = calc_heuristic(cities[neighbor[0]]['latitude'], cities[neighbor[0]]['longitude'])
             fringe.put((h, next(tie_breaker), make_node(neighbor[0], path_cost, node)))
+            visited.append(neighbor[0])
         elif algo == Algorithms.A_Star:
             h = calc_heuristic(cities[neighbor[0]]['latitude'], cities[neighbor[0]]['longitude'])
             fringe.put((path_cost + h, next(tie_breaker), make_node(neighbor[0], path_cost, node)))
@@ -158,16 +163,17 @@ def expand(node, fringe, visited, output, algo):
         output.fringe_max_size = max(output.fringe_max_size, fringe.qsize())
 
 
-def successor_function(cid, visited):
+def successor_function(parent, visited):
     neighbors = []
-    for neighbor in cities[cid]['neighbors']:
-        if not in_history(neighbor['cid'], visited):
-            neighbors.append((neighbor['cid'], neighbor['distance']))
+    for neighbor in cities[parent.cid]['neighbors']:
+        if (parent.parent is not None and neighbor['cid'] == parent.parent.cid) or in_history(neighbor['cid'], visited):
+            continue
+        neighbors.append((neighbor['cid'], neighbor['distance']))
     return neighbors
 
 
 def calc_heuristic(x1, y1):
-    return pow(pow(x2 - x1, 2) + pow(y2 - y1, 2), 0.5)
+    return math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
 
 
 def remove_first(fringe, algo):

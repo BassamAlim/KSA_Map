@@ -18,7 +18,7 @@ _translate = QtCore.QCoreApplication.translate
 def formulate_route(route):
     string = str()
     for element in route:
-        string += cities[element.cid]['name'] + ' -> '
+        string += cities[element.cid]['name'] + ' ← '
     return string[:-3]
 
 
@@ -108,6 +108,7 @@ class UiMainWindow(object):
         GMainWindow.setWindowTitle(_translate("MainWindow", "Distance Calculator"))
         
         self.central_widget = QtWidgets.QWidget(GMainWindow)
+        self.central_widget.setStyleSheet("background-color: #8D99AE;")
         GMainWindow.setCentralWidget(self.central_widget)
         
         self.title_label = QtWidgets.QLabel(self.central_widget)
@@ -156,20 +157,24 @@ class UiMainWindow(object):
 
         self.comboBox_region_from = QtWidgets.QComboBox(self.central_widget)
         self.comboBox_region_from.setGeometry(QtCore.QRect(1500, 220, 300, 50))
+        self.comboBox_region_from.setStyleSheet("background-color: #293241; color: #BCC2C7")
         self.comboBox_region_from.setFont(font)
         self.comboBox_region_from.currentTextChanged.connect(self.start_region_changed)
 
         self.comboBox_city_from = QtWidgets.QComboBox(self.central_widget)
         self.comboBox_city_from.setGeometry(QtCore.QRect(1100, 220, 300, 50))
+        self.comboBox_city_from.setStyleSheet("background-color: #293241; color: #BCC2C7")
         self.comboBox_city_from.setFont(font)
 
         self.comboBox_region_to = QtWidgets.QComboBox(self.central_widget)
         self.comboBox_region_to.setGeometry(QtCore.QRect(520, 220, 300, 50))
+        self.comboBox_region_to.setStyleSheet("background-color: #293241; color: #BCC2C7")
         self.comboBox_region_to.setFont(font)
         self.comboBox_region_to.currentTextChanged.connect(self.destination_region_changed)
 
         self.comboBox_city_to = QtWidgets.QComboBox(self.central_widget)
         self.comboBox_city_to.setGeometry(QtCore.QRect(100, 220, 300, 50))
+        self.comboBox_city_to.setStyleSheet("background-color: #293241; color: #BCC2C7")
         self.comboBox_city_to.setFont(font)
 
         self.price_label = QtWidgets.QLabel(self.central_widget)
@@ -179,10 +184,12 @@ class UiMainWindow(object):
 
         self.price_field = QtWidgets.QTextEdit(self.central_widget)
         self.price_field.setGeometry(QtCore.QRect(1400, 330, 200, 50))
+        self.price_field.setStyleSheet("background-color: #7E899C;")
         self.price_field.setFont(font)
 
         self.push_button = QtWidgets.QPushButton(self.central_widget)
         self.push_button.setGeometry(QtCore.QRect(850, 320, 250, 60))
+        self.push_button.setStyleSheet("background-color: #293241; color: #D18E21;")
         self.push_button.setText(_translate("MainWindow", "إبحث"))
         font.setPointSize(18)
         self.push_button.setFont(font)
@@ -221,31 +228,31 @@ class UiMainWindow(object):
 
         self.bfs_frame = QtWidgets.QFrame(self.central_widget)
         self.bfs_frame.setGeometry(QtCore.QRect(40, 480, 350, 450))
-        self.bfs_frame.setStyleSheet("background-color: rgb(182, 182, 182);")
+        self.bfs_frame.setStyleSheet("background-color: #7E899C;")
         self.bfs_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.bfs_frame.setFrameShadow(QtWidgets.QFrame.Raised)
 
         self.ucs_frame = QtWidgets.QFrame(self.central_widget)
         self.ucs_frame.setGeometry(QtCore.QRect(410, 480, 350, 450))
-        self.ucs_frame.setStyleSheet("background-color: rgb(182, 182, 182);")
+        self.ucs_frame.setStyleSheet("background-color: #7E899C;")
         self.ucs_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.ucs_frame.setFrameShadow(QtWidgets.QFrame.Raised)
 
         self.ids_frame = QtWidgets.QFrame(self.central_widget)
         self.ids_frame.setGeometry(QtCore.QRect(780, 480, 350, 450))
-        self.ids_frame.setStyleSheet("background-color: rgb(182, 182, 182);")
+        self.ids_frame.setStyleSheet("background-color: #7E899C;")
         self.ids_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.ids_frame.setFrameShadow(QtWidgets.QFrame.Raised)
 
         self.greedy_frame = QtWidgets.QFrame(self.central_widget)
         self.greedy_frame.setGeometry(QtCore.QRect(1150, 480, 350, 450))
-        self.greedy_frame.setStyleSheet("background-color: rgb(182, 182, 182);")
+        self.greedy_frame.setStyleSheet("background-color: #7E899C;")
         self.greedy_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.greedy_frame.setFrameShadow(QtWidgets.QFrame.Raised)
 
         self.a_star_frame = QtWidgets.QFrame(self.central_widget)
         self.a_star_frame.setGeometry(QtCore.QRect(1520, 480, 350, 450))
-        self.a_star_frame.setStyleSheet("background-color: rgb(182, 182, 182);")
+        self.a_star_frame.setStyleSheet("background-color: #7E899C;")
         self.a_star_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.a_star_frame.setFrameShadow(QtWidgets.QFrame.Raised)
 
@@ -287,7 +294,8 @@ class UiMainWindow(object):
         self.fringe_max_size_Result_bfs.setFont(font)
 
         self.route_bfs = QtWidgets.QLabel(self.bfs_frame)
-        self.route_bfs.setGeometry(QtCore.QRect(20, 170, 320, 250))
+        self.route_bfs.setGeometry(QtCore.QRect(0, 180, 340, 270))
+        self.route_bfs.setContentsMargins(5, 0, 0, 0)
         self.route_bfs.setText("Route:")
         self.route_bfs.setFont(font)
         self.route_bfs.setWordWrap(True)
@@ -329,7 +337,8 @@ class UiMainWindow(object):
         self.fringe_max_size_result_ucs.setFont(font)
 
         self.route_ucs = QtWidgets.QLabel(self.ucs_frame)
-        self.route_ucs.setGeometry(QtCore.QRect(20, 170, 320, 250))
+        self.route_ucs.setGeometry(QtCore.QRect(0, 180, 340, 270))
+        self.route_ucs.setContentsMargins(5, 0, 0, 0)
         self.route_ucs.setText("Route:")
         self.route_ucs.setFont(font)
         self.route_ucs.setWordWrap(True)
@@ -371,7 +380,8 @@ class UiMainWindow(object):
         self.fringe_max_size_result_ids.setFont(font)
 
         self.route_ids = QtWidgets.QLabel(self.ids_frame)
-        self.route_ids.setGeometry(QtCore.QRect(20, 170, 320, 250))
+        self.route_ids.setGeometry(QtCore.QRect(0, 180, 340, 270))
+        self.route_ids.setContentsMargins(5, 0, 0, 0)
         self.route_ids.setText("Route:")
         self.route_ids.setFont(font)
         self.route_ids.setWordWrap(True)
@@ -413,7 +423,8 @@ class UiMainWindow(object):
         self.fringe_max_size_result_greedy.setFont(font)
 
         self.route_greedy = QtWidgets.QLabel(self.greedy_frame)
-        self.route_greedy.setGeometry(QtCore.QRect(20, 170, 320, 250))
+        self.route_greedy.setGeometry(QtCore.QRect(0, 180, 340, 270))
+        self.route_greedy.setContentsMargins(5, 0, 0, 0)
         self.route_greedy.setText("Route:")
         self.route_greedy.setFont(font)
         self.route_greedy.setWordWrap(True)
@@ -455,7 +466,7 @@ class UiMainWindow(object):
         self.fringe_max_size_result_a_star.setFont(font)
 
         self.route_a_star = QtWidgets.QLabel(self.a_star_frame)
-        self.route_a_star.setGeometry(QtCore.QRect(20, 170, 320, 250))
+        self.route_a_star.setGeometry(QtCore.QRect(0, 180, 340, 270))
         self.route_a_star.setText("Route:")
         self.route_a_star.setFont(font)
         self.route_a_star.setWordWrap(True)
