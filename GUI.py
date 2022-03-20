@@ -1,4 +1,5 @@
 import json
+import math
 import time
 
 from PyQt5 import QtCore, QtGui, QtWidgets
@@ -539,35 +540,35 @@ class UiMainWindow(object):
 
     def show_bfs(self, output, fuel):
         self.distance_result_bfs.setText(str(output.distance))
-        self.cost_result_bfs.setText(str(2.18 * int(output.distance / fuel)))
+        self.cost_result_bfs.setText(str(round(2.18 * int(output.distance / fuel))))
         self.number_Of_Nodes_Result_bfs.setText(str(output.nodes_num))
         self.fringe_max_size_Result_bfs.setText(str(output.fringe_max_size))
         self.route_bfs.setText(formulate_route(output.route))
 
     def show_ucs(self, output, fuel):
         self.distance_result_ucs.setText(str(output.distance))
-        self.cost_result_ucs.setText(str(2.18 * int(output.distance / fuel)))
+        self.cost_result_ucs.setText(str(round(2.18 * int(output.distance / fuel))))
         self.number_of_nodes_result_ucs.setText(str(output.nodes_num))
         self.fringe_max_size_result_ucs.setText(str(output.fringe_max_size))
         self.route_ucs.setText(formulate_route(output.route))
 
     def show_ids(self, output, fuel):
         self.distance_result_ids.setText(str(output.distance))
-        self.cost_result_ids.setText(str(2.18 * int(output.distance / fuel)))
+        self.cost_result_ids.setText(str(round(2.18 * int(output.distance / fuel))))
         self.number_of_nodes_result_ids.setText(str(output.nodes_num))
         self.fringe_max_size_result_ids.setText(str(output.fringe_max_size))
         self.route_ids.setText(formulate_route(output.route))
         
     def show_greedy(self, output, fuel):
         self.distance_result_greedy.setText(str(output.distance))
-        self.cost_result_greedy.setText(str(2.18 * int(output.distance / fuel)))
+        self.cost_result_greedy.setText(str(round(2.18 * int(output.distance / fuel))))
         self.number_of_nodes_result_greedy.setText(str(output.nodes_num))
         self.fringe_max_size_result_greedy.setText(str(output.fringe_max_size))
         self.route_greedy.setText(formulate_route(output.route))
         
     def show_a_star(self, output, fuel):
         self.distance_result_a_star.setText(str(output.distance))
-        self.cost_result_a_star.setText(str(2.18 * int(output.distance / fuel)))
+        self.cost_result_a_star.setText(str(round(2.18 * int(output.distance / fuel))))
         self.number_of_nodes_result_a_star.setText(str(output.nodes_num))
         self.fringe_max_size_result_a_star.setText(str(output.fringe_max_size))
         self.route_a_star.setText(formulate_route(output.route))
