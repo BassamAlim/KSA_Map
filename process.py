@@ -110,6 +110,7 @@ def greedy(start_city, destination_city):
         if fringe.empty():
             return pack_output(None, output)
         node = remove_first(fringe, Algorithms.Greedy)
+        visited.append(node.cid)
         if goal_test(destination_city, node.cid):
             return pack_output(node, output)
         expand(node, fringe, visited, output, Algorithms.Greedy)
@@ -152,7 +153,6 @@ def expand(node, fringe, visited, output, algo):
         elif algo == Algorithms.Greedy:
             h = calc_heuristic(cities[neighbor[0]]['latitude'], cities[neighbor[0]]['longitude'])
             fringe.put((h, next(tie_breaker), make_node(neighbor[0], path_cost, node)))
-            visited.append(neighbor[0])
         elif algo == Algorithms.A_Star:
             h = calc_heuristic(cities[neighbor[0]]['latitude'], cities[neighbor[0]]['longitude'])
             fringe.put((path_cost + h, next(tie_breaker), make_node(neighbor[0], path_cost, node)))

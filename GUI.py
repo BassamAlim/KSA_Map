@@ -178,12 +178,12 @@ class UiMainWindow(object):
         self.comboBox_city_to.setFont(font)
 
         self.price_label = QtWidgets.QLabel(self.central_widget)
-        self.price_label.setGeometry(QtCore.QRect(1620, 330, 150, 50))
-        self.price_label.setText("سعر الوقود:")
+        self.price_label.setGeometry(QtCore.QRect(1500, 330, 350, 50))
+        self.price_label.setText("استهلاك الوقود (km/liter):")
         self.price_label.setFont(font)
 
         self.price_field = QtWidgets.QTextEdit(self.central_widget)
-        self.price_field.setGeometry(QtCore.QRect(1400, 330, 200, 50))
+        self.price_field.setGeometry(QtCore.QRect(1300, 330, 200, 50))
         self.price_field.setStyleSheet("background-color: #7E899C;")
         self.price_field.setFont(font)
 
@@ -482,40 +482,42 @@ class UiMainWindow(object):
     def on_click(self):
         start_city = get_index(self.comboBox_city_from.currentText())
         destination_city = get_index(self.comboBox_city_to.currentText())
-        price = 2.18
+
+        fuel = 1.0
         if len(self.price_field.toPlainText()) != 0:
-            price = float(self.price_field.toPlainText())
+            fuel = float(self.price_field.toPlainText())
+
         processor = process
         
         before = time.time()
         bfs_output = processor.bfs(start_city, destination_city)
         print("BFS: " + str(time.time()-before))
         if bfs_output[0] == 'success':
-            self.show_bfs(bfs_output[1], price)
+            self.show_bfs(bfs_output[1], fuel)
         
         before = time.time()
         ucs_output = processor.ucs(start_city, destination_city)
         print("UCS: " + str(time.time()-before))
         if ucs_output[0] == 'success':
-            self.show_ucs(ucs_output[1], price)
+            self.show_ucs(ucs_output[1], fuel)
         
         before = time.time()
         ids_output = processor.ids(start_city, destination_city)
         print("IDS: " + str(time.time()-before))
         if ids_output[0] == 'success':
-            self.show_ids(ids_output[1], price)
+            self.show_ids(ids_output[1], fuel)
 
         before = time.time()
         greedy_output = processor.greedy(start_city, destination_city)
         print("Greedy: " + str(time.time() - before))
         if greedy_output[0] == 'success':
-            self.show_greedy(greedy_output[1], price)
+            self.show_greedy(greedy_output[1], fuel)
 
         before = time.time()
         a_star_output = processor.a_star(start_city, destination_city)
         print("A*: " + str(time.time() - before))
         if a_star_output[0] == 'success':
-            self.show_a_star(a_star_output[1], price)
+            self.show_a_star(a_star_output[1], fuel)
 
     def start_region_changed(self):
         index = self.comboBox_region_from.currentIndex()
@@ -535,37 +537,37 @@ class UiMainWindow(object):
             elif city['rid'] == index - 1:
                 self.comboBox_city_to.addItem(_translate("MainWindow", city['name']))
 
-    def show_bfs(self, output, price):
+    def show_bfs(self, output, fuel):
         self.distance_result_bfs.setText(str(output.distance))
-        self.cost_result_bfs.setText(str(int(output.distance * price)))
+        self.cost_result_bfs.setText(str(2.18 * int(output.distance / fuel)))
         self.number_Of_Nodes_Result_bfs.setText(str(output.nodes_num))
         self.fringe_max_size_Result_bfs.setText(str(output.fringe_max_size))
         self.route_bfs.setText(formulate_route(output.route))
 
-    def show_ucs(self, output, price):
+    def show_ucs(self, output, fuel):
         self.distance_result_ucs.setText(str(output.distance))
-        self.cost_result_ucs.setText(str(int(output.distance * price)))
+        self.cost_result_ucs.setText(str(2.18 * int(output.distance / fuel)))
         self.number_of_nodes_result_ucs.setText(str(output.nodes_num))
         self.fringe_max_size_result_ucs.setText(str(output.fringe_max_size))
         self.route_ucs.setText(formulate_route(output.route))
 
-    def show_ids(self, output, price):
+    def show_ids(self, output, fuel):
         self.distance_result_ids.setText(str(output.distance))
-        self.cost_result_ids.setText(str(int(output.distance * price)))
+        self.cost_result_ids.setText(str(2.18 * int(output.distance / fuel)))
         self.number_of_nodes_result_ids.setText(str(output.nodes_num))
         self.fringe_max_size_result_ids.setText(str(output.fringe_max_size))
         self.route_ids.setText(formulate_route(output.route))
         
-    def show_greedy(self, output, price):
+    def show_greedy(self, output, fuel):
         self.distance_result_greedy.setText(str(output.distance))
-        self.cost_result_greedy.setText(str(int(output.distance * price)))
+        self.cost_result_greedy.setText(str(2.18 * int(output.distance / fuel)))
         self.number_of_nodes_result_greedy.setText(str(output.nodes_num))
         self.fringe_max_size_result_greedy.setText(str(output.fringe_max_size))
         self.route_greedy.setText(formulate_route(output.route))
         
-    def show_a_star(self, output, price):
+    def show_a_star(self, output, fuel):
         self.distance_result_a_star.setText(str(output.distance))
-        self.cost_result_a_star.setText(str(int(output.distance * price)))
+        self.cost_result_a_star.setText(str(2.18 * int(output.distance / fuel)))
         self.number_of_nodes_result_a_star.setText(str(output.nodes_num))
         self.fringe_max_size_result_a_star.setText(str(output.fringe_max_size))
         self.route_a_star.setText(formulate_route(output.route))
