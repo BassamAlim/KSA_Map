@@ -1,5 +1,4 @@
 import json
-import math
 import time
 
 from PyQt5 import QtCore, QtGui, QtWidgets
@@ -492,31 +491,31 @@ class UiMainWindow(object):
         
         before = time.time()
         bfs_output = processor.bfs(start_city, destination_city)
-        print("BFS: " + str(time.time()-before))
+        print('BFS: %.5f ms' % (time.time()-before))
         if bfs_output[0] == 'success':
             self.show_bfs(bfs_output[1], fuel)
         
         before = time.time()
         ucs_output = processor.ucs(start_city, destination_city)
-        print("UCS: " + str(time.time()-before))
+        print('UCS: %.5f ms' % (time.time()-before))
         if ucs_output[0] == 'success':
             self.show_ucs(ucs_output[1], fuel)
         
         before = time.time()
         ids_output = processor.ids(start_city, destination_city)
-        print("IDS: " + str(time.time()-before))
+        print('IDS: %.5f ms' % (time.time()-before))
         if ids_output[0] == 'success':
             self.show_ids(ids_output[1], fuel)
 
         before = time.time()
         greedy_output = processor.greedy(start_city, destination_city)
-        print("Greedy: " + str(time.time() - before))
+        print('Greedy: %.5f ms' % (time.time()-before))
         if greedy_output[0] == 'success':
             self.show_greedy(greedy_output[1], fuel)
 
         before = time.time()
         a_star_output = processor.a_star(start_city, destination_city)
-        print("A*: " + str(time.time() - before))
+        print('A*: %.5f ms' % (time.time()-before))
         if a_star_output[0] == 'success':
             self.show_a_star(a_star_output[1], fuel)
 
