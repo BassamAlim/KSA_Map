@@ -1,8 +1,10 @@
 import itertools
 import json
-import math
 import queue
 from enum import Enum
+
+import geopy.distance
+
 import models
 
 
@@ -173,7 +175,9 @@ def successor_function(parent, visited):
 
 
 def calc_heuristic(x1, y1):
-    return math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
+    coords1 = (x1, y1)
+    coords2 = (x2, y2)
+    return geopy.distance.distance(coords1, coords2).km
 
 
 def remove_first(fringe, algo):

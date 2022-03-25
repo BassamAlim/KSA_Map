@@ -8,6 +8,7 @@ pyqt5 = "*"
 xlrd = "*"
 pandas = "*"
 openpyxl = "*"
+geopy = "*"
 
 [dev-packages]
 
