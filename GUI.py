@@ -483,7 +483,7 @@ class UiMainWindow(object):
         start_city = get_index(self.comboBox_city_from.currentText())
         destination_city = get_index(self.comboBox_city_to.currentText())
 
-        fuel = 1.0
+        fuel = 15.0
         if len(self.price_field.toPlainText()) != 0:
             fuel = float(self.price_field.toPlainText())
 
@@ -563,7 +563,11 @@ class UiMainWindow(object):
         self.cost_result_greedy.setText(str(round(2.18 * int(output.distance / fuel))))
         self.number_of_nodes_result_greedy.setText(str(output.nodes_num))
         self.fringe_max_size_result_greedy.setText(str(output.fringe_max_size))
-        self.route_greedy.setText(formulate_route(output.route))
+        route = formulate_route(output.route)
+        self.route_greedy.setText(route)
+        print('////////////// Route Greedy //////////////')
+        print(route)
+        print('//////////////////////////////////////////')
         
     def show_a_star(self, output, fuel):
         self.distance_result_a_star.setText(str(output.distance))
@@ -571,6 +575,11 @@ class UiMainWindow(object):
         self.number_of_nodes_result_a_star.setText(str(output.nodes_num))
         self.fringe_max_size_result_a_star.setText(str(output.fringe_max_size))
         self.route_a_star.setText(formulate_route(output.route))
+        route = formulate_route(output.route)
+        self.route_a_star.setText(route)
+        print('////////////// Route A* //////////////')
+        print(route)
+        print('//////////////////////////////////////')
 
 
 if __name__ == "__main__":
