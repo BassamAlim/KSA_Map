@@ -9,6 +9,8 @@ xlrd = "*"
 pandas = "*"
 openpyxl = "*"
 geopy = "*"
+folium = "*"
+tkintermapview = "*"
 
 [dev-packages]
 

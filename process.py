@@ -9,11 +9,15 @@ import models
 
 
 class Algorithms(Enum):
+    Empty = 'nothing'
     BFS = 'Breadth First Search'
     UCS = 'Uniform Cost Search'
     IDS = 'Iterative Deepening Search'
     Greedy = 'Greedy'
     A_Star = 'A*'
+
+
+algorithm = Algorithms.Empty
 
 
 with open('Cities.json', encoding='utf-8') as file:
@@ -31,6 +35,8 @@ def goal_test(destination, cid):
 
 
 def bfs(start_city, destination_city):
+    global algorithm
+    algorithm = Algorithms.BFS
     start_node = make_node(start_city, 0, None)
     fringe = queue.Queue()
     visited = []
@@ -40,13 +46,15 @@ def bfs(start_city, destination_city):
     while True:
         if fringe.empty():
             return pack_output(None, output)
-        node = remove_first(fringe, Algorithms.BFS)
+        node = remove_first(fringe)
         if goal_test(destination_city, node.cid):
             return pack_output(node, output)
-        expand(node, fringe, visited, output, Algorithms.BFS)
+        expand(node, fringe, visited, output)
 
 
 def ucs(start_city, destination_city):
+    global algorithm
+    algorithm = Algorithms.UCS
     fringe = queue.PriorityQueue()
     visited = []
     output = models.Output()
@@ -55,14 +63,16 @@ def ucs(start_city, destination_city):
     while True:
         if fringe.empty():
             return pack_output(None, output)
-        node = remove_first(fringe, Algorithms.UCS)
+        node = remove_first(fringe)
         visited.append(node.cid)
         if goal_test(destination_city, node.cid):
             return pack_output(node, output)
-        expand(node, fringe, visited, output, Algorithms.UCS)
+        expand(node, fringe, visited, output)
 
 
 def ids(start_city, destination_city):
+    global algorithm
+    algorithm = Algorithms.IDS
     output = models.Output()
     start_node = make_node(start_city, 0, None, 1)
     depth = 1
@@ -85,13 +95,13 @@ def dls(start_node, destination_city, output, limit):
                 return 'cutoff', None, output
             else:
                 return 'failure', None, output
-        node = remove_first(fringe, Algorithms.IDS)
+        node = remove_first(fringe)
         if goal_test(destination_city, node.cid):
             return 'soln', node, output
         elif node.depth == limit:
             cutoff = True
         else:
-            expand(node, fringe, visited, output, Algorithms.IDS)
+            expand(node, fringe, visited, output)
 
 
 x2 = 0.0
@@ -99,8 +109,8 @@ y2 = 0.0
 
 
 def greedy(start_city, destination_city):
-    global x2
-    global y2
+    global x2, y2, algorithm
+    algorithm = Algorithms.Greedy
     x2 = cities[destination_city]['latitude']
     y2 = cities[destination_city]['longitude']
     fringe = queue.PriorityQueue()
@@ -111,55 +121,54 @@ def greedy(start_city, destination_city):
     while True:
         if fringe.empty():
             return pack_output(None, output)
-        node = remove_first(fringe, Algorithms.Greedy)
+        node = remove_first(fringe)
         visited.append(node.cid)
         if goal_test(destination_city, node.cid):
             return pack_output(node, output)
-        expand(node, fringe, visited, output, Algorithms.Greedy)
+        expand(node, fringe, visited, output)
 
 
 def a_star(start_city, destination_city):
-    global x2
-    global y2
+    global x2, y2, algorithm
+    algorithm = Algorithms.A_Star
     x2 = cities[destination_city]['latitude']
     y2 = cities[destination_city]['longitude']
     fringe = queue.PriorityQueue()
     visited = []
     output = models.Output()
     fringe.put((0, 0, make_node(start_city, 0, None)))
-    visited.append(start_city)
+    visited.append((start_city, 0))
     while True:
         if fringe.empty():
             return pack_output(None, output)
-        node = remove_first(fringe, Algorithms.A_Star)
-        visited.append(node.cid)
+        node = remove_first(fringe)
         if goal_test(destination_city, node.cid):
             return pack_output(node, output)
-        expand(node, fringe, visited, output, Algorithms.A_Star)
-
+        expand(node, fringe, visited, output)
 
 tie_breaker = itertools.count()
 
 
-def expand(node, fringe, visited, output, algo):
+def expand(node, fringe, visited, output):
     for neighbor in successor_function(node, visited):
         path_cost = node.path_cost + neighbor[1]
-        if algo == Algorithms.BFS:
+        if algorithm == Algorithms.BFS:
             fringe.put(make_node(neighbor[0], path_cost, node, node.depth + 1))
             visited.append(neighbor[0])
-        elif algo == Algorithms.UCS:
+        elif algorithm == Algorithms.UCS:
             fringe.put((path_cost, next(tie_breaker), make_node(neighbor[0], path_cost, node)))
-        elif algo == Algorithms.IDS:
+        elif algorithm == Algorithms.IDS:
             fringe.append(make_node(neighbor[0], path_cost, node, node.depth + 1))
             visited.append(neighbor[0])
-        elif algo == Algorithms.Greedy:
+        elif algorithm == Algorithms.Greedy:
             h = calc_heuristic(cities[neighbor[0]]['latitude'], cities[neighbor[0]]['longitude'])
             fringe.put((h, next(tie_breaker), make_node(neighbor[0], path_cost, node)))
-        elif algo == Algorithms.A_Star:
+        elif algorithm == Algorithms.A_Star:
             h = calc_heuristic(cities[neighbor[0]]['latitude'], cities[neighbor[0]]['longitude'])
             fringe.put((path_cost + h, next(tie_breaker), make_node(neighbor[0], path_cost, node)))
+            visited.append((neighbor[0], path_cost))
         output.nodes_num += 1
-    if algo == Algorithms.IDS:
+    if algorithm == Algorithms.IDS:
         output.fringe_max_size = max(output.fringe_max_size, len(fringe))
     else:
         output.fringe_max_size = max(output.fringe_max_size, fringe.qsize())
@@ -168,9 +177,12 @@ def expand(node, fringe, visited, output, algo):
 def successor_function(parent, visited):
     neighbors = []
     for neighbor in cities[parent.cid]['neighbors']:
-        if (parent.parent is not None and neighbor['cid'] == parent.parent.cid) or in_history(neighbor['cid'], visited):
-            continue
-        neighbors.append((neighbor['cid'], neighbor['distance']))
+        cost = parent.path_cost + neighbor['distance']
+        if algorithm == Algorithms.A_Star:
+            if not in_history(neighbor['cid'], visited, cost):
+                neighbors.append((neighbor['cid'], neighbor['distance']))
+        elif not in_history(neighbor['cid'], visited, cost):
+            neighbors.append((neighbor['cid'], neighbor['distance']))
     return neighbors
 
 
@@ -180,19 +192,28 @@ def calc_heuristic(x1, y1):
     return geopy.distance.distance(coords1, coords2).km
 
 
-def remove_first(fringe, algo):
-    if algo == Algorithms.BFS:
+def remove_first(fringe):
+    if algorithm == Algorithms.BFS:
         return fringe.get()
-    elif algo == Algorithms.IDS:
+    elif algorithm == Algorithms.IDS:
         return fringe.pop()
     else:
         return fringe.get()[2]
 
 
-def in_history(cid, visited):
-    for h in visited:
-        if h == cid:
-            return True
+def in_history(cid, visited, cost):
+    counter = 0
+    for city in visited:
+        if algorithm == Algorithms.A_Star:
+            if city[0] == cid:
+                if cost > city[1]:
+                    return True
+                else:
+                    visited.pop(counter)
+        else:
+            if city == cid:
+                return True
+        counter += 1
     return False
 
 
