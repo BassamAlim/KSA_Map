@@ -1,7 +1,7 @@
 import json
 import tkinter
-from tkintermapview import TkinterMapView
 
+from tkintermapview import TkinterMapView
 
 with open('Cities.json', encoding='utf-8') as file:
     cities = json.load(file)
@@ -49,7 +49,3 @@ def visualize(route):
     # path_1.delete()
 
     root_tk.mainloop()
-
-
-r = [0, 20, 43, 101]
-visualize(r)

@@ -111,8 +111,8 @@ y2 = 0.0
 def greedy(start_city, destination_city):
     global x2, y2, algorithm
     algorithm = Algorithms.Greedy
-    x2 = cities[destination_city]['latitude']
-    y2 = cities[destination_city]['longitude']
+    x2 = cities[destination_city]['x']
+    y2 = cities[destination_city]['y']
     fringe = queue.PriorityQueue()
     visited = []
     output = models.Output()
@@ -131,8 +131,8 @@ def greedy(start_city, destination_city):
 def a_star(start_city, destination_city):
     global x2, y2, algorithm
     algorithm = Algorithms.A_Star
-    x2 = cities[destination_city]['latitude']
-    y2 = cities[destination_city]['longitude']
+    x2 = cities[destination_city]['x']
+    y2 = cities[destination_city]['y']
     fringe = queue.PriorityQueue()
     visited = []
     output = models.Output()
@@ -161,10 +161,10 @@ def expand(node, fringe, visited, output):
             fringe.append(make_node(neighbor[0], path_cost, node, node.depth + 1))
             visited.append(neighbor[0])
         elif algorithm == Algorithms.Greedy:
-            h = calc_heuristic(cities[neighbor[0]]['latitude'], cities[neighbor[0]]['longitude'])
+            h = calc_heuristic(cities[neighbor[0]]['x'], cities[neighbor[0]]['y'])
             fringe.put((h, next(tie_breaker), make_node(neighbor[0], path_cost, node)))
         elif algorithm == Algorithms.A_Star:
-            h = calc_heuristic(cities[neighbor[0]]['latitude'], cities[neighbor[0]]['longitude'])
+            h = calc_heuristic(cities[neighbor[0]]['x'], cities[neighbor[0]]['y'])
             fringe.put((path_cost + h, next(tie_breaker), make_node(neighbor[0], path_cost, node)))
             visited.append((neighbor[0], path_cost))
         output.nodes_num += 1
