@@ -11,6 +11,18 @@ class Node:
         self.depth = depth
 
 
+class Chromosome:
+    def __init__(self, gnome, fitness):
+        self.gnome = gnome
+        self.fitness = fitness
+
+    def __lt__(self, other):
+        return self.fitness < other.fitness
+
+    def __gt__(self, other):
+        return self.fitness > other.fitness
+
+
 class Output:
     route = []
     distance = 0
