@@ -2,10 +2,12 @@ import json
 import math
 import random
 import time
+import tkinter as tk
 from enum import Enum
 from random import randint
 
-import IGUI
+from tkintermapview import TkinterMapView
+
 import process
 from models import Chromosome
 
@@ -29,10 +31,9 @@ def hill_climbing(cities):
     global algorithm
     algorithm = Algorithms.HC
     start_time = time.time()
-    print(str(cities))
     random.shuffle(cities)
-    print(str(cities))
     while True:
+        visualize(cities)
         formulate_route(cities)
         current_cost = calc_cost(cities)
         result = find_best_swap(cities, current_cost, 0)
@@ -50,10 +51,10 @@ def simulated_annealing(cities):
     algorithm = Algorithms.SA
     start_time = time.time()
     iterations = 0
+    random.shuffle(cities)
     best_sol = list(cities)
     best_sol_cost = calc_cost(cities)
     temperature = 3000
-    couter = 0
     while temperature > 500:
         iterations += 1
         formulate_route(cities)
@@ -69,9 +70,7 @@ def simulated_annealing(cities):
                 best_sol = list(cities)
                 best_sol_cost = new_cost
         temperature = cooldown(temperature)
-        couter += 1
     print('Time: ' + str(time.time() - start_time))
-    print("C" + str(couter))
     return best_sol
 
 
@@ -128,22 +127,25 @@ def genetic(cities):
     population = []
     # Populating the GNOME pool.
     for i in range(POP_SIZE):
-        gnome = create_gnome()
+        gnome = list(cities)
+        random.shuffle(cities)
         population.append(Chromosome(gnome, calc_cost(gnome)))
 
     temperature = 3000
     # Iteration to perform population crossing and gene mutation.
     while temperature > 500 and gen <= gen_thres:
+        visualize(population[0].gnome)
         population.sort()
         display_gen(gen, population)
         solution, sol_cost = get_best(solution, sol_cost, population)    # Python Stuff
-        print("\nCurrent temp: ", temperature)
+        #print("\nCurrent temp: ", temperature)
 
         new_population = []
         for i in range(POP_SIZE):
-            old_pop = population[i]
+            parent = population[i]
+
             while True:
-                new_g = mutate(old_pop.gnome)
+                new_g = mutate(parent.gnome)
                 new_gnome = Chromosome(new_g, calc_cost(new_g))
 
                 if new_gnome.fitness <= population[i].fitness:
@@ -171,21 +173,9 @@ def mutate(gnome):
     while True:
         r1 = randint(1, v-1)
         r2 = randint(1, v-1)
-        if r1 != r:
+        if r1 != r2:
             swap(gnome, r1, r2)
             break
-    return gnome
-
-
-# Function to return a valid GNOME string required to create the population
-def create_gnome():
-    gnome = []
-    while True:
-        if len(gnome) == v:
-            break
-        temp = randint(0, v-1)
-        if not gnome.__contains__(problem[temp]):
-            gnome.append(problem[temp])
     return gnome
 
 
@@ -234,8 +224,102 @@ def formulate_route(route):
     print(string[:-3])
 
 
-r = [53, 93, 28, 149, 0, 85, 49]    # HC: 5327  ,  SA: 4279  ,  GA: 3179
-b = [149, 49, 53, 0, 28, 93, 85]    # 3179
-sol = genetic(r)
-print('Best Cost: ' + str(calc_cost(sol)))
-IGUI.visualize(sol)
+
+
+
+
+root = tk.Tk()
+map_widget = TkinterMapView(root, width=1100, corner_radius=0, max_zoom=22)
+markers = []
+selected = []
+paths = []
+
+
+def start():
+    root.geometry('1250x800')
+    root.title("KSA MapView")
+    root.state('zoomed')
+
+    scrollbar = tk.Scrollbar(root)
+    checklist = tk.Text(root, width=20)
+    for i in range(0, len(data)):
+        city = data[i]
+        var = tk.IntVar()
+        selected.append(var)
+        checkbutton = tk.Checkbutton(checklist, text=city['name'], variable=var)
+        checklist.window_create("end", window=checkbutton)
+        checklist.insert("end", "\n")
+    checklist.config(yscrollcommand=scrollbar.set)
+    scrollbar.config(command=checklist.yview)
+    # disable the widget so users can't insert text into it
+    checklist.configure(state="disabled")
+
+    hc_button = tk.Button(root, text="HC", command=HC)
+    sa_button = tk.Button(root, text="SA", command=SA)
+    ga_button = tk.Button(root, text="GA", command=GA)
+
+    map_widget.set_tile_server("https://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}&s=Ga")
+    # set current widget position and zoom
+    map_widget.set_position(23.8859, 45.0792)  # KSA
+    map_widget.set_zoom(6)
+
+    scrollbar.place(x=0, y=0, height=650)
+    checklist.place(x=10, y=0, height=570)
+    hc_button.place(x=5, y=580, width=50, height=50)
+    sa_button.place(x=60, y=580, width=50, height=50)
+    ga_button.place(x=115, y=580, width=50, height=50)
+    map_widget.place(relx=0.57, rely=0.5, anchor='center', height=650)
+
+    root.mainloop()
+
+
+def get_selected():
+    s = []
+    for i in range(0, len(data)):
+        if selected[i].get():
+            s.append(i)
+    return s
+
+
+def pin(cid):
+    pass
+
+
+def clear_paths():
+    for i in range(0, len(paths)):
+        paths.pop().delete()
+
+
+def HC():
+    clear_paths()
+    route = get_selected()
+    result = hill_climbing(route)
+    visualize(result)
+
+
+def SA():
+    clear_paths()
+    route = get_selected()
+    result = simulated_annealing(route)
+    visualize(result)
+
+
+def GA():
+    clear_paths()
+    route = get_selected()
+    result = genetic(route)
+    visualize(result)
+
+
+def visualize(route):
+    positions = []
+    for i in range(0, len(route)):
+        city = data[route[i]]
+        marker = map_widget.set_marker(city['x'], city['y'], text=city['name'])
+        markers.append(marker)
+        positions.append(marker.position)
+    path = map_widget.set_path(positions)
+    paths.append(path)
+
+
+start()
