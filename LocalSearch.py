@@ -33,7 +33,6 @@ def hill_climbing(cities):
     start_time = time.time()
     random.shuffle(cities)
     while True:
-        visualize(cities)
         formulate_route(cities)
         current_cost = calc_cost(cities)
         result = find_best_swap(cities, current_cost, 0)
@@ -43,7 +42,7 @@ def hill_climbing(cities):
             swap(cities, result, result+1)
             print('swap: ' + str(current_cost - calc_cost(cities)))
     print('Time: ' + str(time.time() - start_time))
-    return cities
+    return cities, calc_cost(cities)
 
 
 def simulated_annealing(cities):
@@ -71,7 +70,7 @@ def simulated_annealing(cities):
                 best_sol_cost = new_cost
         temperature = cooldown(temperature)
     print('Time: ' + str(time.time() - start_time))
-    return best_sol
+    return best_sol, best_sol_cost
 
 
 def schedule(t):
@@ -134,7 +133,6 @@ def genetic(cities):
     temperature = 3000
     # Iteration to perform population crossing and gene mutation.
     while temperature > 500 and gen <= gen_thres:
-        visualize(population[0].gnome)
         population.sort()
         display_gen(gen, population)
         solution, sol_cost = get_best(solution, sol_cost, population)    # Python Stuff
@@ -161,9 +159,9 @@ def genetic(cities):
         population = new_population
         gen += 1
 
-    solution = get_best(solution, sol_cost, population)[0]
+    solution, sol_cost = get_best(solution, sol_cost, population)
     display_gen(gen, population)
-    return solution
+    return solution, sol_cost
 
 
 # Function to return a mutated GNOME.
@@ -230,6 +228,7 @@ def formulate_route(route):
 
 root = tk.Tk()
 map_widget = TkinterMapView(root, width=1100, corner_radius=0, max_zoom=22)
+result_tv = tk.Text(root, foreground='blue')
 markers = []
 selected = []
 paths = []
@@ -243,15 +242,15 @@ def start():
     scrollbar = tk.Scrollbar(root)
     checklist = tk.Text(root, width=20)
     for i in range(0, len(data)):
+        markers.append(None)
         city = data[i]
         var = tk.IntVar()
         selected.append(var)
-        checkbutton = tk.Checkbutton(checklist, text=city['name'], variable=var)
+        checkbutton = tk.Checkbutton(checklist, text=city['name'], variable=var, command=pin)
         checklist.window_create("end", window=checkbutton)
         checklist.insert("end", "\n")
     checklist.config(yscrollcommand=scrollbar.set)
     scrollbar.config(command=checklist.yview)
-    # disable the widget so users can't insert text into it
     checklist.configure(state="disabled")
 
     hc_button = tk.Button(root, text="HC", command=HC)
@@ -259,15 +258,15 @@ def start():
     ga_button = tk.Button(root, text="GA", command=GA)
 
     map_widget.set_tile_server("https://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}&s=Ga")
-    # set current widget position and zoom
     map_widget.set_position(23.8859, 45.0792)  # KSA
     map_widget.set_zoom(6)
 
     scrollbar.place(x=0, y=0, height=650)
-    checklist.place(x=10, y=0, height=570)
-    hc_button.place(x=5, y=580, width=50, height=50)
-    sa_button.place(x=60, y=580, width=50, height=50)
-    ga_button.place(x=115, y=580, width=50, height=50)
+    checklist.place(x=10, y=0, height=550)
+    hc_button.place(x=5, y=555, width=50, height=50)
+    sa_button.place(x=60, y=555, width=50, height=50)
+    ga_button.place(x=115, y=555, width=50, height=50)
+    result_tv.place(x=5, y=610, width=170, height=30)
     map_widget.place(relx=0.57, rely=0.5, anchor='center', height=650)
 
     root.mainloop()
@@ -281,8 +280,20 @@ def get_selected():
     return s
 
 
-def pin(cid):
-    pass
+def pin():
+    for i in range(0, len(data)):
+        if selected[i].get():
+            mark(i)
+        else:
+            if markers[i] is not None:
+                markers[i].delete()
+            markers[i] = None
+
+
+def mark(cid):
+    marker = map_widget.set_marker(data[cid]['x'], data[cid]['y'], text=data[cid]['name'])
+    markers[cid] = marker
+    return marker
 
 
 def clear_paths():
@@ -294,29 +305,33 @@ def HC():
     clear_paths()
     route = get_selected()
     result = hill_climbing(route)
-    visualize(result)
+    result_tv.delete('1.0', tk.END)
+    result_tv.insert(tk.END, 'HC:' + str(result[1]) + 'km')
+    visualize(result[0])
 
 
 def SA():
     clear_paths()
     route = get_selected()
     result = simulated_annealing(route)
-    visualize(result)
+    result_tv.delete('1.0', tk.END)
+    result_tv.insert(tk.END, 'SA:' + str(result[1]) + 'km')
+    visualize(result[0])
 
 
 def GA():
     clear_paths()
     route = get_selected()
     result = genetic(route)
-    visualize(result)
+    result_tv.delete('1.0', tk.END)
+    result_tv.insert(tk.END, 'GA:' + str(result[1]) + 'km')
+    visualize(result[0])
 
 
 def visualize(route):
     positions = []
     for i in range(0, len(route)):
-        city = data[route[i]]
-        marker = map_widget.set_marker(city['x'], city['y'], text=city['name'])
-        markers.append(marker)
+        marker = mark(route[i])
         positions.append(marker.position)
     path = map_widget.set_path(positions)
     paths.append(path)
