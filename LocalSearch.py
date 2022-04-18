@@ -1,5 +1,6 @@
 import json
 import math
+import random
 import time
 from enum import Enum
 from random import randint
@@ -12,7 +13,7 @@ processor = process
 
 
 class Algorithms(Enum):
-    Empty = 'nothing'
+    Empty = 'Nothing'
     HC = 'Hill Climbing'
     SA = 'Simulated Annealing'
     GA = 'Genetic Algorithms'
@@ -28,6 +29,9 @@ def hill_climbing(cities):
     global algorithm
     algorithm = Algorithms.HC
     start_time = time.time()
+    print(str(cities))
+    random.shuffle(cities)
+    print(str(cities))
     while True:
         formulate_route(cities)
         current_cost = calc_cost(cities)
