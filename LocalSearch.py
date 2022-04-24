@@ -13,6 +13,8 @@ from models import Chromosome
 
 processor = process
 
+showed = False
+
 
 class Algorithms(Enum):
     Empty = 'Nothing'
@@ -283,12 +285,20 @@ def get_selected():
 
 
 def pin():
+    global showed
+    if showed:
+        clear_paths()
+        clear_markers()
+        showed = False
+
     for i in range(0, len(data)):
         if selected[i].get():
-            mark(i)
+            if markers[i] is None:
+                mark(i)
         else:
             if markers[i] is not None:
                 markers[i].delete()
+                selected[i].set(0)
             markers[i] = None
 
 
@@ -303,7 +313,15 @@ def clear_paths():
         paths.pop().delete()
 
 
+def clear_markers():
+    for i in range(0, len(markers)):
+        if markers[i] is not None:
+            markers[i].delete()
+            selected[i].set(0)
+
+
 def HC():
+    global showed
     clear_paths()
     route = get_selected()
     result = hill_climbing(route)
@@ -311,9 +329,11 @@ def HC():
     result_tv.insert(tk.END, 'HC:' + str(result[2]) + 'km')
     display_results(result)
     visualize(result[1])
+    showed = True
 
 
 def SA():
+    global showed
     clear_paths()
     route = get_selected()
     result = simulated_annealing(route)
@@ -321,9 +341,11 @@ def SA():
     result_tv.insert(tk.END, 'SA:' + str(result[2]) + 'km')
     display_results(result)
     visualize(result[1])
+    showed = True
 
 
 def GA():
+    global showed
     clear_paths()
     route = get_selected()
     result = genetic(route)
@@ -331,6 +353,7 @@ def GA():
     result_tv.insert(tk.END, 'GA:' + str(result[2]) + 'km')
     display_results(result)
     visualize(result[1])
+    showed = True
 
 
 def display_sequence(route):
@@ -357,8 +380,7 @@ def display_results(result):
 def visualize(route):
     positions = []
     for i in range(0, len(route)):
-        marker = mark(route[i])
-        positions.append(marker.position)
+        positions.append(markers[route[i]].position)
     path = map_widget.set_path(positions)
     paths.append(path)
 
