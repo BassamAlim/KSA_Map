@@ -308,7 +308,7 @@ def HC():
     route = get_selected()
     result = hill_climbing(route)
     result_tv.delete('1.0', tk.END)
-    result_tv.insert(tk.END, 'HC:' + str(result[1]) + 'km')
+    result_tv.insert(tk.END, 'HC:' + str(result[2]) + 'km')
     display_results(result)
     visualize(result[1])
 
@@ -318,7 +318,7 @@ def SA():
     route = get_selected()
     result = simulated_annealing(route)
     result_tv.delete('1.0', tk.END)
-    result_tv.insert(tk.END, 'SA:' + str(result[1]) + 'km')
+    result_tv.insert(tk.END, 'SA:' + str(result[2]) + 'km')
     display_results(result)
     visualize(result[1])
 
@@ -328,7 +328,7 @@ def GA():
     route = get_selected()
     result = genetic(route)
     result_tv.delete('1.0', tk.END)
-    result_tv.insert(tk.END, 'GA:' + str(result[1]) + 'km')
+    result_tv.insert(tk.END, 'GA:' + str(result[2]) + 'km')
     display_results(result)
     visualize(result[1])
 
