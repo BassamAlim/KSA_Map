@@ -30,6 +30,7 @@ with open('Cities.json', encoding='utf-8') as file:
 def hill_climbing(cities):
     global algorithm
     algorithm = Algorithms.HC
+    sequence = list(cities)
     start_time = time.time()
     random.shuffle(cities)
     while True:
@@ -42,12 +43,13 @@ def hill_climbing(cities):
             swap(cities, result, result+1)
             print('swap: ' + str(current_cost - calc_cost(cities)))
     print('Time: ' + str(time.time() - start_time))
-    return cities, calc_cost(cities)
+    return sequence, cities, calc_cost(cities)
 
 
 def simulated_annealing(cities):
     global algorithm
     algorithm = Algorithms.SA
+    sequence = list(cities)
     start_time = time.time()
     iterations = 0
     random.shuffle(cities)
@@ -70,7 +72,7 @@ def simulated_annealing(cities):
                 best_sol_cost = new_cost
         temperature = cooldown(temperature)
     print('Time: ' + str(time.time() - start_time))
-    return best_sol, best_sol_cost
+    return sequence, best_sol, best_sol_cost
 
 
 def schedule(t):
@@ -114,6 +116,7 @@ problem = []
 def genetic(cities):
     global algorithm, v, problem
     algorithm = Algorithms.GA
+    sequence = list(cities)
     v = len(cities)
     problem = list(cities)
     solution = list(cities)
@@ -160,7 +163,7 @@ def genetic(cities):
 
     solution, sol_cost = get_best(solution, sol_cost, population)
     display_gen(gen, population)
-    return solution, sol_cost
+    return sequence, solution, sol_cost
 
 
 # Function to return a mutated GNOME.
@@ -307,7 +310,7 @@ def HC():
     result_tv.delete('1.0', tk.END)
     result_tv.insert(tk.END, 'HC:' + str(result[1]) + 'km')
     display_results(result)
-    visualize(result[0])
+    visualize(result[1])
 
 
 def SA():
@@ -317,7 +320,7 @@ def SA():
     result_tv.delete('1.0', tk.END)
     result_tv.insert(tk.END, 'SA:' + str(result[1]) + 'km')
     display_results(result)
-    visualize(result[0])
+    visualize(result[1])
 
 
 def GA():
@@ -327,16 +330,28 @@ def GA():
     result_tv.delete('1.0', tk.END)
     result_tv.insert(tk.END, 'GA:' + str(result[1]) + 'km')
     display_results(result)
-    visualize(result[0])
+    visualize(result[1])
+
+
+def display_sequence(route):
+    string = str()
+    string += '('
+    for element in route:
+        string += data[element]['name'] + ', '
+    string = string[:-2]
+    string += ')'
+    print(string)
 
 
 def display_results(result):
     fuel = 15.0
-    print('\nResult: ')
+    print('\nSequence: ')
+    display_sequence(result[0])
+    print('Result: ')
     print("Path: ")
-    formulate_route(result[0])
-    print("Distance: " + str(result[1]))
-    print("Cost: " + str(round(2.18 * int(result[1] / fuel))) + "\n")
+    formulate_route(result[1])
+    print("Distance: " + str(result[2]))
+    print("Cost: " + str(round(2.18 * int(result[2] / fuel))) + "\n")
 
 
 def visualize(route):
