@@ -136,7 +136,6 @@ def genetic(cities):
         population.sort()
         display_gen(gen, population)
         solution, sol_cost = get_best(solution, sol_cost, population)    # Python Stuff
-        #print("\nCurrent temp: ", temperature)
 
         new_population = []
         for i in range(POP_SIZE):
@@ -307,6 +306,7 @@ def HC():
     result = hill_climbing(route)
     result_tv.delete('1.0', tk.END)
     result_tv.insert(tk.END, 'HC:' + str(result[1]) + 'km')
+    display_results(result)
     visualize(result[0])
 
 
@@ -316,6 +316,7 @@ def SA():
     result = simulated_annealing(route)
     result_tv.delete('1.0', tk.END)
     result_tv.insert(tk.END, 'SA:' + str(result[1]) + 'km')
+    display_results(result)
     visualize(result[0])
 
 
@@ -325,7 +326,17 @@ def GA():
     result = genetic(route)
     result_tv.delete('1.0', tk.END)
     result_tv.insert(tk.END, 'GA:' + str(result[1]) + 'km')
+    display_results(result)
     visualize(result[0])
+
+
+def display_results(result):
+    fuel = 15.0
+    print('\nResult: ')
+    print("Path: ")
+    formulate_route(result[0])
+    print("Distance: " + str(result[1]))
+    print("Cost: " + str(round(2.18 * int(result[1] / fuel))) + "\n")
 
 
 def visualize(route):
