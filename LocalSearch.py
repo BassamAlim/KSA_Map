@@ -30,10 +30,11 @@ with open('Cities.json', encoding='utf-8') as file:
 
 
 def hill_climbing(cities):
+    start_time = time.time()
     global algorithm
     algorithm = Algorithms.HC
+
     sequence = list(cities)
-    start_time = time.time()
     random.shuffle(cities)
     while True:
         formulate_route(cities)
@@ -42,17 +43,20 @@ def hill_climbing(cities):
         if result == -1:
             break
         else:
-            swap(cities, result, result+1)
+            swap(cities, result, result + 1)
             print('swap: ' + str(current_cost - calc_cost(cities)))
+
     print('Time: ' + str(time.time() - start_time))
+    cities.append(cities[0])  # To return to start city
     return sequence, cities, calc_cost(cities)
 
 
 def simulated_annealing(cities):
+    start_time = time.time()
     global algorithm
     algorithm = Algorithms.SA
+
     sequence = list(cities)
-    start_time = time.time()
     iterations = 0
     random.shuffle(cities)
     best_sol = list(cities)
@@ -66,14 +70,16 @@ def simulated_annealing(cities):
         if result == -1:
             break
         else:
-            swap(cities, result, result+1)
+            swap(cities, result, result + 1)
             new_cost = calc_cost(cities)
             print('swap: ' + str(current_cost - new_cost))
             if new_cost < best_sol_cost:
                 best_sol = list(cities)
                 best_sol_cost = new_cost
         temperature = cooldown(temperature)
+
     print('Time: ' + str(time.time() - start_time))
+    best_sol.append(best_sol[0])
     return sequence, best_sol, best_sol_cost
 
 
@@ -88,7 +94,7 @@ def find_best_swap(ls, current_cost, tmp=0):
     s_best_cost = -1
     for i in range(0, len(ls) - 1):  # range: upper is exclusive
         swapped = list(ls)
-        swap(swapped, i, i+1)
+        swap(swapped, i, i + 1)
         new_cost = calc_cost(swapped)
         print('current cost: ' + str(current_cost) + ', new cost: ' + str(new_cost))
         diff = best_cost - new_cost
@@ -140,7 +146,7 @@ def genetic(cities):
     while temperature > 500 and gen <= gen_thres:
         population.sort()
         display_gen(gen, population)
-        solution, sol_cost = get_best(solution, sol_cost, population)    # Python Stuff
+        solution, sol_cost = get_best(solution, sol_cost, population)  # Python Stuff
 
         new_population = []
         for i in range(POP_SIZE):
@@ -153,7 +159,7 @@ def genetic(cities):
                 if new_gnome.fitness <= population[i].fitness:
                     new_population.append(new_gnome)
                     break
-                else:    # Accepting the rejected children at a possible probability above threshold.
+                else:  # Accepting the rejected children at a possible probability above threshold.
                     prob = get_prob(population[i].fitness, new_gnome.fitness, temperature)
                     if prob > 0.5:
                         new_population.append(new_gnome)
@@ -165,6 +171,8 @@ def genetic(cities):
 
     solution, sol_cost = get_best(solution, sol_cost, population)
     display_gen(gen, population)
+
+    solution.append(solution[0])
     return sequence, solution, sol_cost
 
 
@@ -173,8 +181,8 @@ def genetic(cities):
 def mutate(gnome):
     gnome = list(gnome)
     while True:
-        r1 = randint(1, v-1)
-        r2 = randint(1, v-1)
+        r1 = randint(1, v - 1)
+        r2 = randint(1, v - 1)
         if r1 != r2:
             swap(gnome, r1, r2)
             break
@@ -216,7 +224,7 @@ def calc_cost(route):
     for i in range(0, len(route) - 1):
         a_star_solution = processor.a_star(route[i], route[i + 1])[1]
         cost += a_star_solution.distance
-    return cost
+    return cost + processor.a_star(route[len(route) - 1], route[0])[1].distance  # To return to the start city
 
 
 def formulate_route(route):
@@ -224,10 +232,6 @@ def formulate_route(route):
     for element in route:
         string += data[element]['name'] + ' ← '
     print(string[:-3])
-
-
-
-
 
 
 root = tk.Tk()
@@ -379,7 +383,7 @@ def display_results(result):
 
 def visualize(route):
     positions = []
-    for i in range(0, len(route)):
+    for i in range(0, len(route) - 1):
         positions.append(markers[route[i]].position)
     path = map_widget.set_path(positions)
     paths.append(path)
