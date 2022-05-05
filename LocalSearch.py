@@ -11,10 +11,6 @@ from tkintermapview import TkinterMapView
 import process
 from models import Chromosome
 
-processor = process
-
-showed = False
-
 
 class Algorithms(Enum):
     Empty = 'Nothing'
@@ -23,6 +19,9 @@ class Algorithms(Enum):
     GA = 'Genetic Algorithms'
 
 
+processor = process
+showed = False
+fuel = 15.0
 algorithm = Algorithms.Empty
 
 with open('Cities.json', encoding='utf-8') as file:
@@ -33,11 +32,12 @@ def hill_climbing(cities):
     start_time = time.time()
     global algorithm
     algorithm = Algorithms.HC
+    counter = 0
 
     sequence = list(cities)
     random.shuffle(cities)
     while True:
-        formulate_route(cities)
+        print(formulate_route(cities))
         current_cost = calc_cost(cities)
         result = find_best_swap(cities, current_cost, 0)
         if result == -1:
@@ -45,6 +45,9 @@ def hill_climbing(cities):
         else:
             swap(cities, result, result + 1)
             print('swap: ' + str(current_cost - calc_cost(cities)))
+            if str(counter) == state_et.get("1.0", "end-1c"):
+                display_state(cities, calc_cost(cities))
+        counter += 1
 
     print('Time: ' + str(time.time() - start_time))
     cities.append(cities[0])  # To return to start city
@@ -55,6 +58,7 @@ def simulated_annealing(cities):
     start_time = time.time()
     global algorithm
     algorithm = Algorithms.SA
+    counter = 0
 
     sequence = list(cities)
     iterations = 0
@@ -64,7 +68,7 @@ def simulated_annealing(cities):
     temperature = 3000
     while temperature > 500:
         iterations += 1
-        formulate_route(cities)
+        print(formulate_route(cities))
         current_cost = calc_cost(cities)
         result = find_best_swap(cities, current_cost, temperature)
         if result == -1:
@@ -73,10 +77,13 @@ def simulated_annealing(cities):
             swap(cities, result, result + 1)
             new_cost = calc_cost(cities)
             print('swap: ' + str(current_cost - new_cost))
+            if str(counter) == state_et.get("1.0", "end-1c"):
+                display_state(cities, calc_cost(cities))
             if new_cost < best_sol_cost:
                 best_sol = list(cities)
                 best_sol_cost = new_cost
         temperature = cooldown(temperature)
+        counter += 1
 
     print('Time: ' + str(time.time() - start_time))
     best_sol.append(best_sol[0])
@@ -147,6 +154,9 @@ def genetic(cities):
         population.sort()
         display_gen(gen, population)
         solution, sol_cost = get_best(solution, sol_cost, population)  # Python Stuff
+
+        if str(gen) == state_et.get("1.0", "end-1c"):
+            display_state(cities, calc_cost(cities))
 
         new_population = []
         for i in range(POP_SIZE):
@@ -231,11 +241,14 @@ def formulate_route(route):
     string = str()
     for element in route:
         string += data[element]['name'] + ' ← '
-    print(string[:-3])
+    return string[:-3]
 
 
 root = tk.Tk()
 map_widget = TkinterMapView(root, width=1100, corner_radius=0, max_zoom=22)
+state_label = tk.Label(root, text='Show state after:')
+state_et = tk.Text(root, foreground='black')
+state_tv = tk.Text(root, foreground='blue')
 result_tv = tk.Text(root, foreground='blue')
 markers = []
 selected = []
@@ -269,12 +282,19 @@ def start():
     map_widget.set_position(23.8859, 45.0792)  # KSA
     map_widget.set_zoom(6)
 
-    scrollbar.place(x=0, y=0, height=650)
-    checklist.place(x=10, y=0, height=550)
-    hc_button.place(x=5, y=555, width=50, height=50)
-    sa_button.place(x=60, y=555, width=50, height=50)
-    ga_button.place(x=115, y=555, width=50, height=50)
-    result_tv.place(x=5, y=610, width=170, height=30)
+    state_et.tag_configure("center", justify='center')
+    state_tv.tag_configure("center", justify='center')
+    result_tv.tag_configure("center", justify='center')
+
+    scrollbar.place(x=0, y=0, height=420)
+    checklist.place(x=10, y=0, height=420)
+    state_label.place(x=0, y=425, width=100, height=20)
+    state_et.place(x=100, y=425, width=50, height=20)
+    hc_button.place(x=5, y=450, width=50, height=50)
+    sa_button.place(x=60, y=450, width=50, height=50)
+    ga_button.place(x=115, y=450, width=50, height=50)
+    state_tv.place(x=5, y=505, width=170, height=90)
+    result_tv.place(x=5, y=600, width=170, height=40)
     map_widget.place(relx=0.57, rely=0.5, anchor='center', height=650)
 
     root.mainloop()
@@ -329,8 +349,6 @@ def HC():
     clear_paths()
     route = get_selected()
     result = hill_climbing(route)
-    result_tv.delete('1.0', tk.END)
-    result_tv.insert(tk.END, 'HC:' + str(result[2]) + 'km')
     display_results(result)
     visualize(result[1])
     showed = True
@@ -341,8 +359,6 @@ def SA():
     clear_paths()
     route = get_selected()
     result = simulated_annealing(route)
-    result_tv.delete('1.0', tk.END)
-    result_tv.insert(tk.END, 'SA:' + str(result[2]) + 'km')
     display_results(result)
     visualize(result[1])
     showed = True
@@ -353,8 +369,6 @@ def GA():
     clear_paths()
     route = get_selected()
     result = genetic(route)
-    result_tv.delete('1.0', tk.END)
-    result_tv.insert(tk.END, 'GA:' + str(result[2]) + 'km')
     display_results(result)
     visualize(result[1])
     showed = True
@@ -371,14 +385,32 @@ def display_sequence(route):
 
 
 def display_results(result):
-    fuel = 15.0
     print('\nSequence: ')
     display_sequence(result[0])
     print('Result: ')
     print("Path: ")
-    formulate_route(result[1])
+    print(formulate_route(result[1]))
     print("Distance: " + str(result[2]))
     print("Cost: " + str(round(2.18 * int(result[2] / fuel))) + "\n")
+
+    result_tv.delete('1.0', tk.END)
+    result_tv.insert("1.0",
+                     'Distance: ' + str(result[2]) + ' km\nCost: ' + str(round(2.18 * int(result[2] / fuel))) + " SR")
+    result_tv.tag_add("center", "1.0", "end")
+
+
+def display_state(path, cost):
+    path_str = formulate_route(path)
+    cost_str = str(cost) + ' km, ' + str(round(2.18 * int(cost / fuel))) + " SR"
+
+    print('\n///////////////////////////////////////////////////////////////////////////////////')
+    print("Selected iteration path: " + path_str)
+    print('Selected iteration cost: ' + cost_str)
+    print('///////////////////////////////////////////////////////////////////////////////////\n')
+
+    state_tv.delete('1.0', tk.END)
+    state_tv.insert("1.0", 'Path: ' + path_str + '\nCost: ' + cost_str)
+    state_tv.tag_add("center", "1.0", "end")
 
 
 def visualize(route):
