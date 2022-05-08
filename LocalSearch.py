@@ -1,6 +1,7 @@
 import json
 import math
 import random
+import threading
 import time
 import tkinter as tk
 from enum import Enum
@@ -39,6 +40,7 @@ def hill_climbing(cities):
     while True:
         print(formulate_route(cities))
         current_cost = calc_cost(cities)
+        visualize('Current:', cities, current_cost)
         result = find_best_swap(cities, current_cost, 0)
         if result == -1:
             break
@@ -70,13 +72,14 @@ def simulated_annealing(cities):
         iterations += 1
         print(formulate_route(cities))
         current_cost = calc_cost(cities)
+        visualize('Current:', cities, current_cost)
         result = find_best_swap(cities, current_cost, temperature)
         if result == -1:
             break
         else:
             swap(cities, result, result + 1)
             new_cost = calc_cost(cities)
-            print('swap: ' + str(current_cost - new_cost))
+            print('Swap benefit: ' + str(current_cost - new_cost))
             if str(counter) == state_et.get("1.0", "end-1c"):
                 display_state(cities, calc_cost(cities))
             if new_cost < best_sol_cost:
@@ -103,7 +106,8 @@ def find_best_swap(ls, current_cost, tmp=0):
         swapped = list(ls)
         swap(swapped, i, i + 1)
         new_cost = calc_cost(swapped)
-        print('current cost: ' + str(current_cost) + ', new cost: ' + str(new_cost))
+        print('If swapped: ' + str(i) + ' and ' + str(i+1) + ' current cost: ' + str(current_cost) + ', new cost: ' +
+              str(new_cost))
         diff = best_cost - new_cost
         if algorithm == Algorithms.HC:
             if diff > 0:
@@ -154,6 +158,7 @@ def genetic(cities):
         population.sort()
         display_gen(gen, population)
         solution, sol_cost = get_best(solution, sol_cost, population)  # Python Stuff
+        visualize('Current:', population[0].gnome, population[0].fitness)
 
         if str(gen) == state_et.get("1.0", "end-1c"):
             display_state(cities, calc_cost(cities))
@@ -274,9 +279,9 @@ def start():
     scrollbar.config(command=checklist.yview)
     checklist.configure(state="disabled")
 
-    hc_button = tk.Button(root, text="HC", command=HC)
-    sa_button = tk.Button(root, text="SA", command=SA)
-    ga_button = tk.Button(root, text="GA", command=GA)
+    hc_button = tk.Button(root, text="HC", command=bg_hc)
+    sa_button = tk.Button(root, text="SA", command=bg_sa)
+    ga_button = tk.Button(root, text="GA", command=bg_ga)
 
     map_widget.set_tile_server("https://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}&s=Ga")
     map_widget.set_position(23.8859, 45.0792)  # KSA
@@ -344,13 +349,28 @@ def clear_markers():
             selected[i].set(0)
 
 
+def bg_hc():
+    thread = threading.Thread(target=HC)
+    thread.start()
+
+
+def bg_sa():
+    thread = threading.Thread(target=SA)
+    thread.start()
+
+
+def bg_ga():
+    thread = threading.Thread(target=GA)
+    thread.start()
+
+
 def HC():
     global showed
     clear_paths()
     route = get_selected()
     result = hill_climbing(route)
     display_results(result)
-    visualize(result[1])
+    visualize('Final result:', result[1], result[2])
     showed = True
 
 
@@ -360,7 +380,7 @@ def SA():
     route = get_selected()
     result = simulated_annealing(route)
     display_results(result)
-    visualize(result[1])
+    visualize('Final result:', result[1], result[2])
     showed = True
 
 
@@ -370,7 +390,7 @@ def GA():
     route = get_selected()
     result = genetic(route)
     display_results(result)
-    visualize(result[1])
+    visualize('Final result:', result[1], result[2])
     showed = True
 
 
@@ -392,10 +412,13 @@ def display_results(result):
     print(formulate_route(result[1]))
     print("Distance: " + str(result[2]))
     print("Cost: " + str(round(2.18 * int(result[2] / fuel))) + "\n")
+    show_on_tv('Final result:', result[2])
 
+
+def show_on_tv(what, cost):
     result_tv.delete('1.0', tk.END)
-    result_tv.insert("1.0",
-                     'Distance: ' + str(result[2]) + ' km\nCost: ' + str(round(2.18 * int(result[2] / fuel))) + " SR")
+    result_tv.insert("1.0", what +
+                     '\nDistance: ' + str(cost) + ' km\nCost: ' + str(round(2.18 * int(cost / fuel))) + " SR")
     result_tv.tag_add("center", "1.0", "end")
 
 
@@ -413,10 +436,12 @@ def display_state(path, cost):
     state_tv.tag_add("center", "1.0", "end")
 
 
-def visualize(route):
+def visualize(what, route, cost):
+    clear_paths()
     positions = []
-    for i in range(0, len(route) - 1):
+    for i in range(0, len(route)):
         positions.append(markers[route[i]].position)
+    show_on_tv(what, cost)
     path = map_widget.set_path(positions)
     paths.append(path)
 
