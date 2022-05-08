@@ -287,15 +287,15 @@ def start():
     result_tv.tag_configure("center", justify='center')
 
     scrollbar.place(x=0, y=0, height=420)
-    checklist.place(x=10, y=0, height=420)
+    checklist.place(x=10, y=0, width=200, height=420)
     state_label.place(x=0, y=425, width=100, height=20)
     state_et.place(x=100, y=425, width=50, height=20)
-    hc_button.place(x=5, y=450, width=50, height=50)
-    sa_button.place(x=60, y=450, width=50, height=50)
-    ga_button.place(x=115, y=450, width=50, height=50)
-    state_tv.place(x=5, y=505, width=170, height=90)
-    result_tv.place(x=5, y=600, width=170, height=40)
-    map_widget.place(relx=0.57, rely=0.5, anchor='center', height=650)
+    hc_button.place(x=5, y=450, width=60, height=50)
+    sa_button.place(x=70, y=450, width=60, height=50)
+    ga_button.place(x=135, y=450, width=60, height=50)
+    state_tv.place(x=5, y=505, width=210, height=90)
+    result_tv.place(x=5, y=600, width=210, height=40)
+    map_widget.place(relx=0.60, rely=0.5, anchor='center', height=650)
 
     root.mainloop()
 
