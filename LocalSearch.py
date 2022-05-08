@@ -248,7 +248,7 @@ root = tk.Tk()
 map_widget = TkinterMapView(root, width=1100, corner_radius=0, max_zoom=22)
 state_label = tk.Label(root, text='Show state after:')
 state_et = tk.Text(root, foreground='black')
-state_tv = tk.Text(root, foreground='blue')
+state_tv = tk.Text(root, foreground='blue', wrap=tk.WORD)
 result_tv = tk.Text(root, foreground='blue')
 markers = []
 selected = []
