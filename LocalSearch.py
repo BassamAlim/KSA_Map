@@ -91,16 +91,12 @@ def simulated_annealing(cities):
 
             diff = current_cost - new_cost
             prob = get_prob(current_cost, new_cost, temperature)
-            if diff > 0:
-                cities = swapped
-                current_cost = new_cost
-                break
-            elif diff > -200 and prob > 0.5:
+            if diff > 0 or (diff > -200 and prob > 0.5):
+                print('Swap benefit: ' + str(current_cost - new_cost))
                 cities = swapped
                 current_cost = new_cost
                 break
 
-            print('Swap benefit: ' + str(current_cost - new_cost))
             tries += 1
 
         visualize('Current:', cities, current_cost)
@@ -118,10 +114,6 @@ def simulated_annealing(cities):
     print('Time: ' + str(time.time() - start_time))
     best_sol.append(best_sol[0])
     return sequence, best_sol, best_sol_cost
-
-
-def schedule(t):
-    return 20 - t
 
 
 def find_swap(length):
