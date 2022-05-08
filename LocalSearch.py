@@ -37,18 +37,27 @@ def hill_climbing(cities):
 
     sequence = list(cities)
     random.shuffle(cities)
-    while True:
+    while counter < 10:
         print(formulate_route(cities))
         current_cost = calc_cost(cities)
+
+        tries = 0
+        while tries < 10:
+            ss = find_swap(len(cities))
+            swapped = list(cities)
+            swap(swapped, ss[0], ss[1])
+            new_cost = calc_cost(swapped)
+            if new_cost < current_cost:
+                print('Swap benefit: ' + str(current_cost - new_cost))
+                cities = swapped
+                current_cost = new_cost
+                break
+            tries += 1
         visualize('Current:', cities, current_cost)
-        result = find_best_swap(cities, current_cost, 0)
-        if result == -1:
-            break
-        else:
-            swap(cities, result, result + 1)
-            print('swap: ' + str(current_cost - calc_cost(cities)))
-            if str(counter) == state_et.get("1.0", "end-1c"):
-                display_state(cities, calc_cost(cities))
+
+        if str(counter) == state_et.get("1.0", "end-1c"):
+            display_state(cities, current_cost)
+
         counter += 1
 
     print('Time: ' + str(time.time() - start_time))
@@ -72,19 +81,37 @@ def simulated_annealing(cities):
         iterations += 1
         print(formulate_route(cities))
         current_cost = calc_cost(cities)
-        visualize('Current:', cities, current_cost)
-        result = find_best_swap(cities, current_cost, temperature)
-        if result == -1:
-            break
-        else:
-            swap(cities, result, result + 1)
-            new_cost = calc_cost(cities)
+
+        tries = 0
+        while tries < 10:
+            ss = find_swap(len(cities))
+            swapped = list(cities)
+            swap(swapped, ss[0], ss[1])
+            new_cost = calc_cost(swapped)
+
+            diff = current_cost - new_cost
+            prob = get_prob(current_cost, new_cost, temperature)
+            if diff > 0:
+                cities = swapped
+                current_cost = new_cost
+                break
+            elif diff > -200 and prob > 0.5:
+                cities = swapped
+                current_cost = new_cost
+                break
+
             print('Swap benefit: ' + str(current_cost - new_cost))
-            if str(counter) == state_et.get("1.0", "end-1c"):
-                display_state(cities, calc_cost(cities))
-            if new_cost < best_sol_cost:
-                best_sol = list(cities)
-                best_sol_cost = new_cost
+            tries += 1
+
+        visualize('Current:', cities, current_cost)
+
+        if current_cost < best_sol_cost:
+            best_sol = cities
+            best_sol_cost = current_cost
+
+        if str(counter) == state_et.get("1.0", "end-1c"):
+            display_state(cities, current_cost)
+
         temperature = cooldown(temperature)
         counter += 1
 
@@ -97,34 +124,12 @@ def schedule(t):
     return 20 - t
 
 
-def find_best_swap(ls, current_cost, tmp=0):
-    best_swap = -1
-    s_best_swap = -1
-    best_cost = current_cost
-    s_best_cost = -1
-    for i in range(0, len(ls) - 1):  # range: upper is exclusive
-        swapped = list(ls)
-        swap(swapped, i, i + 1)
-        new_cost = calc_cost(swapped)
-        print('If swapped: ' + str(i) + ' and ' + str(i+1) + ' current cost: ' + str(current_cost) + ', new cost: ' +
-              str(new_cost))
-        diff = best_cost - new_cost
-        if algorithm == Algorithms.HC:
-            if diff > 0:
-                best_swap = i
-                best_cost = new_cost
-        elif algorithm == Algorithms.SA:
-            prob = get_prob(best_cost, new_cost, tmp)
-            if diff > 0:
-                best_swap = i
-                best_cost = new_cost
-            elif s_best_cost == -1 or (new_cost < s_best_cost and prob > 0.5):
-                s_best_swap = i
-                s_best_cost = new_cost
-    if best_swap != -1:
-        return best_swap
-    else:
-        return s_best_swap
+def find_swap(length):
+    while True:
+        r1 = randint(0, length - 1)
+        r2 = randint(0, length - 1)
+        if r1 != r2:
+            return r1, r2
 
 
 v = -1
