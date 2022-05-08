@@ -251,7 +251,7 @@ map_widget = TkinterMapView(root, width=1100, corner_radius=0, max_zoom=22)
 state_label = tk.Label(root, text='Show state after:')
 state_et = tk.Text(root, foreground='black')
 state_tv = tk.Text(root, foreground='blue', wrap=tk.WORD)
-result_tv = tk.Text(root, foreground='blue')
+result_tv = tk.Text(root, foreground='blue', wrap=tk.WORD)
 markers = []
 selected = []
 paths = []
@@ -288,15 +288,15 @@ def start():
     state_tv.tag_configure("center", justify='center')
     result_tv.tag_configure("center", justify='center')
 
-    scrollbar.place(x=0, y=0, height=420)
-    checklist.place(x=10, y=0, width=200, height=420)
-    state_label.place(x=0, y=425, width=100, height=20)
-    state_et.place(x=100, y=425, width=50, height=20)
-    hc_button.place(x=5, y=450, width=60, height=50)
-    sa_button.place(x=70, y=450, width=60, height=50)
-    ga_button.place(x=135, y=450, width=60, height=50)
-    state_tv.place(x=5, y=505, width=210, height=90)
-    result_tv.place(x=5, y=600, width=210, height=40)
+    scrollbar.place(x=0, y=0, height=400)
+    checklist.place(x=10, y=0, width=200, height=400)
+    state_label.place(x=0, y=405, width=100, height=20)
+    state_et.place(x=100, y=405, width=50, height=20)
+    hc_button.place(x=5, y=430, width=60, height=50)
+    sa_button.place(x=70, y=430, width=60, height=50)
+    ga_button.place(x=135, y=430, width=60, height=50)
+    state_tv.place(x=5, y=485, width=210, height=80)
+    result_tv.place(x=5, y=570, width=210, height=70)
     map_widget.place(relx=0.60, rely=0.5, anchor='center', height=650)
 
     root.mainloop()
@@ -414,7 +414,7 @@ def display_results(result):
 
 def show_on_tv(what, cost):
     result_tv.delete('1.0', tk.END)
-    result_tv.insert("1.0", what +
+    result_tv.insert("1.0", str(algorithm.value) + '\'s ' + what +
                      '\nDistance: ' + str(cost) + ' km\nCost: ' + str(round(2.18 * int(cost / fuel))) + " SR")
     result_tv.tag_add("center", "1.0", "end")
 
