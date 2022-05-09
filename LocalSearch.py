@@ -57,7 +57,7 @@ def hill_climbing(cities):
     current_cost = calc_cost(cities)
 
     i = 0
-    while i < len(sequence) * 2:
+    while i < len(sequence) * len(sequence):
         print(formulate_route(cities))
 
         tries = 0
@@ -98,7 +98,7 @@ def simulated_annealing(cities):
 
     temperature = 3000
     i = 0
-    while i < len(sequence) * 2:
+    while i < len(sequence) * len(sequence):
         print(formulate_route(cities))
 
         tries = 0
@@ -151,7 +151,7 @@ def genetic(cities):
     solution = list(cities)
     sol_cost = calc_cost(cities)
 
-    GENERATIONS = len(sequence) * 2
+    GENERATIONS = len(sequence) * len(sequence)
     POP_SIZE = 10
 
     # Generation Number
