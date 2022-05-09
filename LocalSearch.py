@@ -28,6 +28,24 @@ showed = False
 with open('Cities.json', encoding='utf-8') as file:
     data = json.load(file)
 
+with open('table.json', encoding='utf-8') as file:
+    table = json.load(file)
+
+
+def setup_table():
+    for i in range(153):
+        table.append(list())
+
+    counter = 0
+    for i in range(153):
+        print(str(counter))
+        for j in range(153):
+            table[i].append(processor.a_star(i, j)[1].distance)
+        counter += 1
+
+    with open("table.json", "w") as f:
+        f.write(json.dumps(table))
+
 
 def hill_climbing(cities):
     global algorithm
@@ -229,8 +247,9 @@ def swap(ls, i1, i2):
 def calc_cost(route):
     cost = 0
     for i in range(0, len(route) - 1):
-        a_star_solution = processor.a_star(route[i], route[i + 1])[1]
-        cost += a_star_solution.distance
+        cost += table[route[i]][route[i+1]]
+        # a_star_solution = processor.a_star(route[i], route[i + 1])[1]
+        # cost += a_star_solution.distance
     return cost + processor.a_star(route[len(route) - 1], route[0])[1].distance  # To return to the start city
 
 
@@ -447,4 +466,5 @@ def visualize(what, route, cost):
     paths.append(path)
 
 
+# setup_table()
 start()
