@@ -20,26 +20,27 @@ class Algorithms(Enum):
     GA = 'Genetic Algorithms'
 
 
-processor = process
-showed = False
-fuel = 15.0
 algorithm = Algorithms.Empty
+processor = process
+fuel = 15.0
+showed = False
 
 with open('Cities.json', encoding='utf-8') as file:
     data = json.load(file)
 
 
 def hill_climbing(cities):
-    start_time = time.time()
     global algorithm
     algorithm = Algorithms.HC
-    counter = 0
-
+    start_time = time.time()
     sequence = list(cities)
+
     random.shuffle(cities)
-    while counter < 10:
+    current_cost = calc_cost(cities)
+
+    i = 0
+    while i < len(sequence) * 2:
         print(formulate_route(cities))
-        current_cost = calc_cost(cities)
 
         tries = 0
         while tries < 10:
@@ -53,34 +54,34 @@ def hill_climbing(cities):
                 current_cost = new_cost
                 break
             tries += 1
+
         visualize('Current:', cities, current_cost)
 
-        if str(counter) == state_et.get("1.0", "end-1c"):
+        if str(i) == state_et.get("1.0", "end-1c"):
             display_state(cities, current_cost)
 
-        counter += 1
+        i += 1
 
-    print('Time: ' + str(time.time() - start_time))
+    print('HC Time: ' + str(time.time() - start_time))
     cities.append(cities[0])  # To return to start city
-    return sequence, cities, calc_cost(cities)
+    return sequence, cities, current_cost
 
 
 def simulated_annealing(cities):
-    start_time = time.time()
     global algorithm
     algorithm = Algorithms.SA
-    counter = 0
-
+    start_time = time.time()
     sequence = list(cities)
-    iterations = 0
+
     random.shuffle(cities)
+    current_cost = calc_cost(cities)
     best_sol = list(cities)
-    best_sol_cost = calc_cost(cities)
+    best_sol_cost = current_cost
+
     temperature = 3000
-    while temperature > 500:
-        iterations += 1
+    i = 0
+    while i < len(sequence) * 2:
         print(formulate_route(cities))
-        current_cost = calc_cost(cities)
 
         tries = 0
         while tries < 10:
@@ -105,13 +106,13 @@ def simulated_annealing(cities):
             best_sol = cities
             best_sol_cost = current_cost
 
-        if str(counter) == state_et.get("1.0", "end-1c"):
+        if str(i) == state_et.get("1.0", "end-1c"):
             display_state(cities, current_cost)
 
         temperature = cooldown(temperature)
-        counter += 1
+        i += 1
 
-    print('Time: ' + str(time.time() - start_time))
+    print('SA Time: ' + str(time.time() - start_time))
     best_sol.append(best_sol[0])
     return sequence, best_sol, best_sol_cost
 
@@ -124,24 +125,20 @@ def find_swap(length):
             return r1, r2
 
 
-v = -1
-POP_SIZE = 10
-problem = []
-
-
 def genetic(cities):
-    global algorithm, v, problem
+    global algorithm
     algorithm = Algorithms.GA
+    start_time = time.time()
     sequence = list(cities)
-    v = len(cities)
-    problem = list(cities)
     solution = list(cities)
     sol_cost = calc_cost(cities)
 
+    GENERATIONS = len(sequence) * 2
+    POP_SIZE = 10
+
     # Generation Number
     gen = 1
-    # Number of Gene Iterations
-    gen_thres = 8
+
     population = []
     # Populating the GNOME pool.
     for i in range(POP_SIZE):
@@ -151,21 +148,16 @@ def genetic(cities):
 
     temperature = 3000
     # Iteration to perform population crossing and gene mutation.
-    while temperature > 500 and gen <= gen_thres:
+    while temperature > 500 and gen <= GENERATIONS:
         population.sort()
         display_gen(gen, population)
         solution, sol_cost = get_best(solution, sol_cost, population)  # Python Stuff
         visualize('Current:', population[0].gnome, population[0].fitness)
 
-        if str(gen) == state_et.get("1.0", "end-1c"):
-            display_state(cities, calc_cost(cities))
-
         new_population = []
         for i in range(POP_SIZE):
-            parent = population[i]
-
             while True:
-                new_g = mutate(parent.gnome)
+                new_g = mutate(population[i].gnome)
                 new_gnome = Chromosome(new_g, calc_cost(new_g))
 
                 if new_gnome.fitness <= population[i].fitness:
@@ -177,13 +169,16 @@ def genetic(cities):
                         new_population.append(new_gnome)
                         break
 
+        if str(gen) == state_et.get("1.0", "end-1c"):
+            display_state(cities, calc_cost(cities))
+
         temperature = cooldown(temperature)
         population = new_population
         gen += 1
 
     solution, sol_cost = get_best(solution, sol_cost, population)
     display_gen(gen, population)
-
+    print('GA Time: ' + str(time.time() - start_time))
     solution.append(solution[0])
     return sequence, solution, sol_cost
 
@@ -193,8 +188,8 @@ def genetic(cities):
 def mutate(gnome):
     gnome = list(gnome)
     while True:
-        r1 = randint(1, v - 1)
-        r2 = randint(1, v - 1)
+        r1 = randint(1, len(gnome) - 1)
+        r2 = randint(1, len(gnome) - 1)
         if r1 != r2:
             swap(gnome, r1, r2)
             break
@@ -219,7 +214,7 @@ def get_best(old, old_cost, pop):
 def display_gen(gen, population):
     print("Generation", gen)
     print("GNOME \t\t\t\t\t FITNESS VALUE")
-    for i in range(POP_SIZE):
+    for i in range(len(population)):
         print(population[i].gnome, population[i].fitness)
 
 
@@ -246,12 +241,22 @@ def formulate_route(route):
     return string[:-3]
 
 
+# ////////////////////////////////////////////   GUI   //////////////////////////////////////////////////////
+
+bg = '#7E899C'
+primary = '#C6CFDC'
+surface = '#E1E7EF'
+accent = '#14213d'
+
 root = tk.Tk()
+root.configure(background=bg)
+scrollbar = tk.Scrollbar(root, background=bg)
+checklist = tk.Text(root, width=20, background=primary)
+state_label = tk.Label(root, text='Show state after:', background=bg)
+state_et = tk.Text(root, background=surface, foreground='black')
+state_tv = tk.Text(root, foreground='blue', wrap=tk.WORD, background=surface)
+result_tv = tk.Text(root, foreground='blue', wrap=tk.WORD, background=surface)
 map_widget = TkinterMapView(root, width=1100, corner_radius=0, max_zoom=22)
-state_label = tk.Label(root, text='Show state after:')
-state_et = tk.Text(root, foreground='black')
-state_tv = tk.Text(root, foreground='blue', wrap=tk.WORD)
-result_tv = tk.Text(root, foreground='blue', wrap=tk.WORD)
 markers = []
 selected = []
 paths = []
@@ -262,23 +267,22 @@ def start():
     root.title("KSA MapView")
     root.state('zoomed')
 
-    scrollbar = tk.Scrollbar(root)
-    checklist = tk.Text(root, width=20)
     for i in range(0, len(data)):
         markers.append(None)
         city = data[i]
         var = tk.IntVar()
         selected.append(var)
-        checkbutton = tk.Checkbutton(checklist, text=city['name'], variable=var, command=pin)
+        checkbutton = tk.Checkbutton(checklist, text=city['name'], variable=var, command=pin,
+                                     font=("Times New Roman", 13), background=primary, foreground='black')
         checklist.window_create("end", window=checkbutton)
         checklist.insert("end", "\n")
     checklist.config(yscrollcommand=scrollbar.set)
     scrollbar.config(command=checklist.yview)
     checklist.configure(state="disabled")
 
-    hc_button = tk.Button(root, text="HC", command=bg_hc)
-    sa_button = tk.Button(root, text="SA", command=bg_sa)
-    ga_button = tk.Button(root, text="GA", command=bg_ga)
+    hc_button = tk.Button(root, text="HC", command=bg_hc, background=accent, foreground='white')
+    sa_button = tk.Button(root, text="SA", command=bg_sa, background=accent, foreground='white')
+    ga_button = tk.Button(root, text="GA", command=bg_ga, background=accent, foreground='white')
 
     map_widget.set_tile_server("https://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}&s=Ga")
     map_widget.set_position(23.8859, 45.0792)  # KSA
