@@ -250,7 +250,8 @@ def calc_cost(route):
         cost += table[route[i]][route[i+1]]
         # a_star_solution = processor.a_star(route[i], route[i + 1])[1]
         # cost += a_star_solution.distance
-    return cost + processor.a_star(route[len(route) - 1], route[0])[1].distance  # To return to the start city
+    cost += table[route[len(route) - 1]][route[0]]    # To return to the start city
+    return cost
 
 
 def formulate_route(route):
@@ -443,6 +444,7 @@ def show_on_tv(what, cost):
 
 
 def display_state(path, cost):
+    path.append(path[0])
     path_str = formulate_route(path)
     cost_str = str(cost) + ' km, ' + str(round(2.18 * int(cost / fuel))) + " SR"
 
@@ -464,6 +466,7 @@ def visualize(what, route, cost):
     show_on_tv(what, cost)
     path = map_widget.set_path(positions)
     paths.append(path)
+    time.sleep(0.2)
 
 
 # setup_table()
