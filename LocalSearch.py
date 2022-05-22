@@ -288,10 +288,10 @@ def start():
     root.state('zoomed')
 
     for i in range(0, len(data)):
-        markers.append(None)
         city = data[i]
         var = tk.IntVar()
         selected.append(var)
+        markers.append(None)
         checkbutton = tk.Checkbutton(checklist, text=city['name'], variable=var, command=pin,
                                      font=("Times New Roman", 13), background=primary, foreground='black')
         checklist.window_create("end", window=checkbutton)
@@ -344,6 +344,7 @@ def pin():
     for i in range(0, len(data)):
         if selected[i].get():
             if markers[i] is None:
+                print("DD")
                 mark(i)
         else:
             if markers[i] is not None:
@@ -466,8 +467,7 @@ def visualize(what, route, cost):
     show_on_tv(what, cost)
     path = map_widget.set_path(positions)
     paths.append(path)
-    time.sleep(0.2)
+    time.sleep(0.2)    # Delay
 
 
-# setup_table()
 start()
