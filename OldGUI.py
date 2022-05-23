@@ -3,7 +3,7 @@ import time
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-import process
+import processor
 
 with open('Cities.json', encoding='utf-8') as file:
     cities = json.load(file)
