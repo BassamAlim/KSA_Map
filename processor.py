@@ -151,7 +151,7 @@ def hill_climbing(cities, visualize):
         while tries < 10:
             ss = find_swap(len(cities))
             swapped = list(cities)
-            swap(swapped, ss[0], ss[1])
+            swapped[ss[0]], swapped[ss[1]] = swapped[ss[1]], swapped[ss[0]]  # swap
             new_cost = calc_cost(swapped)
             if new_cost < current_cost:
                 print('Swap benefit: ' + str(current_cost - new_cost))
@@ -185,7 +185,7 @@ def simulated_annealing(cities, visualize):
         while tries < 10:
             ss = find_swap(len(cities))
             swapped = list(cities)
-            swap(swapped, ss[0], ss[1])
+            swapped[ss[0]], swapped[ss[1]] = swapped[ss[1]], swapped[ss[0]]  # swap
             new_cost = calc_cost(swapped)
 
             diff = current_cost - new_cost
@@ -336,9 +336,7 @@ def successor_function(parent, visited):
 
 
 def calc_heuristic(x1, y1):
-    coords1 = (x1, y1)
-    coords2 = (x2, y2)
-    return geopy.distance.distance(coords1, coords2).km
+    return geopy.distance.distance((x1, y1), (x2, y2)).km
 
 
 def remove_first(fringe):
@@ -380,20 +378,17 @@ def goal_test(destination, cid):
     return False
 
 
-# Function to return a mutated GNOME.
-# Mutated GNOME is a string with a random interchange of two genes to create variation in species
 def mutate(gnome):
     gnome = list(gnome)
     while True:
         r1 = random.randint(1, len(gnome) - 1)
         r2 = random.randint(1, len(gnome) - 1)
         if r1 != r2:
-            swap(gnome, r1, r2)
+            gnome[r1], gnome[r2] = gnome[r2], gnome[r1]  # swap
             break
     return gnome
 
 
-# Function to return the updated value of the cooling element.
 def cooldown(temp):
     return 90 * temp / 100
 
@@ -419,15 +414,9 @@ def get_prob(old, new, tmp):
     return math.exp((old - new) / tmp)
 
 
-def swap(ls, i1, i2):
-    ls[i1], ls[i2] = ls[i2], ls[i1]  # swap
-
-
 def calc_cost(route):
     cost = 0
     for i in range(0, len(route) - 1):
         cost += table[route[i]][route[i + 1]]
-        # a_star_solution = processor.a_star(route[i], route[i + 1])[1]
-        # cost += a_star_solution.distance
     cost += table[route[len(route) - 1]][route[0]]  # To return to the start city
     return cost

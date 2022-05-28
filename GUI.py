@@ -1,7 +1,8 @@
 import json
 import threading
+import time
 import tkinter as tk
-from tkinter import CENTER, TOP, BOTTOM, LEFT, RIGHT, X, Y, BOTH, VERTICAL, DISABLED, NORMAL
+from tkinter import CENTER, BOTH, VERTICAL, DISABLED, NORMAL, NW, LEFT, RIGHT, TOP, X, Y
 
 from tkintermapview import TkinterMapView
 
@@ -21,16 +22,24 @@ with open('table.json', encoding='utf-8') as file:
 
 
 def on_search(name, index, op):
-    text = entry.get()
     for widgets in frame.winfo_children():
         widgets.destroy()
 
+    text = entry.get()
+    pop = []
     for i in range(0, len(data)):
         city = data[i]
-        if city['name'].__contains__(text):
-            checkbutton = tk.Checkbutton(frame, text=city['name'], variable=selected[city['cid']], command=pin,
-                                         font=("Times New Roman", 13), background=primary, foreground='black')
-            checkbutton.grid(row=i, column=1)
+        if len(text) < 1 or city['name'].__contains__(text):
+            pop.append(city)
+
+    populate(pop)
+
+
+def clear_selection():
+    for s in selected:
+        s.set(0)
+    clear_markers()
+    populate(data)
 
 
 def run():
@@ -49,24 +58,35 @@ chosen_algo.set(Algorithms.Empty.value)
 entry = tk.StringVar()
 entry.trace('w', callback=on_search)
 
-canvas = tk.Canvas(root, borderwidth=0)
-frame = tk.Frame(canvas)
-scrollbar = tk.Scrollbar(root, background=bg, orient=VERTICAL, command=canvas.yview)
+canvas = tk.Canvas(root, background=primary)
+frame = tk.Frame(canvas, background=primary)
+scrollbar = tk.Scrollbar(canvas, orient=VERTICAL, command=canvas.yview)
 edit = tk.Entry(root, textvariable=entry)
-result_tv = tk.Text(root, foreground='blue', wrap=tk.WORD, background=surface)
-map_widget = TkinterMapView(root, width=1100, corner_radius=0, max_zoom=22)
-algor_list = tk.OptionMenu(root, chosen_algo, *[option.value for option in Algorithms])
-run_btn = tk.Button(root, text="Run", command=run, background=accent, foreground='white', font=("Times New Roman", 20))
+result_tv = tk.Text(root, height=5, background=surface, foreground='blue', wrap=tk.WORD)
+map_widget = TkinterMapView(root, width=1050, corner_radius=0, max_zoom=22)
+algo_list = tk.OptionMenu(root, chosen_algo, *[option.value for option in Algorithms])
+run_btn = tk.Button(root, height=1, text="Run", command=run, background=accent, foreground='white',
+                    font=("Times New Roman", 20))
+clear_btn = tk.Button(root, text="clear", command=clear_selection, font=(None, 12))
 
 markers = []
 added_markers = []
 selected = []
 paths = []
-cbs = []
 
+cf = str()
+
+
+def init_arrays():
+    for _ in data:
+        var = tk.IntVar()
+        selected.append(var)
+        markers.append(None)
 
 
 def start():
+    init_arrays()
+
     root.geometry('1250x800')
     root.title("KSA MapView")
     root.state('zoomed')
@@ -75,63 +95,67 @@ def start():
     map_widget.set_position(23.8859, 45.0792)  # KSA
     map_widget.set_zoom(6)
 
+    config()
     put()
 
-    config()
+    global cf
+    cf = canvas.create_window((0, 0), window=frame, anchor=NW)
+    canvas.bind('<Configure>', on_frame_configure)
 
-    canvas.create_window((4, 4), window=frame, anchor="nw")
-    frame.bind("<Configure>", lambda event, gCanvas=canvas: onFrameConfigure(gCanvas))
-    populate(frame)
+    populate(data)
 
     edit.focus_set()
 
     root.mainloop()
 
 
-def onFrameConfigure(canvas_to):
-    canvas_to.configure(scrollregion=canvas_to.bbox("all"))
+def on_frame_configure(event):
+    canvas.configure(scrollregion=canvas.bbox("all"))
+    canvas_width = event.width
+    canvas.itemconfig(cf, width=canvas_width)
 
 
-def populate(frame_to):
-    for i in range(0, len(data)):
-        city = data[i]
-        var = tk.IntVar()
-        selected.append(var)
-        markers.append(None)
-        checkbutton = tk.Checkbutton(frame_to, text=city['name'], variable=var, command=pin,
-                                     font=("Times New Roman", 13), background=primary, foreground='black')
-        checkbutton.grid(row=i, column=1)
-        cbs.append(checkbutton)
+def populate(population):
+    for p in population:
+        checkbutton = tk.Checkbutton(frame, text=p['name'], variable=selected[p['cid']], command=pin,
+                                     font=("Times New Roman", 13), background=primary)
+        checkbutton.pack(fill=BOTH)
 
 
 def config():
     root.configure(background=bg)
     canvas.configure(yscrollcommand=scrollbar.set)
+    algo_list.config(font=('Times new roman', 12))
     result_tv.tag_configure(CENTER, justify=CENTER)
 
 
 def put():
     map_widget.pack(side=RIGHT, fill=Y)
-    scrollbar.pack(side=LEFT, anchor='nw', fill=Y)
-    edit.pack(side=TOP, fill=X)
-    canvas.pack(fill=BOTH, expand=True)
-    frame.pack(fill=BOTH, expand=True)
-    run_btn.pack(side=BOTTOM, fill=X)
-    algor_list.pack(side=BOTTOM, fill=X)
-    result_tv.pack(side=TOP, fill=X)
+    edit.pack(side=TOP, fill=X, padx=8, pady=(8, 2), ipady=2)
+    canvas.pack(side=TOP, fill=BOTH, expand=True, padx=8)
+    scrollbar.pack(side=LEFT, fill=Y)
+    frame.pack(side=RIGHT, fill=BOTH)
+    clear_btn.pack(side=TOP, fill=X, padx=8, pady=(2, 5))
+    algo_list.pack(side=TOP, fill=X, padx=8, pady=5)
+    run_btn.pack(side=TOP, fill=X, padx=8, pady=5)
+    result_tv.pack(side=TOP, fill=X, padx=8, pady=8)
 
 
 def runner():
+    if chosen_algo.get() == Algorithms.Empty.value:
+        print('Please choose an algorithm')
+        return
+
     global showed, algorithm
     algorithm = Algorithms(chosen_algo.get())
-    run_btn['state'] = DISABLED
+    set_controls_mode(DISABLED)
     fun = function_finder.get(chosen_algo.get())
     clear_paths()
     route = get_selected()
     result = fun(route, visualize)
     display_results(result)
     visualize('Final result:', result.route, result.distance)
-    run_btn['state'] = NORMAL
+    set_controls_mode(NORMAL)
     showed = True
 
 
@@ -155,14 +179,13 @@ def visualize(what, route, cost):
     show_on_tv(what, cost)
     path = map_widget.set_path(positions)
     paths.append(path)
-    # time.sleep(0.05)  # Delay
+    time.sleep(0.05)  # Delay
 
 
 def pin():
     global showed
     if showed:
         clear_paths()
-        clear_markers()
         showed = False
 
     for i in range(0, len(data)):
@@ -207,6 +230,11 @@ def get_selected():
     return s
 
 
+def set_controls_mode(mode):
+    run_btn['state'] = mode
+    algo_list['state'] = mode
+
+
 def display_results(result):
     print("Path: " + formulate_route(result.route))
     print("Distance: " + str(result.distance))
@@ -228,12 +256,7 @@ def formulate_route(route):
     return string[:-3]
 
 
-def no_choice():
-    print('Please choose an algorithm')
-
-
 function_finder = {
-    'Pick an Algorithm': no_choice,
     'Breadth First Search': processor.bfs,
     'Uniform Cost Search': processor.ucs,
     'Iterative Deepening Search': processor.ids,
