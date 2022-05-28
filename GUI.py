@@ -1,7 +1,7 @@
 import json
 import threading
-import time
 import tkinter as tk
+from tkinter import CENTER, TOP, BOTTOM, LEFT, RIGHT, X, Y, BOTH, VERTICAL, DISABLED, NORMAL
 
 from tkintermapview import TkinterMapView
 
@@ -20,18 +20,22 @@ with open('table.json', encoding='utf-8') as file:
     table = json.load(file)
 
 
-def formulate_route(route):
-    string = str()
-    for element in route:
-        string += data[element]['name'] + ' ← '
-    return string[:-3]
+def on_search(name, index, op):
+    text = entry.get()
+    for widgets in frame.winfo_children():
+        widgets.destroy()
+
+    for i in range(0, len(data)):
+        city = data[i]
+        if city['name'].__contains__(text):
+            checkbutton = tk.Checkbutton(frame, text=city['name'], variable=selected[city['cid']], command=pin,
+                                         font=("Times New Roman", 13), background=primary, foreground='black')
+            checkbutton.grid(row=i, column=1)
 
 
-def on_search(text):
-    pass
+def run():
+    threading.Thread(target=runner).start()
 
-
-# ////////////////////////////////////////////   GUI   //////////////////////////////////////////////////////
 
 bg = '#7E899C'
 primary = '#C6CFDC'
@@ -39,26 +43,27 @@ surface = '#E1E7EF'
 accent = '#14213d'
 
 root = tk.Tk()
-root.configure(background=bg)
+
 chosen_algo = tk.StringVar()
+chosen_algo.set(Algorithms.Empty.value)
 entry = tk.StringVar()
-entry.trace('w', callback=on_search(entry.get()))
+entry.trace('w', callback=on_search)
 
-scrollbar = tk.Scrollbar(root, background=bg)
-frame = tk.Frame(root)
-
+canvas = tk.Canvas(root, borderwidth=0)
+frame = tk.Frame(canvas)
+scrollbar = tk.Scrollbar(root, background=bg, orient=VERTICAL, command=canvas.yview)
 edit = tk.Entry(root, textvariable=entry)
-checklist = tk.Text(root, width=20, background=primary)
 result_tv = tk.Text(root, foreground='blue', wrap=tk.WORD, background=surface)
 map_widget = TkinterMapView(root, width=1100, corner_radius=0, max_zoom=22)
 algor_list = tk.OptionMenu(root, chosen_algo, *[option.value for option in Algorithms])
+run_btn = tk.Button(root, text="Run", command=run, background=accent, foreground='white', font=("Times New Roman", 20))
+
 markers = []
 added_markers = []
 selected = []
 paths = []
+cbs = []
 
-
-chosen_algo.set(Algorithms.Empty.value)
 
 
 def start():
@@ -66,61 +71,75 @@ def start():
     root.title("KSA MapView")
     root.state('zoomed')
 
-    for i in range(0, len(data)):
-        city = data[i]
-        var = tk.IntVar()
-        selected.append(var)
-        markers.append(None)
-        checkbutton = tk.Checkbutton(checklist, text=city['name'], variable=var, command=pin,
-                                     font=("Times New Roman", 13), background=primary, foreground='black')
-        checklist.window_create("end", window=checkbutton)
-        checklist.insert("end", "\n")
-        checklist.get()
-    scrollbar.config(command=checklist.yview)
-    checklist.config(yscrollcommand=scrollbar.set)
-    checklist.configure(state="disabled")
-
-    run_btn = tk.Button(root, text="Run", command=run, background=accent, foreground='white',
-                        font=("Times New Roman", 20))
-
     map_widget.set_tile_server("https://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}&s=Ga")
     map_widget.set_position(23.8859, 45.0792)  # KSA
     map_widget.set_zoom(6)
 
-    result_tv.tag_configure("center", justify='center')
+    put()
 
-    scrollbar.place(x=0, y=35, height=400)
-    edit.place(x=15, y=5, width=180, height=25)
-    checklist.place(x=10, y=35, width=200, height=400)
-    algor_list.place(x=5, y=450, width=200, height=30)
-    run_btn.place(x=5, y=500, width=200, height=50)
-    result_tv.place(x=5, y=570, width=210, height=70)
-    map_widget.place(relx=0.60, rely=0.5, anchor='center', height=650)
+    config()
+
+    canvas.create_window((4, 4), window=frame, anchor="nw")
+    frame.bind("<Configure>", lambda event, gCanvas=canvas: onFrameConfigure(gCanvas))
+    populate(frame)
 
     edit.focus_set()
 
     root.mainloop()
 
 
-def run():
-    threading.Thread(target=runner).start()
+def onFrameConfigure(canvas_to):
+    canvas_to.configure(scrollregion=canvas_to.bbox("all"))
+
+
+def populate(frame_to):
+    for i in range(0, len(data)):
+        city = data[i]
+        var = tk.IntVar()
+        selected.append(var)
+        markers.append(None)
+        checkbutton = tk.Checkbutton(frame_to, text=city['name'], variable=var, command=pin,
+                                     font=("Times New Roman", 13), background=primary, foreground='black')
+        checkbutton.grid(row=i, column=1)
+        cbs.append(checkbutton)
+
+
+def config():
+    root.configure(background=bg)
+    canvas.configure(yscrollcommand=scrollbar.set)
+    result_tv.tag_configure(CENTER, justify=CENTER)
+
+
+def put():
+    map_widget.pack(side=RIGHT, fill=Y)
+    scrollbar.pack(side=LEFT, anchor='nw', fill=Y)
+    edit.pack(side=TOP, fill=X)
+    canvas.pack(fill=BOTH, expand=True)
+    frame.pack(fill=BOTH, expand=True)
+    run_btn.pack(side=BOTTOM, fill=X)
+    algor_list.pack(side=BOTTOM, fill=X)
+    result_tv.pack(side=TOP, fill=X)
 
 
 def runner():
     global showed, algorithm
     algorithm = Algorithms(chosen_algo.get())
+    run_btn['state'] = DISABLED
     fun = function_finder.get(chosen_algo.get())
     clear_paths()
     route = get_selected()
     result = fun(route, visualize)
     display_results(result)
     visualize('Final result:', result.route, result.distance)
+    run_btn['state'] = NORMAL
     showed = True
 
 
 def visualize(what, route, cost):
     if len(route) < 2:
         return
+
+    print(formulate_route(route))
 
     clear_paths()
     positions = []
@@ -136,7 +155,7 @@ def visualize(what, route, cost):
     show_on_tv(what, cost)
     path = map_widget.set_path(positions)
     paths.append(path)
-    time.sleep(0.05)  # Delay
+    # time.sleep(0.05)  # Delay
 
 
 def pin():
@@ -189,10 +208,7 @@ def get_selected():
 
 
 def display_results(result):
-    print('\nSequence: ')
-    print('Result: ')
-    print("Path: ")
-    print(formulate_route(result.route))
+    print("Path: " + formulate_route(result.route))
     print("Distance: " + str(result.distance))
     print("Cost: " + str(round(2.18 * int(result.distance / fuel))) + "\n")
     show_on_tv('Final result:', result.distance)
@@ -203,6 +219,13 @@ def show_on_tv(what, cost):
     result_tv.insert("1.0", str(algorithm.value) + '\'s ' + what +
                      '\nDistance: ' + str(cost) + ' km\nCost: ' + str(round(2.18 * int(cost / fuel))) + " SR")
     result_tv.tag_add("center", "1.0", "end")
+
+
+def formulate_route(route):
+    string = str()
+    for element in route:
+        string += data[element]['name'] + ' ← '
+    return string[:-3]
 
 
 def no_choice():

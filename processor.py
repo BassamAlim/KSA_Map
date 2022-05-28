@@ -147,8 +147,6 @@ def hill_climbing(cities, visualize):
 
     i = 0
     while i < len(cities) * len(cities):
-        print(formulate_route(cities))
-
         tries = 0
         while tries < 10:
             ss = find_swap(len(cities))
@@ -183,8 +181,6 @@ def simulated_annealing(cities, visualize):
     temperature = 3000
     i = 0
     while i < len(cities) * len(cities):
-        print(formulate_route(cities))
-
         tries = 0
         while tries < 10:
             ss = find_swap(len(cities))
@@ -435,10 +431,3 @@ def calc_cost(route):
         # cost += a_star_solution.distance
     cost += table[route[len(route) - 1]][route[0]]  # To return to the start city
     return cost
-
-
-def formulate_route(route):
-    string = str()
-    for element in route:
-        string += data[element]['name'] + ' ← '
-    return string[:-3]
