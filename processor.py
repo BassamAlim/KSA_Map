@@ -56,10 +56,9 @@ def ucs(cities, visualize):
     visited = []
     output = Output()
     fringe.put((0, 0, Node(cities[0], 0)))
-    visited.append(cities[0])
+    visited.append((cities[0], 0))
     while not fringe.empty():
         node = remove_first(fringe)
-        visited.append(node.cid)
         current = list(node.predecessors)
         current.append(node.cid)
         visualize('Current:', current, node.path_cost)
@@ -148,7 +147,7 @@ def hill_climbing(cities, visualize):
     i = 0
     while i < len(cities) * len(cities):
         tries = 0
-        while tries < 10:
+        while tries < len(cities):
             ss = find_swap(len(cities))
             swapped = list(cities)
             swapped[ss[0]], swapped[ss[1]] = swapped[ss[1]], swapped[ss[0]]  # swap
@@ -159,6 +158,7 @@ def hill_climbing(cities, visualize):
                 current_cost = new_cost
                 break
             tries += 1
+            print("TRIES: " + str(tries))
 
         visualize('Current:', cities, current_cost)
         i += 1
@@ -178,9 +178,9 @@ def simulated_annealing(cities, visualize):
     best_sol = list(cities)
     best_sol_cost = current_cost
 
-    temperature = 3000
+    temperature = pow(len(cities), 2)
     i = 0
-    while i < len(cities) * len(cities):
+    while i < pow(len(cities), 2):
         tries = 0
         while tries < 10:
             ss = find_swap(len(cities))
@@ -190,6 +190,7 @@ def simulated_annealing(cities, visualize):
 
             diff = current_cost - new_cost
             prob = get_prob(current_cost, new_cost, temperature)
+            print("TEMP: " + str(temperature) + ", PROB: " + str(prob))
             if diff > 0 or (diff > -200 and prob > 0.5):
                 print('Swap benefit: ' + str(current_cost - new_cost))
                 cities = swapped
@@ -219,7 +220,7 @@ def genetic(cities, visualize):
     solution = list(cities)
     sol_cost = calc_cost(cities)
 
-    GENERATIONS = len(cities) * len(cities)
+    GENERATIONS = pow(len(cities), 2)
     POP_SIZE = 10
     # Generation Number
     gen = 1
@@ -231,9 +232,10 @@ def genetic(cities, visualize):
         random.shuffle(cities)
         population.append(Chromosome(gnome, calc_cost(gnome)))
 
-    temperature = 3000
+    temperature = pow(len(cities), 2)
     # Iteration to perform population crossing and gene mutation.
-    while temperature > 500 and gen <= GENERATIONS:
+    while temperature > 30 and gen <= GENERATIONS:
+        print("TMP: " + str(temperature))
         population.sort()
         display_gen(gen, population)
         solution, sol_cost = get_best(solution, sol_cost, population)  # Python Stuff
@@ -241,6 +243,7 @@ def genetic(cities, visualize):
 
         new_population = []
         for i in range(POP_SIZE):
+            tries = 0
             while True:
                 new_g = mutate(population[i].gnome)
                 new_gnome = Chromosome(new_g, calc_cost(new_g))
@@ -250,9 +253,11 @@ def genetic(cities, visualize):
                     break
                 else:  # Accepting the rejected children at a possible probability above threshold.
                     prob = get_prob(population[i].fitness, new_gnome.fitness, temperature)
-                    if prob > 0.5:
+                    if prob > 0.5 or tries == pow(len(cities), 2):
+                        print('prob: ' + str(prob))
                         new_population.append(new_gnome)
                         break
+                    tries += 1
 
         temperature = cooldown(temperature)
         population = new_population
@@ -302,6 +307,7 @@ def expand(node, fringe, visited, output):
 
         elif algorithm == Algorithms.UCS:
             fringe.put((path_cost, next(tie_breaker), Node(neighbor[0], path_cost, current, node.depth + 1)))
+            visited.append((neighbor[0], path_cost))
 
         elif algorithm == Algorithms.IDS:
             fringe.append(Node(neighbor[0], path_cost, current, node.depth + 1))
@@ -327,7 +333,7 @@ def successor_function(parent, visited):
     neighbors = []
     for neighbor in data[parent.cid]['neighbors']:
         cost = parent.path_cost + neighbor['distance']
-        if algorithm == Algorithms.A_Star:
+        if algorithm == Algorithms.A_Star or algorithm == Algorithms.UCS:
             if not in_history(neighbor['cid'], visited, cost):
                 neighbors.append((neighbor['cid'], neighbor['distance']))
         elif not in_history(neighbor['cid'], visited, cost):
@@ -351,7 +357,7 @@ def remove_first(fringe):
 def in_history(cid, visited, cost):
     counter = 0
     for city in visited:
-        if algorithm == Algorithms.A_Star:
+        if algorithm == Algorithms.A_Star or algorithm == Algorithms.UCS:
             if city[0] == cid:
                 if cost > city[1]:
                     return True
@@ -390,7 +396,7 @@ def mutate(gnome):
 
 
 def cooldown(temp):
-    return 90 * temp / 100
+    return temp * 0.99
 
 
 def get_best(old, old_cost, pop):
@@ -411,7 +417,7 @@ def display_gen(gen, population):
 
 
 def get_prob(old, new, tmp):
-    return math.exp((old - new) / tmp)
+    return math.exp(-abs(new - old) / tmp)
 
 
 def calc_cost(route):

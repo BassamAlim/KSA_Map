@@ -1,8 +1,9 @@
 import json
+import random
 import threading
 import time
 import tkinter as tk
-from tkinter import CENTER, BOTH, VERTICAL, DISABLED, NORMAL, NW, LEFT, RIGHT, TOP, X, Y
+from tkinter import CENTER, BOTH, VERTICAL, DISABLED, NORMAL, NW, LEFT, RIGHT, TOP, BOTTOM, X, Y
 
 from tkintermapview import TkinterMapView
 
@@ -39,6 +40,16 @@ def clear_selection():
     for s in selected:
         s.set(0)
     clear_markers()
+    clear_paths()
+    populate(data)
+
+
+def random_selection():
+    rand = list(range(len(selected)))
+    random.shuffle(rand)
+    for i in range(15):
+        selected[rand[i]].set(1)
+        mark(rand[i])
     populate(data)
 
 
@@ -68,6 +79,7 @@ algo_list = tk.OptionMenu(root, chosen_algo, *[option.value for option in Algori
 run_btn = tk.Button(root, height=1, text="Run", command=run, background=accent, foreground='white',
                     font=("Times New Roman", 20))
 clear_btn = tk.Button(root, text="clear", command=clear_selection, font=(None, 12))
+random_btn = tk.Button(root, text="Random", command=random_selection, font=(None, 12))
 
 markers = []
 added_markers = []
@@ -135,10 +147,11 @@ def put():
     canvas.pack(side=TOP, fill=BOTH, expand=True, padx=8)
     scrollbar.pack(side=LEFT, fill=Y)
     frame.pack(side=RIGHT, fill=BOTH)
-    clear_btn.pack(side=TOP, fill=X, padx=8, pady=(2, 5))
-    algo_list.pack(side=TOP, fill=X, padx=8, pady=5)
-    run_btn.pack(side=TOP, fill=X, padx=8, pady=5)
-    result_tv.pack(side=TOP, fill=X, padx=8, pady=8)
+    result_tv.pack(side=BOTTOM, fill=X, padx=8, pady=8)
+    run_btn.pack(side=BOTTOM, fill=X, padx=8, pady=5)
+    algo_list.pack(side=BOTTOM, fill=X, padx=8, pady=5)
+    clear_btn.pack(side=RIGHT, fill=X, expand=True, padx=(2, 8), pady=(2, 5))
+    random_btn.pack(side=LEFT, fill=X, expand=True, padx=(8, 2), pady=(2, 5))
 
 
 def runner():
@@ -162,8 +175,6 @@ def runner():
 def visualize(what, route, cost):
     if len(route) < 2:
         return
-
-    print(formulate_route(route))
 
     clear_paths()
     positions = []
@@ -233,6 +244,8 @@ def get_selected():
 def set_controls_mode(mode):
     run_btn['state'] = mode
     algo_list['state'] = mode
+    clear_btn['state'] = mode
+    random_btn['state'] = mode
 
 
 def display_results(result):
