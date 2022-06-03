@@ -47,9 +47,14 @@ def clear_selection():
 def random_selection():
     rand = list(range(len(selected)))
     random.shuffle(rand)
-    for i in range(15):
-        selected[rand[i]].set(1)
-        mark(rand[i])
+    count = 0
+    i = 0
+    while count < 15:
+        if selected[rand[i]].get() == 0:
+            selected[rand[i]].set(1)
+            mark(rand[i])
+            count += 1
+        i += 1
     populate(data)
 
 

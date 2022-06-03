@@ -154,8 +154,11 @@ def hill_climbing(cities, visualize):
     random.shuffle(cities)
     current_cost = calc_cost(cities)
 
+    PERSISTENCE = pow(len(cities), 2)
+    no_change = 0
     i = 0
-    while i < len(cities) * len(cities):
+    while i < PERSISTENCE:
+        old_cost = current_cost
         tries = 0
         while tries < len(cities):
             ss = find_swap(len(cities))
@@ -163,14 +166,19 @@ def hill_climbing(cities, visualize):
             swapped[ss[0]], swapped[ss[1]] = swapped[ss[1]], swapped[ss[0]]  # swap
             new_cost = calc_cost(swapped)
             if new_cost < current_cost:
-                print('Swap benefit: ' + str(current_cost - new_cost))
                 cities = swapped
                 current_cost = new_cost
                 break
             tries += 1
-            print("TRIES: " + str(tries))
 
-        visualize('Current:', cities, current_cost)
+        if current_cost == old_cost:
+            no_change += 1
+            if no_change == PERSISTENCE:
+                break
+        else:
+            no_change = 0
+            visualize('Current:', cities, current_cost)
+
         i += 1
 
     cities.append(cities[0])  # To return to start city
@@ -187,11 +195,14 @@ def simulated_annealing(cities, visualize):
     best_sol = list(cities)
     best_sol_cost = current_cost
 
+    PERSISTENCE = pow(len(cities), 2)
     temperature = pow(len(cities), 2)
+    no_change = 0
     i = 0
-    while i < pow(len(cities), 2):
+    while i < PERSISTENCE:
+        old_cost = current_cost
         tries = 0
-        while tries < 10:
+        while tries < len(cities):
             ss = find_swap(len(cities))
             swapped = list(cities)
             swapped[ss[0]], swapped[ss[1]] = swapped[ss[1]], swapped[ss[0]]  # swap
@@ -201,18 +212,24 @@ def simulated_annealing(cities, visualize):
             prob = get_prob(current_cost, new_cost, temperature)
             print("TEMP: " + str(temperature) + ", PROB: " + str(prob))
             if diff > 0 or random.random() < get_prob(current_cost, new_cost, temperature):
-                print('Swap benefit: ' + str(current_cost - new_cost))
                 cities = swapped
                 current_cost = new_cost
                 break
 
             tries += 1
-
-        visualize('Current:', cities, current_cost)
+            print("TRIES: " + str(tries) + "PER: " + str(PERSISTENCE))
 
         if current_cost < best_sol_cost:
             best_sol = cities
             best_sol_cost = current_cost
+
+        if current_cost <= old_cost:
+            no_change += 1
+            if no_change == PERSISTENCE:
+                break
+        else:
+            no_change = 0
+            visualize('Current:', cities, current_cost)
 
         temperature = cooldown(temperature)
         i += 1
