@@ -29,8 +29,10 @@ class Output:
     distance = 0
     nodes_num = 1
     fringe_max_size = 1
+    run_time = 0
 
-    def __init__(self, route=None, distance=0):
+    def __init__(self, route=None, distance=0, run_time=0):
+        self.run_time = run_time
         if route is not None:
             self.route = list(route)
             self.distance = distance

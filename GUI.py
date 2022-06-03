@@ -69,17 +69,19 @@ chosen_algo.set(Algorithms.Empty.value)
 entry = tk.StringVar()
 entry.trace('w', callback=on_search)
 
+map_widget = TkinterMapView(root, width=1000, corner_radius=0, max_zoom=22)
+edit = tk.Entry(root, textvariable=entry)
 canvas = tk.Canvas(root, background=primary)
 frame = tk.Frame(canvas, background=primary)
 scrollbar = tk.Scrollbar(canvas, orient=VERTICAL, command=canvas.yview)
-edit = tk.Entry(root, textvariable=entry)
-result_tv = tk.Text(root, height=5, background=surface, foreground='blue', wrap=tk.WORD)
-map_widget = TkinterMapView(root, width=1050, corner_radius=0, max_zoom=22)
+clear_btn = tk.Button(root, text="clear", background=surface, command=clear_selection, font=(None, 12))
+random_btn = tk.Button(root, text="Random", background=surface, command=random_selection, font=(None, 12))
 algo_list = tk.OptionMenu(root, chosen_algo, *[option.value for option in Algorithms])
 run_btn = tk.Button(root, height=1, text="Run", command=run, background=accent, foreground='white',
                     font=("Times New Roman", 20))
-clear_btn = tk.Button(root, text="clear", command=clear_selection, font=(None, 12))
-random_btn = tk.Button(root, text="Random", command=random_selection, font=(None, 12))
+speed_label = tk.Label(root, text="Speed", background=bg)
+speed_bar = tk.Scale(root, from_=1, to=100, orient=tk.HORIZONTAL, background=surface)
+result_tv = tk.Text(root, height=5, background=surface, foreground='blue', wrap=tk.WORD)
 
 markers = []
 added_markers = []
@@ -104,7 +106,7 @@ def start():
     root.state('zoomed')
 
     map_widget.set_tile_server("https://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}&s=Ga")
-    map_widget.set_position(23.8859, 45.0792)  # KSA
+    map_widget.set_position(23.5859, 44.7)  # KSA
     map_widget.set_zoom(6)
 
     config()
@@ -137,8 +139,9 @@ def populate(population):
 def config():
     root.configure(background=bg)
     canvas.configure(yscrollcommand=scrollbar.set)
-    algo_list.config(font=('Times new roman', 12))
+    algo_list.config(background=surface, font=('Times new roman', 12))
     result_tv.tag_configure(CENTER, justify=CENTER)
+    speed_bar.set(90)
 
 
 def put():
@@ -148,6 +151,8 @@ def put():
     scrollbar.pack(side=LEFT, fill=Y)
     frame.pack(side=RIGHT, fill=BOTH)
     result_tv.pack(side=BOTTOM, fill=X, padx=8, pady=8)
+    speed_bar.pack(side=BOTTOM, fill=X, padx=8, pady=5)
+    speed_label.pack(side=BOTTOM, anchor=tk.W)
     run_btn.pack(side=BOTTOM, fill=X, padx=8, pady=5)
     algo_list.pack(side=BOTTOM, fill=X, padx=8, pady=5)
     clear_btn.pack(side=RIGHT, fill=X, expand=True, padx=(2, 8), pady=(2, 5))
@@ -164,15 +169,17 @@ def runner():
     set_controls_mode(DISABLED)
     fun = function_finder.get(chosen_algo.get())
     clear_paths()
+
     route = get_selected()
     result = fun(route, visualize)
-    display_results(result)
-    visualize('Final result:', result.route, result.distance)
+    print("Path: " + formulate_route(result.route))
+    visualize('Final result:', result.route, result.distance, result.run_time)
+
     set_controls_mode(NORMAL)
     showed = True
 
 
-def visualize(what, route, cost):
+def visualize(what, route, cost, run_time=0):
     if len(route) < 2:
         return
 
@@ -187,10 +194,10 @@ def visualize(what, route, cost):
             added_markers.append(route[i])
 
         positions.append(markers[route[i]].position)
-    show_on_tv(what, cost)
+    show_on_tv(what, cost, run_time)
     path = map_widget.set_path(positions)
     paths.append(path)
-    time.sleep(0.05)  # Delay
+    time.sleep(0.5 - speed_bar.get() / 200)  # Delay
 
 
 def pin():
@@ -248,17 +255,19 @@ def set_controls_mode(mode):
     random_btn['state'] = mode
 
 
-def display_results(result):
-    print("Path: " + formulate_route(result.route))
-    print("Distance: " + str(result.distance))
-    print("Cost: " + str(round(2.18 * int(result.distance / fuel))) + "\n")
-    show_on_tv('Final result:', result.distance)
-
-
-def show_on_tv(what, cost):
+def show_on_tv(what, cost, run_time):
     result_tv.delete('1.0', tk.END)
-    result_tv.insert("1.0", str(algorithm.value) + '\'s ' + what +
-                     '\nDistance: ' + str(cost) + ' km\nCost: ' + str(round(2.18 * int(cost / fuel))) + " SR")
+
+    if run_time != 0:
+        result_tv.insert("1.0", str(algorithm.value) + '\'s ' + what +
+                         '\nDistance: ' + str(cost) + ' km' +
+                         '\nCost: ' + str(round(2.18 * int(cost / fuel))) + ' SR' +
+                         '\nRunning Time ' + str(round(run_time, 3)))
+    else:
+        result_tv.insert("1.0", str(algorithm.value) + '\'s ' + what +
+                         '\nDistance: ' + str(cost) + ' km' +
+                         '\nCost: ' + str(round(2.18 * int(cost / fuel))) + ' SR')
+
     result_tv.tag_add("center", "1.0", "end")
 
 

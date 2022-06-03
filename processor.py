@@ -29,6 +29,7 @@ with open('table.json', encoding='utf-8') as file:
 def bfs(cities, visualize):
     global algorithm
     algorithm = Algorithms.BFS
+    start_time = time.time()
     start_node = Node(cities[0], 0)
     fringe = queue.Queue()
     visited = []
@@ -45,6 +46,7 @@ def bfs(cities, visualize):
             output.distance = node.path_cost
             node.predecessors.append(node.cid)
             output.route = node.predecessors
+            output.run_time = time.time() - start_time
             return output
         expand(node, fringe, visited, output)
 
@@ -52,6 +54,7 @@ def bfs(cities, visualize):
 def ucs(cities, visualize):
     global algorithm
     algorithm = Algorithms.UCS
+    start_time = time.time()
     fringe = queue.PriorityQueue()
     visited = []
     output = Output()
@@ -67,6 +70,7 @@ def ucs(cities, visualize):
             output.distance = node.path_cost
             node.predecessors.append(node.cid)
             output.route = node.predecessors
+            output.run_time = time.time() - start_time
             return output
         expand(node, fringe, visited, output)
 
@@ -74,6 +78,7 @@ def ucs(cities, visualize):
 def ids(cities, visualize):
     global algorithm
     algorithm = Algorithms.IDS
+    start_time = time.time()
     output = Output()
     start_node = Node(cities[0], 0, depth=1)
     depth = 1
@@ -83,6 +88,7 @@ def ids(cities, visualize):
             output.distance = result[1].path_cost
             result[1].predecessors.append(result[1].cid)
             output.route = result[1].predecessors
+            output.run_time = time.time() - start_time
             return output
         depth += 1
 
@@ -90,6 +96,7 @@ def ids(cities, visualize):
 def greedy(cities, visualize):
     global x2, y2, algorithm
     algorithm = Algorithms.Greedy
+    start_time = time.time()
     x2 = data[cities[1]]['x']
     y2 = data[cities[1]]['y']
     fringe = queue.PriorityQueue()
@@ -108,6 +115,7 @@ def greedy(cities, visualize):
             output.distance = node.path_cost
             node.predecessors.append(node.cid)
             output.route = node.predecessors
+            output.run_time = time.time() - start_time
             return output
         expand(node, fringe, visited, output)
 
@@ -115,6 +123,7 @@ def greedy(cities, visualize):
 def a_star(cities, visualize):
     global x2, y2, algorithm
     algorithm = Algorithms.A_Star
+    start_time = time.time()
     x2 = data[cities[1]]['x']
     y2 = data[cities[1]]['y']
     fringe = queue.PriorityQueue()
@@ -132,6 +141,7 @@ def a_star(cities, visualize):
             output.distance = node.path_cost
             node.predecessors.append(node.cid)
             output.route = node.predecessors
+            output.run_time = time.time() - start_time
             return output
         expand(node, fringe, visited, output)
 
@@ -163,9 +173,8 @@ def hill_climbing(cities, visualize):
         visualize('Current:', cities, current_cost)
         i += 1
 
-    print('HC Time: ' + str(time.time() - start_time))
     cities.append(cities[0])  # To return to start city
-    return Output(cities, current_cost)
+    return Output(cities, current_cost, time.time() - start_time)
 
 
 def simulated_annealing(cities, visualize):
@@ -191,7 +200,7 @@ def simulated_annealing(cities, visualize):
             diff = current_cost - new_cost
             prob = get_prob(current_cost, new_cost, temperature)
             print("TEMP: " + str(temperature) + ", PROB: " + str(prob))
-            if diff > 0 or (diff > -200 and prob > 0.5):
+            if diff > 0 or random.random() < get_prob(current_cost, new_cost, temperature):
                 print('Swap benefit: ' + str(current_cost - new_cost))
                 cities = swapped
                 current_cost = new_cost
@@ -208,9 +217,8 @@ def simulated_annealing(cities, visualize):
         temperature = cooldown(temperature)
         i += 1
 
-    print('SA Time: ' + str(time.time() - start_time))
     best_sol.append(best_sol[0])
-    return Output(best_sol, best_sol_cost)
+    return Output(best_sol, best_sol_cost, time.time() - start_time)
 
 
 def genetic(cities, visualize):
@@ -265,9 +273,8 @@ def genetic(cities, visualize):
 
     solution, sol_cost = get_best(solution, sol_cost, population)
     display_gen(gen, population)
-    print('GA Time: ' + str(time.time() - start_time))
     solution.append(solution[0])
-    return Output(solution, sol_cost)
+    return Output(solution, sol_cost, time.time() - start_time)
 
 
 def dls(start_node, destination_city, output, limit, visualize):
