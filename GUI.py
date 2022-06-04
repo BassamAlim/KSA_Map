@@ -173,8 +173,8 @@ def put():
     speed_frame.pack(side=TOP, fill=X, padx=(8, 8), pady=(2, 5))
     speed_label.pack(side=LEFT, anchor=tk.W)
     speed_bar.pack(side=RIGHT, fill=X, expand=True, padx=8, pady=5)
+    progress.pack(side=TOP, fill=X, padx=8, pady=5)
     result_tv.pack(side=TOP, fill=X, padx=8, pady=8)
-    progress.pack(side=BOTTOM, fill=X, padx=8, pady=5)
 
 
 def runner():
