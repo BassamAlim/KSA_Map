@@ -3,7 +3,7 @@ import random
 import threading
 import time
 import tkinter as tk
-from tkinter import CENTER, BOTH, VERTICAL, HORIZONTAL, DISABLED, NORMAL, NW, LEFT, RIGHT, TOP, BOTTOM, X, Y
+from tkinter import CENTER, BOTH, VERTICAL, HORIZONTAL, DISABLED, NORMAL, NW, LEFT, RIGHT, X, Y
 from tkinter.ttk import Progressbar
 
 from tkintermapview import TkinterMapView
@@ -159,22 +159,20 @@ def config():
 
 def put():
     map_widget.pack(side=RIGHT, fill=Y)
-    edit.pack(side=TOP, fill=X, padx=8, pady=(8, 2), ipady=2)
-    canvas.pack(side=TOP, fill=BOTH, expand=True, padx=8)
+    edit.pack(fill=X, padx=8, pady=(8, 2), ipady=2)
+    canvas.pack(fill=BOTH, expand=True, padx=8)
     scrollbar.pack(side=LEFT, fill=Y)
     frame.pack(side=RIGHT, fill=BOTH)
-
-    btns_frame.pack(side=TOP, fill=X, padx=(8, 8), pady=(2, 5))
+    btns_frame.pack(fill=X, padx=(8, 8), pady=(2, 5))
     random_btn.pack(side=LEFT, fill=X, expand=True)
     clear_btn.pack(side=RIGHT, fill=X, expand=True)
-
-    algo_list.pack(side=TOP, fill=X, padx=8, pady=5)
-    run_btn.pack(side=TOP, padx=8, pady=5)
-    speed_frame.pack(side=TOP, fill=X, padx=(8, 8), pady=(2, 5))
+    algo_list.pack(fill=X, padx=8, pady=5)
+    run_btn.pack(fill=X, padx=8, pady=5)
+    speed_frame.pack(fill=X, padx=(8, 8), pady=(2, 5))
     speed_label.pack(side=LEFT, anchor=tk.W)
     speed_bar.pack(side=RIGHT, fill=X, expand=True, padx=8, pady=5)
-    progress.pack(side=TOP, fill=X, padx=8, pady=5)
-    result_tv.pack(side=TOP, fill=X, padx=8, pady=8)
+    progress.pack(fill=X, padx=8, pady=5)
+    result_tv.pack(fill=X, padx=8, pady=8)
 
 
 def runner():
