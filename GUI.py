@@ -195,23 +195,24 @@ def runner():
 
 
 def visualize(what, route, cost, perc, run_time=0):
-    if len(route) < 2:
-        return
+    if route is not None:
+        if len(route) < 2:
+            return
 
-    clear_paths()
-    positions = []
-    for i in range(0, len(route)):
-        while len(added_markers) > 0:
-            remove_marker(added_markers.pop())
+        clear_paths()
+        positions = []
+        for i in range(0, len(route)):
+            while len(added_markers) > 0:
+                remove_marker(added_markers.pop())
 
-        if markers[route[i]] is None:
-            mark(route[i])
-            added_markers.append(route[i])
+            if markers[route[i]] is None:
+                mark(route[i])
+                added_markers.append(route[i])
 
-        positions.append(markers[route[i]].position)
-    show_on_tv(what, cost, run_time)
-    path = map_widget.set_path(positions)
-    paths.append(path)
+            positions.append(markers[route[i]].position)
+        show_on_tv(what, cost, run_time)
+        path = map_widget.set_path(positions)
+        paths.append(path)
     progress['value'] = perc
     time.sleep(0.5 - speed_bar.get() / 200)  # Delay
 

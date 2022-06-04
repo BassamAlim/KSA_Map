@@ -172,11 +172,12 @@ def hill_climbing(cities, visualize):
                 break
             tries += 1
 
+        perc = i / PERSISTENCE * 100
         if current_cost == old_cost:
             no_change += 1
+            visualize('Current:', None, current_cost, perc)
         else:
             no_change = 0
-            perc = i / PERSISTENCE * 100
             visualize('Current:', cities, current_cost, perc)
 
         i += 1
@@ -217,11 +218,12 @@ def simulated_annealing(cities, visualize):
             best_sol = cities
             best_sol_cost = current_cost
 
-        if current_cost <= old_cost:
+        perc = i / PERSISTENCE * 100
+        if current_cost == old_cost:
             no_change += 1
+            visualize('Current:', None, current_cost, perc)
         else:
             no_change = 0
-            perc = i / PERSISTENCE * 100
             visualize('Current:', cities, current_cost, perc)
 
         temperature = cooldown(temperature)
