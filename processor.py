@@ -159,11 +159,12 @@ def hill_climbing(cities, visualize):
     i = 0
     while i < PERSISTENCE and no_change < PERSISTENCE:
         old_cost = current_cost
+
         tries = 0
         while tries < PERSISTENCE:
-            ss = find_swap(len(cities))
+            swap = find_swap(len(cities))
             swapped = list(cities)
-            swapped[ss[0]], swapped[ss[1]] = swapped[ss[1]], swapped[ss[0]]  # swap
+            swapped[swap[0]], swapped[swap[1]] = swapped[swap[1]], swapped[swap[0]]  # swap
             new_cost = calc_cost(swapped)
             if new_cost < current_cost:
                 cities = swapped
@@ -173,13 +174,10 @@ def hill_climbing(cities, visualize):
 
         if current_cost == old_cost:
             no_change += 1
-            print("THERE")
         else:
             no_change = 0
-            print("HERE")
             perc = i / PERSISTENCE * 100
             visualize('Current:', cities, current_cost, perc)
-        print("ITS: " + str(no_change))
 
         i += 1
 
@@ -201,7 +199,7 @@ def simulated_annealing(cities, visualize):
     temperature = pow(len(cities), 2)
     no_change = 0
     i = 0
-    while i < PERSISTENCE:
+    while i < PERSISTENCE and no_change < PERSISTENCE:
         old_cost = current_cost
         tries = 0
         while tries < len(cities):
@@ -209,17 +207,11 @@ def simulated_annealing(cities, visualize):
             swapped = list(cities)
             swapped[ss[0]], swapped[ss[1]] = swapped[ss[1]], swapped[ss[0]]  # swap
             new_cost = calc_cost(swapped)
-
-            diff = current_cost - new_cost
-            prob = get_prob(current_cost, new_cost, temperature)
-            print("TEMP: " + str(temperature) + ", PROB: " + str(prob))
-            if diff > 0 or random.random() < get_prob(current_cost, new_cost, temperature):
+            if current_cost - new_cost > 0 or random.random() < get_prob(current_cost, new_cost, temperature):
                 cities = swapped
                 current_cost = new_cost
                 break
-
             tries += 1
-            print("TRIES: " + str(tries) + "PER: " + str(PERSISTENCE))
 
         if current_cost < best_sol_cost:
             best_sol = cities
@@ -227,8 +219,6 @@ def simulated_annealing(cities, visualize):
 
         if current_cost <= old_cost:
             no_change += 1
-            if no_change == PERSISTENCE:
-                break
         else:
             no_change = 0
             perc = i / PERSISTENCE * 100
@@ -250,7 +240,6 @@ def genetic(cities, visualize):
 
     GENERATIONS = pow(len(cities), 2)
     POP_SIZE = 10
-    # Generation Number
     gen = 1
 
     population = []
@@ -261,9 +250,7 @@ def genetic(cities, visualize):
         population.append(Chromosome(gnome, calc_cost(gnome)))
 
     temperature = pow(len(cities), 2)
-    # Iteration to perform population crossing and gene mutation.
     while temperature > 30 and gen <= GENERATIONS:
-        print("TMP: " + str(temperature))
         population.sort()
         display_gen(gen, population)
         solution, sol_cost = get_best(solution, sol_cost, population)  # Python Stuff
@@ -276,14 +263,12 @@ def genetic(cities, visualize):
             while True:
                 new_g = mutate(population[i].gnome)
                 new_gnome = Chromosome(new_g, calc_cost(new_g))
-
                 if new_gnome.fitness <= population[i].fitness:
                     new_population.append(new_gnome)
                     break
-                else:  # Accepting the rejected children at a possible probability above threshold.
+                else:
                     prob = get_prob(population[i].fitness, new_gnome.fitness, temperature)
                     if prob > 0.5 or tries == pow(len(cities), 2):
-                        print('prob: ' + str(prob))
                         new_population.append(new_gnome)
                         break
                     tries += 1
@@ -424,7 +409,7 @@ def mutate(gnome):
 
 
 def cooldown(temp):
-    return temp * 0.99
+    return temp * 0.995
 
 
 def get_best(old, old_cost, pop):
