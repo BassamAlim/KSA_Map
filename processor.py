@@ -40,7 +40,7 @@ def bfs(cities, visualize):
         node = remove_first(fringe)
         current = list(node.predecessors)
         current.append(node.cid)
-        visualize('Current:', current, node.path_cost)
+        visualize('Current:', current, node.path_cost, 0)
 
         if goal_test(cities[1], node.cid):
             output.distance = node.path_cost
@@ -64,7 +64,7 @@ def ucs(cities, visualize):
         node = remove_first(fringe)
         current = list(node.predecessors)
         current.append(node.cid)
-        visualize('Current:', current, node.path_cost)
+        visualize('Current:', current, node.path_cost, 0)
 
         if goal_test(cities[1], node.cid):
             output.distance = node.path_cost
@@ -109,7 +109,7 @@ def greedy(cities, visualize):
         visited.append(node.cid)
         current = list(node.predecessors)
         current.append(node.cid)
-        visualize('Current:', current, node.path_cost)
+        visualize('Current:', current, node.path_cost, 0)
 
         if goal_test(cities[1], node.cid):
             output.distance = node.path_cost
@@ -135,7 +135,7 @@ def a_star(cities, visualize):
         node = remove_first(fringe)
         current = list(node.predecessors)
         current.append(node.cid)
-        visualize('Current:', current, node.path_cost)
+        visualize('Current:', current, node.path_cost, 0)
 
         if goal_test(cities[1], node.cid):
             output.distance = node.path_cost
@@ -157,10 +157,10 @@ def hill_climbing(cities, visualize):
     PERSISTENCE = pow(len(cities), 2)
     no_change = 0
     i = 0
-    while i < PERSISTENCE:
+    while i < PERSISTENCE and no_change < PERSISTENCE:
         old_cost = current_cost
         tries = 0
-        while tries < len(cities):
+        while tries < PERSISTENCE:
             ss = find_swap(len(cities))
             swapped = list(cities)
             swapped[ss[0]], swapped[ss[1]] = swapped[ss[1]], swapped[ss[0]]  # swap
@@ -173,11 +173,13 @@ def hill_climbing(cities, visualize):
 
         if current_cost == old_cost:
             no_change += 1
-            if no_change == PERSISTENCE:
-                break
+            print("THERE")
         else:
             no_change = 0
-            visualize('Current:', cities, current_cost)
+            print("HERE")
+            perc = i / PERSISTENCE * 100
+            visualize('Current:', cities, current_cost, perc)
+        print("ITS: " + str(no_change))
 
         i += 1
 
@@ -229,7 +231,8 @@ def simulated_annealing(cities, visualize):
                 break
         else:
             no_change = 0
-            visualize('Current:', cities, current_cost)
+            perc = i / PERSISTENCE * 100
+            visualize('Current:', cities, current_cost, perc)
 
         temperature = cooldown(temperature)
         i += 1
@@ -264,7 +267,8 @@ def genetic(cities, visualize):
         population.sort()
         display_gen(gen, population)
         solution, sol_cost = get_best(solution, sol_cost, population)  # Python Stuff
-        visualize('Current:', population[0].gnome, population[0].fitness)
+        perc = gen / GENERATIONS * 100
+        visualize('Current:', population[0].gnome, population[0].fitness, perc)
 
         new_population = []
         for i in range(POP_SIZE):

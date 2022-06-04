@@ -3,7 +3,8 @@ import random
 import threading
 import time
 import tkinter as tk
-from tkinter import CENTER, BOTH, VERTICAL, DISABLED, NORMAL, NW, LEFT, RIGHT, TOP, BOTTOM, X, Y
+from tkinter import CENTER, BOTH, VERTICAL, HORIZONTAL, DISABLED, NORMAL, NW, LEFT, RIGHT, TOP, BOTTOM, X, Y
+from tkinter.ttk import Progressbar
 
 from tkintermapview import TkinterMapView
 
@@ -66,6 +67,7 @@ bg = '#7E899C'
 primary = '#C6CFDC'
 surface = '#E1E7EF'
 accent = '#14213d'
+active = '#D18E21'
 
 root = tk.Tk()
 
@@ -79,13 +81,19 @@ edit = tk.Entry(root, textvariable=entry)
 canvas = tk.Canvas(root, background=primary)
 frame = tk.Frame(canvas, background=primary)
 scrollbar = tk.Scrollbar(canvas, orient=VERTICAL, command=canvas.yview)
-clear_btn = tk.Button(root, text="clear", background=surface, command=clear_selection, font=(None, 12))
-random_btn = tk.Button(root, text="Random", background=surface, command=random_selection, font=(None, 12))
+btns_frame = tk.Frame(root, background=primary)
+clear_btn = tk.Button(btns_frame, text="clear", background=surface, command=clear_selection, font=(None, 12))
+random_btn = tk.Button(btns_frame, text="Random", background=surface, command=random_selection, font=(None, 12))
 algo_list = tk.OptionMenu(root, chosen_algo, *[option.value for option in Algorithms])
 run_btn = tk.Button(root, width=15, height=1, text="Run", command=run, background=accent, foreground='white',
                     font=("Times New Roman", 18))
-speed_label = tk.Label(root, text="Speed", background=bg)
-speed_bar = tk.Scale(root, from_=1, to=100, orient=tk.HORIZONTAL, background=surface)
+
+speed_frame = tk.Frame(root, background=primary)
+speed_label = tk.Label(speed_frame, text="Speed", background=primary)
+speed_bar = tk.Scale(speed_frame, from_=1, to=100, orient=tk.HORIZONTAL, background=primary)
+
+progress = Progressbar(root, orient=HORIZONTAL, length=100, mode='determinate')
+
 result_tv = tk.Text(root, height=5, background=surface, foreground='blue', wrap=tk.WORD)
 
 markers = []
@@ -155,13 +163,18 @@ def put():
     canvas.pack(side=TOP, fill=BOTH, expand=True, padx=8)
     scrollbar.pack(side=LEFT, fill=Y)
     frame.pack(side=RIGHT, fill=BOTH)
-    result_tv.pack(side=BOTTOM, fill=X, padx=8, pady=8)
-    speed_bar.pack(side=BOTTOM, fill=X, padx=8, pady=5)
-    speed_label.pack(side=BOTTOM, anchor=tk.W)
-    run_btn.pack(side=BOTTOM, padx=8, pady=5)
-    algo_list.pack(side=BOTTOM, fill=X, padx=8, pady=5)
-    clear_btn.pack(side=RIGHT, fill=X, expand=True, padx=(2, 8), pady=(2, 5))
-    random_btn.pack(side=LEFT, fill=X, expand=True, padx=(8, 2), pady=(2, 5))
+
+    btns_frame.pack(side=TOP, fill=X, padx=(8, 8), pady=(2, 5))
+    random_btn.pack(side=LEFT, fill=X, expand=True)
+    clear_btn.pack(side=RIGHT, fill=X, expand=True)
+
+    algo_list.pack(side=TOP, fill=X, padx=8, pady=5)
+    run_btn.pack(side=TOP, padx=8, pady=5)
+    speed_frame.pack(side=TOP, fill=X, padx=(8, 8), pady=(2, 5))
+    speed_label.pack(side=LEFT, anchor=tk.W)
+    speed_bar.pack(side=RIGHT, fill=X, expand=True, padx=8, pady=5)
+    result_tv.pack(side=TOP, fill=X, padx=8, pady=8)
+    progress.pack(side=BOTTOM, fill=X, padx=8, pady=5)
 
 
 def runner():
@@ -178,13 +191,12 @@ def runner():
     route = get_selected()
     result = fun(route, visualize)
     print("Path: " + formulate_route(result.route))
-    visualize('Final result:', result.route, result.distance, result.run_time)
-
+    visualize('Final result:', result.route, result.distance, 100, result.run_time)
     set_controls_mode(NORMAL)
     showed = True
 
 
-def visualize(what, route, cost, run_time=0):
+def visualize(what, route, cost, perc, run_time=0):
     if len(route) < 2:
         return
 
@@ -202,6 +214,7 @@ def visualize(what, route, cost, run_time=0):
     show_on_tv(what, cost, run_time)
     path = map_widget.set_path(positions)
     paths.append(path)
+    progress['value'] = perc
     time.sleep(0.5 - speed_bar.get() / 200)  # Delay
 
 
