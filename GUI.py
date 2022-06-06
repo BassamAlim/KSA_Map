@@ -15,6 +15,7 @@ algorithm = Algorithms.Empty
 processor = processor
 fuel = 15.0
 showed = False
+RANDOM_SELECTION_SIZE = 20
 
 with open('Cities.json', encoding='utf-8') as file:
     data = json.load(file)
@@ -37,25 +38,25 @@ def on_search(name, index, op):
     populate(pop)
 
 
-def clear_selection():
-    for s in selected:
-        s.set(0)
-    clear_markers()
-    clear_paths()
-    populate(data)
-
-
 def random_selection():
     rand = list(range(len(selected)))
     random.shuffle(rand)
     count = 0
     i = 0
-    while count < 15:
+    while count < RANDOM_SELECTION_SIZE and i < len(rand):
         if selected[rand[i]].get() == 0:
             selected[rand[i]].set(1)
             mark(rand[i])
             count += 1
         i += 1
+    populate(data)
+
+
+def clear_selection():
+    for s in selected:
+        s.set(0)
+    clear_paths()
+    clear_markers()
     populate(data)
 
 
@@ -73,17 +74,21 @@ root = tk.Tk()
 
 chosen_algo = tk.StringVar()
 chosen_algo.set(Algorithms.Empty.value)
+
 entry = tk.StringVar()
 entry.trace('w', callback=on_search)
 
 map_widget = TkinterMapView(root, width=1000, corner_radius=0, max_zoom=22)
 edit = tk.Entry(root, textvariable=entry)
+
 canvas = tk.Canvas(root, background=primary)
 frame = tk.Frame(canvas, background=primary)
 scrollbar = tk.Scrollbar(canvas, orient=VERTICAL, command=canvas.yview)
+
 btns_frame = tk.Frame(root, background=primary)
 clear_btn = tk.Button(btns_frame, text="clear", background=surface, command=clear_selection, font=(None, 12))
 random_btn = tk.Button(btns_frame, text="Random", background=surface, command=random_selection, font=(None, 12))
+
 algo_list = tk.OptionMenu(root, chosen_algo, *[option.value for option in Algorithms])
 run_btn = tk.Button(root, width=15, height=1, text="Run", command=run, background=accent, foreground='white',
                     font=("Times New Roman", 18))
@@ -104,13 +109,6 @@ paths = []
 cf = str()
 
 
-def init_arrays():
-    for _ in data:
-        var = tk.IntVar()
-        selected.append(var)
-        markers.append(None)
-
-
 def start():
     init_arrays()
 
@@ -122,18 +120,21 @@ def start():
     map_widget.set_position(23.5859, 44.7)  # KSA
     map_widget.set_zoom(6)
 
-    config()
     put()
-
-    global cf
-    cf = canvas.create_window((0, 0), window=frame, anchor=NW)
-    canvas.bind('<Configure>', on_frame_configure)
+    config()
 
     populate(data)
 
     edit.focus_set()
 
     root.mainloop()
+
+
+def init_arrays():
+    for _ in data:
+        var = tk.IntVar()
+        selected.append(var)
+        markers.append(None)
 
 
 def on_frame_configure(event):
@@ -152,6 +153,9 @@ def populate(population):
 def config():
     root.configure(background=bg)
     canvas.configure(yscrollcommand=scrollbar.set)
+    global cf
+    cf = canvas.create_window((0, 0), window=frame, anchor=NW)
+    canvas.bind('<Configure>', on_frame_configure)
     algo_list.config(background=surface, font=('Times new roman', 12))
     result_tv.tag_configure(CENTER, justify=CENTER)
     speed_bar.set(90)
@@ -176,8 +180,12 @@ def put():
 
 
 def runner():
-    if chosen_algo.get() == Algorithms.Empty.value:
-        print('Please choose an algorithm')
+    route = get_selected()
+    if len(route) < 2:
+        show_on_tv('Please choose some cities', 0, 0, massage=True)
+        return
+    elif chosen_algo.get() == Algorithms.Empty.value:
+        show_on_tv('Please choose an Algorithm', 0, 0, massage=True)
         return
 
     global showed, algorithm
@@ -186,7 +194,6 @@ def runner():
     fun = function_finder.get(chosen_algo.get())
     clear_paths()
 
-    route = get_selected()
     result = fun(route, visualize)
     print("Path: " + formulate_route(result.route))
     visualize('Final result:', result.route, result.distance, 100, result.run_time)
@@ -272,10 +279,12 @@ def set_controls_mode(mode):
     random_btn['state'] = mode
 
 
-def show_on_tv(what, cost, run_time):
+def show_on_tv(what, cost, run_time, massage=False):
     result_tv.delete('1.0', tk.END)
 
-    if run_time != 0:
+    if massage:
+        result_tv.insert("1.0", what)
+    elif run_time != 0:
         result_tv.insert("1.0", str(algorithm.value) + '\'s ' + what +
                          '\nDistance: ' + str(cost) + ' km' +
                          '\nCost: ' + str(round(2.18 * int(cost / fuel))) + ' SR' +

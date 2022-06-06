@@ -1,17 +1,18 @@
 import itertools
 import json
 import math
+import operator
 import queue
-import random
 import time
+import numpy as np  # A library that provides fast and efficient methods for arrays, random, ...
 
 import geopy.distance
+import pandas as pd
 
+from Algorithms import Algorithms
+from models import Chromosome
 from models import Node
 from models import Output
-from models import Chromosome
-from Algorithms import Algorithms
-
 
 algorithm = Algorithms.Empty
 
@@ -151,8 +152,8 @@ def hill_climbing(cities, visualize):
     algorithm = Algorithms.HC
     start_time = time.time()
 
-    random.shuffle(cities)
-    current_cost = calc_cost(cities)
+    np.random.shuffle(cities)
+    current_cost = get_fitness(cities)
 
     PERSISTENCE = pow(len(cities), 2)
     no_change = 0
@@ -165,7 +166,7 @@ def hill_climbing(cities, visualize):
             swap = find_swap(len(cities))
             swapped = list(cities)
             swapped[swap[0]], swapped[swap[1]] = swapped[swap[1]], swapped[swap[0]]  # swap
-            new_cost = calc_cost(swapped)
+            new_cost = get_fitness(swapped)
             if new_cost < current_cost:
                 cities = swapped
                 current_cost = new_cost
@@ -191,8 +192,8 @@ def simulated_annealing(cities, visualize):
     algorithm = Algorithms.SA
     start_time = time.time()
 
-    random.shuffle(cities)
-    current_cost = calc_cost(cities)
+    np.random.shuffle(cities)
+    current_cost = get_fitness(cities)
     best_sol = list(cities)
     best_sol_cost = current_cost
 
@@ -207,8 +208,8 @@ def simulated_annealing(cities, visualize):
             ss = find_swap(len(cities))
             swapped = list(cities)
             swapped[ss[0]], swapped[ss[1]] = swapped[ss[1]], swapped[ss[0]]  # swap
-            new_cost = calc_cost(swapped)
-            if current_cost - new_cost > 0 or random.random() < get_prob(current_cost, new_cost, temperature):
+            new_cost = get_fitness(swapped)
+            if current_cost - new_cost > 0 or np.random.random() < get_prob(current_cost, new_cost, temperature):
                 cities = swapped
                 current_cost = new_cost
                 break
@@ -237,34 +238,28 @@ def genetic(cities, visualize):
     global algorithm
     algorithm = Algorithms.GA
     start_time = time.time()
-    solution = list(cities)
-    sol_cost = calc_cost(cities)
+    solution = Chromosome(list(cities), get_fitness(cities))
 
     GENERATIONS = pow(len(cities), 2)
-    POP_SIZE = 10
+    POP_SIZE = len(cities)
     gen = 1
 
     population = []
     # Populating the GNOME pool.
     for i in range(POP_SIZE):
         gnome = list(cities)
-        random.shuffle(cities)
-        population.append(Chromosome(gnome, calc_cost(gnome)))
+        np.random.shuffle(gnome)
+        population.append(Chromosome(gnome, get_fitness(gnome)))
 
+    no_change = 0
     temperature = pow(len(cities), 2)
-    while temperature > 30 and gen <= GENERATIONS:
-        population.sort()
-        display_gen(gen, population)
-        solution, sol_cost = get_best(solution, sol_cost, population)  # Python Stuff
-        perc = gen / GENERATIONS * 100
-        visualize('Current:', population[0].gnome, population[0].fitness, perc)
-
+    while gen <= GENERATIONS and no_change < GENERATIONS / 8:
         new_population = []
         for i in range(POP_SIZE):
             tries = 0
             while True:
                 new_g = mutate(population[i].gnome)
-                new_gnome = Chromosome(new_g, calc_cost(new_g))
+                new_gnome = Chromosome(new_g, get_fitness(new_g))
                 if new_gnome.fitness <= population[i].fitness:
                     new_population.append(new_gnome)
                     break
@@ -275,14 +270,21 @@ def genetic(cities, visualize):
                         break
                     tries += 1
 
+        minimum = min(population)
+        if minimum.fitness < solution.fitness:
+            solution = minimum
+            no_change = 0
+        else:
+            no_change += 1
+
+        visualize('Current:', minimum.gnome, minimum.fitness, perc=gen / GENERATIONS * 100)
+
         temperature = cooldown(temperature)
         population = new_population
         gen += 1
 
-    solution, sol_cost = get_best(solution, sol_cost, population)
-    display_gen(gen, population)
-    solution.append(solution[0])
-    return Output(solution, sol_cost, time.time() - start_time)
+    solution.gnome.append(solution.gnome[0])
+    return Output(solution.gnome, solution.fitness, time.time() - start_time)
 
 
 def dls(start_node, destination_city, output, limit, visualize):
@@ -387,8 +389,8 @@ def in_history(cid, visited, cost):
 
 def find_swap(length):
     while True:
-        r1 = random.randint(0, length - 1)
-        r2 = random.randint(0, length - 1)
+        r1 = np.random.randint(0, length - 1)
+        r2 = np.random.randint(0, length - 1)
         if r1 != r2:
             return r1, r2
 
@@ -401,12 +403,8 @@ def goal_test(destination, cid):
 
 def mutate(gnome):
     gnome = list(gnome)
-    while True:
-        r1 = random.randint(1, len(gnome) - 1)
-        r2 = random.randint(1, len(gnome) - 1)
-        if r1 != r2:
-            gnome[r1], gnome[r2] = gnome[r2], gnome[r1]  # swap
-            break
+    swap = find_swap(len(gnome))
+    gnome[swap[0]], gnome[swap[1]] = gnome[swap[1]], gnome[swap[0]]
     return gnome
 
 
@@ -435,7 +433,7 @@ def get_prob(old, new, tmp):
     return math.exp(-abs(new - old) / tmp)
 
 
-def calc_cost(route):
+def get_fitness(route):
     cost = 0
     for i in range(0, len(route) - 1):
         cost += table[route[i]][route[i + 1]]
