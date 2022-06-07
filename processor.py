@@ -242,45 +242,22 @@ def genetic(cities, visualize):
     POP_SIZE = len(cities)
     temperature = pow(len(cities), 2)
 
-    population = []
-    # Populating the GNOME pool.
-    for i in range(POP_SIZE):
-        gnome = list(cities)
-        np.random.shuffle(gnome)
-        population.append(Chromosome(gnome, get_fitness(gnome)))
+    population = populate(cities, POP_SIZE)
 
     no_change = 0
     gen = 1
     while gen <= GENERATIONS and no_change < int(GENERATIONS / pow(gen, 1/3)):
-        new_population = []
-        for i in range(POP_SIZE):
-            tries = 0
-            while True:
-                new_g = mutate(population[i].gnome)
-                new_gnome = Chromosome(new_g, get_fitness(new_g))
-                if new_gnome.fitness <= population[i].fitness:
-                    new_population.append(new_gnome)
-                    break
-                else:
-                    prob = get_prob(population[i].fitness, new_gnome.fitness, temperature)
-                    if prob > 0.5 or tries == pow(len(cities), 2):
-                        new_population.append(new_gnome)
-                        break
-                    tries += 1
-
+        population = selection(cities, population, POP_SIZE, temperature)
         minimum = min(population)
         if minimum.fitness < solution.fitness:
             solution = minimum
             no_change = 0
         else:
             no_change += 1
-        print('NO CHANGE: ' + str(no_change) + '/' + str(int(GENERATIONS / pow(gen, 1/3))) + ', BEST: '
-              + str(solution.fitness))
 
         visualize('Current:', minimum.gnome, minimum.fitness, perc=gen / GENERATIONS * 100)
 
         temperature = cooldown(temperature)
-        population = new_population
         gen += 1
 
     solution.gnome.append(solution.gnome[0])
@@ -401,36 +378,19 @@ def goal_test(destination, cid):
     return False
 
 
-def mutate(gnome):
-    gnome = list(gnome)
-    swap = find_swap(len(gnome))
-    gnome[swap[0]], gnome[swap[1]] = gnome[swap[1]], gnome[swap[0]]
-    return gnome
+def get_prob(old, new, tmp):
+    return math.exp(-abs(new - old) / tmp)
 
 
 def cooldown(temp):
     return temp * 0.995
 
 
-def get_best(old, old_cost, pop):
-    best = list(old)
-    best_cost = old_cost
-    for i in range(len(pop)):
-        if pop[i].fitness < best_cost:
-            best = pop[i].gnome
-            best_cost = pop[i].fitness
-    return best, best_cost
-
-
-def display_gen(gen, population):
-    print("Generation", gen)
-    print("GNOME \t\t\t\t\t FITNESS VALUE")
-    for i in range(len(population)):
-        print(population[i].gnome, population[i].fitness)
-
-
-def get_prob(old, new, tmp):
-    return math.exp(-abs(new - old) / tmp)
+def mutate(gnome):
+    gnome = list(gnome)
+    swap = find_swap(len(gnome))
+    gnome[swap[0]], gnome[swap[1]] = gnome[swap[1]], gnome[swap[0]]
+    return gnome
 
 
 def get_fitness(route):
@@ -439,3 +399,32 @@ def get_fitness(route):
         cost += table[route[i]][route[i + 1]]
     cost += table[route[len(route) - 1]][route[0]]  # To return to the start city
     return cost
+
+
+def populate(cities, pop_size):
+    population = []
+    # Populating the GNOME pool.
+    for i in range(pop_size):
+        gnome = list(cities)
+        np.random.shuffle(gnome)
+        population.append(Chromosome(gnome, get_fitness(gnome)))
+    return population
+
+
+def selection(cities, population, pop_size, temperature):
+    new_population = []
+    for i in range(pop_size):
+        tries = 0
+        while True:
+            new_g = mutate(population[i].gnome)
+            new_gnome = Chromosome(new_g, get_fitness(new_g))
+            if new_gnome.fitness <= population[i].fitness:
+                new_population.append(new_gnome)
+                break
+            else:
+                prob = get_prob(population[i].fitness, new_gnome.fitness, temperature)
+                if prob > 0.5 or tries == pow(len(cities), 2):
+                    new_population.append(new_gnome)
+                    break
+                tries += 1
+    return new_population
