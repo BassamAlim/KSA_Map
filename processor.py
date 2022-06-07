@@ -1,13 +1,11 @@
 import itertools
 import json
 import math
-import operator
 import queue
 import time
-import numpy as np  # A library that provides fast and efficient methods for arrays, random, ...
 
 import geopy.distance
-import pandas as pd
+import numpy as np  # A library that provides fast and efficient methods for arrays, random, ...
 
 from Algorithms import Algorithms
 from models import Chromosome
@@ -242,7 +240,7 @@ def genetic(cities, visualize):
 
     GENERATIONS = pow(len(cities), 2)
     POP_SIZE = len(cities)
-    gen = 1
+    temperature = pow(len(cities), 2)
 
     population = []
     # Populating the GNOME pool.
@@ -252,8 +250,8 @@ def genetic(cities, visualize):
         population.append(Chromosome(gnome, get_fitness(gnome)))
 
     no_change = 0
-    temperature = pow(len(cities), 2)
-    while gen <= GENERATIONS and no_change < GENERATIONS / 8:
+    gen = 1
+    while gen <= GENERATIONS and no_change < int(GENERATIONS / pow(gen, 1/3)):
         new_population = []
         for i in range(POP_SIZE):
             tries = 0
@@ -276,6 +274,8 @@ def genetic(cities, visualize):
             no_change = 0
         else:
             no_change += 1
+        print('NO CHANGE: ' + str(no_change) + '/' + str(int(GENERATIONS / pow(gen, 1/3))) + ', BEST: '
+              + str(solution.fitness))
 
         visualize('Current:', minimum.gnome, minimum.fitness, perc=gen / GENERATIONS * 100)
 

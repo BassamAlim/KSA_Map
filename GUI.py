@@ -195,7 +195,6 @@ def runner():
     clear_paths()
 
     result = fun(route, visualize)
-    print("Path: " + formulate_route(result.route))
     visualize('Final result:', result.route, result.distance, 100, result.run_time)
     set_controls_mode(NORMAL)
     showed = True
