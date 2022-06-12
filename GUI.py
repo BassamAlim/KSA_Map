@@ -77,7 +77,7 @@ chosen_algo.set(Algorithms.Empty.value)
 entry = tk.StringVar()
 entry.trace('w', callback=on_search)
 
-map_widget = TkinterMapView(root, width=1000, corner_radius=0, max_zoom=22)
+map_widget = TkinterMapView(root, width=1000, corner_radius=0)
 edit = tk.Entry(root, textvariable=entry)
 
 canvas = tk.Canvas(root, background=primary)
@@ -285,7 +285,7 @@ def show_on_tv(what, cost, run_time, massage=False):
     elif run_time != 0:
         result_tv.insert("1.0", str(algorithm.value) + '\'s ' + what +
                          '\nDistance: ' + str(cost) + ' km' +
-                         '\nRunning Time ' + str(round(run_time, 3)))
+                         '\nRunning Time ' + str(round(run_time, 3)) + ' seconds')
     else:
         result_tv.insert("1.0", str(algorithm.value) + '\'s ' + what +
                          '\nDistance: ' + str(cost) + ' km')
