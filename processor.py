@@ -8,9 +8,7 @@ import geopy.distance
 import numpy as np  # A library that provides fast and efficient methods for arrays, random, ...
 
 from Algorithms import Algorithms
-from models import Chromosome
-from models import Node
-from models import Output
+from models import Chromosome, Node, Output
 
 algorithm = Algorithms.Empty
 
@@ -39,7 +37,7 @@ def bfs(cities, visualize):
         node = remove_first(fringe)
         current = list(node.predecessors)
         current.append(node.cid)
-        visualize('Current:', current, node.path_cost, 0)
+        visualize(current, node.path_cost, len(visited) / len(data) * 100)
 
         if goal_test(cities[1], node.cid):
             output.distance = node.path_cost
@@ -63,7 +61,7 @@ def ucs(cities, visualize):
         node = remove_first(fringe)
         current = list(node.predecessors)
         current.append(node.cid)
-        visualize('Current:', current, node.path_cost, 0)
+        visualize(current, node.path_cost, len(visited) / len(data) * 100)
 
         if goal_test(cities[1], node.cid):
             output.distance = node.path_cost
@@ -83,10 +81,10 @@ def ids(cities, visualize):
     depth = 1
     while True:
         result = dls(start_node, cities[1], output, depth, visualize)
-        if result[0] != 'cutoff':
-            output.distance = result[1].path_cost
-            result[1].predecessors.append(result[1].cid)
-            output.route = result[1].predecessors
+        if result is not None:
+            output.distance = result.path_cost
+            result.predecessors.append(result.cid)
+            output.route = result.predecessors
             output.run_time = time.time() - start_time
             return output
         depth += 1
@@ -108,7 +106,7 @@ def greedy(cities, visualize):
         visited.append(node.cid)
         current = list(node.predecessors)
         current.append(node.cid)
-        visualize('Current:', current, node.path_cost, 0)
+        visualize(current, node.path_cost, len(visited) / len(data) * 100)
 
         if goal_test(cities[1], node.cid):
             output.distance = node.path_cost
@@ -134,7 +132,7 @@ def a_star(cities, visualize):
         node = remove_first(fringe)
         current = list(node.predecessors)
         current.append(node.cid)
-        visualize('Current:', current, node.path_cost, 0)
+        visualize(current, node.path_cost, len(visited) / len(data) * 100)
 
         if goal_test(cities[1], node.cid):
             output.distance = node.path_cost
@@ -174,10 +172,10 @@ def hill_climbing(cities, visualize):
         perc = i / PERSISTENCE * 100
         if current_cost == old_cost:
             no_change += 1
-            visualize('Current:', None, current_cost, perc)
+            visualize(None, current_cost, perc)
         else:
             no_change = 0
-            visualize('Current:', cities, current_cost, perc)
+            visualize(cities, current_cost, perc)
 
         i += 1
 
@@ -220,10 +218,10 @@ def simulated_annealing(cities, visualize):
         perc = i / PERSISTENCE * 100
         if current_cost == old_cost:
             no_change += 1
-            visualize('Current:', None, current_cost, perc)
+            visualize(None, current_cost, perc)
         else:
             no_change = 0
-            visualize('Current:', cities, current_cost, perc)
+            visualize(cities, current_cost, perc)
 
         temperature = cooldown(temperature)
         i += 1
@@ -255,7 +253,7 @@ def genetic(cities, visualize):
         else:
             no_change += 1
 
-        visualize('Current:', minimum.gnome, minimum.fitness, perc=gen / GENERATIONS * 100)
+        visualize(minimum.gnome, minimum.fitness, perc=gen / GENERATIONS * 100)
 
         temperature = cooldown(temperature)
         gen += 1
@@ -265,7 +263,6 @@ def genetic(cities, visualize):
 
 
 def dls(start_node, destination_city, output, limit, visualize):
-    cutoff = False
     fringe = []
     visited = []
     fringe.append(start_node)
@@ -274,19 +271,14 @@ def dls(start_node, destination_city, output, limit, visualize):
         node = remove_first(fringe)
         current = list(node.predecessors)
         current.append(node.cid)
-        visualize('Current:', current, node.path_cost)
+        visualize(current, node.path_cost, len(visited) / len(data) * 100)
 
         if goal_test(destination_city, node.cid):
-            return 'soln', node
-        elif node.depth == limit:
-            cutoff = True
-        else:
+            return node
+        elif node.depth != limit:
             expand(node, fringe, visited, output)
 
-    if cutoff:
-        return 'cutoff', None
-    else:
-        return 'failure', None
+    return None
 
 
 def expand(node, fringe, visited, output):

@@ -1,0 +1,4 @@
+future~=0.18.2
+tkintermapview~=1.6
+geopy~=2.2.0
+numpy~=1.22.3

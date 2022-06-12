@@ -1,0 +1,25 @@
+def setup_table():
+    for i in range(153):
+        table.append(list())
+
+    counter = 0
+    for i in range(153):
+        print(str(counter))
+        for j in range(153):
+            table[i].append(processor.a_star(i, j)[1].distance)
+        counter += 1
+
+    with open("table.json", "w") as f:
+        f.write(json.dumps(table))
+
+
+
+
+example tile sever:
+map_widget.set_tile_server("https://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}&s=Ga", max_zoom=22)  # google normal
+map_widget.set_tile_server("https://mt0.google.com/vt/lyrs=s&hl=en&x={x}&y={y}&z={z}&s=Ga", max_zoom=22)  # google satellite
+map_widget.set_tile_server("http://c.tile.stamen.com/watercolor/{z}/{x}/{y}.png")  # painting style
+map_widget.set_tile_server("http://a.tile.stamen.com/toner/{z}/{x}/{y}.png")  # black and white
+
+example overlay tile server
+map_widget.set_overlay_tile_server("http://a.tiles.openrailwaymap.org/standard/{z}/{x}/{y}.png")  # railway infrastructure

@@ -13,7 +13,6 @@ from Algorithms import Algorithms
 
 algorithm = Algorithms.Empty
 processor = processor
-fuel = 15.0
 showed = False
 RANDOM_SELECTION_SIZE = 20
 
@@ -86,7 +85,7 @@ frame = tk.Frame(canvas, background=primary)
 scrollbar = tk.Scrollbar(canvas, orient=VERTICAL, command=canvas.yview)
 
 btns_frame = tk.Frame(root, background=primary)
-clear_btn = tk.Button(btns_frame, text="clear", background=surface, command=clear_selection, font=(None, 12))
+clear_btn = tk.Button(btns_frame, text="Clear", background=surface, command=clear_selection, font=(None, 12))
 random_btn = tk.Button(btns_frame, text="Random", background=surface, command=random_selection, font=(None, 12))
 
 algo_list = tk.OptionMenu(root, chosen_algo, *[option.value for option in Algorithms])
@@ -99,7 +98,7 @@ speed_bar = tk.Scale(speed_frame, from_=1, to=100, orient=tk.HORIZONTAL, backgro
 
 progress = Progressbar(root, orient=HORIZONTAL, length=100, mode='determinate')
 
-result_tv = tk.Text(root, height=5, background=surface, foreground='blue', wrap=tk.WORD)
+result_tv = tk.Text(root, height=4, background=surface, foreground='blue', wrap=tk.WORD)
 
 markers = []
 added_markers = []
@@ -195,12 +194,12 @@ def runner():
     clear_paths()
 
     result = fun(route, visualize)
-    visualize('Final result:', result.route, result.distance, 100, result.run_time)
+    visualize(result.route, result.distance, 100, 'Final result:', result.run_time)
     set_controls_mode(NORMAL)
     showed = True
 
 
-def visualize(what, route, cost, perc, run_time=0):
+def visualize(route, cost, perc, title='Current',  run_time=0):
     if route is not None:
         if len(route) < 2:
             return
@@ -216,7 +215,7 @@ def visualize(what, route, cost, perc, run_time=0):
                 added_markers.append(route[i])
 
             positions.append(markers[route[i]].position)
-        show_on_tv(what, cost, run_time)
+        show_on_tv(title, cost, run_time)
         path = map_widget.set_path(positions)
         paths.append(path)
     progress['value'] = perc
@@ -286,12 +285,10 @@ def show_on_tv(what, cost, run_time, massage=False):
     elif run_time != 0:
         result_tv.insert("1.0", str(algorithm.value) + '\'s ' + what +
                          '\nDistance: ' + str(cost) + ' km' +
-                         '\nCost: ' + str(round(2.18 * int(cost / fuel))) + ' SR' +
                          '\nRunning Time ' + str(round(run_time, 3)))
     else:
         result_tv.insert("1.0", str(algorithm.value) + '\'s ' + what +
-                         '\nDistance: ' + str(cost) + ' km' +
-                         '\nCost: ' + str(round(2.18 * int(cost / fuel))) + ' SR')
+                         '\nDistance: ' + str(cost) + ' km')
 
     result_tv.tag_add("center", "1.0", "end")
 
