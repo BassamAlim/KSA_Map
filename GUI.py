@@ -15,6 +15,9 @@ algorithm = Algorithms.Empty
 processor = processor
 showed = False
 RANDOM_SELECTION_SIZE = 20
+thread = None
+stop = False
+running = False
 
 with open('Cities.json', encoding='utf-8') as file:
     data = json.load(file)
@@ -60,7 +63,16 @@ def clear_selection():
 
 
 def run():
-    threading.Thread(target=runner).start()
+    global running, stop
+    if running:
+        global stop
+        stop = True
+    else:
+        global thread
+        stop = False
+        thread = threading.Thread(target=runner)
+        thread.start()
+        running = True
 
 
 bg = '#7E899C'
@@ -187,14 +199,21 @@ def runner():
         show_on_tv('Please choose an Algorithm', 0, 0, massage=True)
         return
 
-    global showed, algorithm
+    global showed, algorithm, running
     algorithm = Algorithms(chosen_algo.get())
     set_controls_mode(DISABLED)
     fun = function_finder.get(chosen_algo.get())
     clear_paths()
 
-    result = fun(route, visualize)
-    visualize(result.route, result.distance, 100, 'Final result:', result.run_time)
+    result = fun(route, visualize, lambda: stop)
+    running = False
+    if result.route is None or len(result.route) == 0:
+        clear_paths()
+        clear_markers()
+        visualize(None, result.distance, 0, 'Final result:', result.run_time)
+        show_on_tv('{} Cancelled'.format(algorithm.value), 0, 0, massage=True)
+    else:
+        visualize(result.route, result.distance, 100, 'Final result:', result.run_time)
     set_controls_mode(NORMAL)
     showed = True
 
@@ -258,7 +277,7 @@ def clear_markers():
 
 
 def clear_paths():
-    for i in range(0, len(paths)):
+    while len(paths) != 0:
         paths.pop().delete()
 
 
@@ -271,7 +290,13 @@ def get_selected():
 
 
 def set_controls_mode(mode):
-    run_btn['state'] = mode
+    if mode == DISABLED:
+        if algorithm == Algorithms.HC or algorithm == Algorithms.SA or algorithm == Algorithms.GA:
+            run_btn['text'] = 'Accept Current Best'
+        else:
+            run_btn['text'] = 'Cancel'
+    elif mode == NORMAL:
+        run_btn['text'] = 'Run'
     algo_list['state'] = mode
     clear_btn['state'] = mode
     random_btn['state'] = mode
@@ -279,17 +304,13 @@ def set_controls_mode(mode):
 
 def show_on_tv(what, cost, run_time, massage=False):
     result_tv.delete('1.0', tk.END)
-
     if massage:
         result_tv.insert("1.0", what)
     elif run_time != 0:
-        result_tv.insert("1.0", str(algorithm.value) + '\'s ' + what +
-                         '\nDistance: ' + str(cost) + ' km' +
-                         '\nRunning Time ' + str(round(run_time, 3)) + ' seconds')
+        result_tv.insert("1.0", "{} \'s {}\nDistance: {} km\nRunning Time: {} seconds"
+                         .format(algorithm.value, what, cost, round(run_time, 3)))
     else:
-        result_tv.insert("1.0", str(algorithm.value) + '\'s ' + what +
-                         '\nDistance: ' + str(cost) + ' km')
-
+        result_tv.insert("1.0", "{}\'s {}\nDistance: {} km".format(algorithm.value, what, cost))
     result_tv.tag_add("center", "1.0", "end")
 
 

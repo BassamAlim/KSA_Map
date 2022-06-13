@@ -23,7 +23,7 @@ with open('table.json', encoding='utf-8') as file:
     table = json.load(file)
 
 
-def bfs(cities, visualize):
+def bfs(cities, visualize, stop):
     global algorithm
     algorithm = Algorithms.BFS
     start_time = time.time()
@@ -34,6 +34,9 @@ def bfs(cities, visualize):
     fringe.put(start_node)
     visited.append(cities[0])
     while not fringe.empty():
+        if stop():
+            return finish(None, 0, 0)
+
         node = remove_first(fringe)
         current = list(node.predecessors)
         current.append(node.cid)
@@ -48,7 +51,7 @@ def bfs(cities, visualize):
         expand(node, fringe, visited, output)
 
 
-def ucs(cities, visualize):
+def ucs(cities, visualize, stop):
     global algorithm
     algorithm = Algorithms.UCS
     start_time = time.time()
@@ -58,6 +61,9 @@ def ucs(cities, visualize):
     fringe.put((0, 0, Node(cities[0], 0)))
     visited.append((cities[0], 0))
     while not fringe.empty():
+        if stop():
+            return finish(None, 0, 0)
+
         node = remove_first(fringe)
         current = list(node.predecessors)
         current.append(node.cid)
@@ -72,7 +78,7 @@ def ucs(cities, visualize):
         expand(node, fringe, visited, output)
 
 
-def ids(cities, visualize):
+def ids(cities, visualize, stop):
     global algorithm
     algorithm = Algorithms.IDS
     start_time = time.time()
@@ -80,7 +86,7 @@ def ids(cities, visualize):
     start_node = Node(cities[0], 0, depth=1)
     depth = 1
     while True:
-        result = dls(start_node, cities[1], output, depth, visualize)
+        result = dls(start_node, cities[1], output, depth, visualize, stop)
         if result is not None:
             output.distance = result.path_cost
             result.predecessors.append(result.cid)
@@ -90,7 +96,7 @@ def ids(cities, visualize):
         depth += 1
 
 
-def greedy(cities, visualize):
+def greedy(cities, visualize, stop):
     global x2, y2, algorithm
     algorithm = Algorithms.Greedy
     start_time = time.time()
@@ -102,6 +108,9 @@ def greedy(cities, visualize):
     fringe.put((0, 0, Node(cities[0], 0)))
     visited.append(cities[0])
     while not fringe.empty():
+        if stop():
+            return finish(None, 0, 0)
+
         node = remove_first(fringe)
         visited.append(node.cid)
         current = list(node.predecessors)
@@ -117,7 +126,7 @@ def greedy(cities, visualize):
         expand(node, fringe, visited, output)
 
 
-def a_star(cities, visualize):
+def a_star(cities, visualize, stop):
     global x2, y2, algorithm
     algorithm = Algorithms.A_Star
     start_time = time.time()
@@ -129,6 +138,9 @@ def a_star(cities, visualize):
     fringe.put((0, 0, Node(cities[0], 0)))
     visited.append((cities[0], 0))
     while not fringe.empty():
+        if stop():
+            return finish(None, 0, 0)
+
         node = remove_first(fringe)
         current = list(node.predecessors)
         current.append(node.cid)
@@ -143,7 +155,7 @@ def a_star(cities, visualize):
         expand(node, fringe, visited, output)
 
 
-def hill_climbing(cities, visualize):
+def hill_climbing(cities, visualize, stop):
     global algorithm
     algorithm = Algorithms.HC
     start_time = time.time()
@@ -159,6 +171,8 @@ def hill_climbing(cities, visualize):
 
         tries = 0
         while tries < PERSISTENCE:
+            if stop():
+                return finish(cities, current_cost, start_time)
             swap = find_swap(len(cities))
             swapped = list(cities)
             swapped[swap[0]], swapped[swap[1]] = swapped[swap[1]], swapped[swap[0]]  # swap
@@ -179,11 +193,10 @@ def hill_climbing(cities, visualize):
 
         i += 1
 
-    cities.append(cities[0])  # To return to start city
-    return Output(cities, current_cost, time.time() - start_time)
+    return finish(cities, current_cost, start_time)
 
 
-def simulated_annealing(cities, visualize):
+def simulated_annealing(cities, visualize, stop):
     global algorithm
     algorithm = Algorithms.SA
     start_time = time.time()
@@ -201,6 +214,9 @@ def simulated_annealing(cities, visualize):
         old_cost = current_cost
         tries = 0
         while tries < len(cities):
+            if stop():
+                return finish(best_sol, best_sol_cost, start_time)
+
             ss = find_swap(len(cities))
             swapped = list(cities)
             swapped[ss[0]], swapped[ss[1]] = swapped[ss[1]], swapped[ss[0]]  # swap
@@ -226,11 +242,10 @@ def simulated_annealing(cities, visualize):
         temperature = cooldown(temperature)
         i += 1
 
-    best_sol.append(best_sol[0])
-    return Output(best_sol, best_sol_cost, time.time() - start_time)
+    return finish(best_sol, best_sol_cost, start_time)
 
 
-def genetic(cities, visualize):
+def genetic(cities, visualize, stop):
     global algorithm
     algorithm = Algorithms.GA
     start_time = time.time()
@@ -245,6 +260,9 @@ def genetic(cities, visualize):
     no_change = 0
     gen = 1
     while gen <= GENERATIONS and no_change < int(GENERATIONS / pow(gen, 1/3)):
+        if stop():
+            return finish(solution.gnome, solution.fitness, start_time)
+
         population = selection(cities, population, POP_SIZE, temperature)
         minimum = min(population)
         if minimum.fitness < solution.fitness:
@@ -258,16 +276,18 @@ def genetic(cities, visualize):
         temperature = cooldown(temperature)
         gen += 1
 
-    solution.gnome.append(solution.gnome[0])
-    return Output(solution.gnome, solution.fitness, time.time() - start_time)
+    return finish(solution.gnome, solution.fitness, start_time)
 
 
-def dls(start_node, destination_city, output, limit, visualize):
+def dls(start_node, destination_city, output, limit, visualize, stop):
     fringe = []
     visited = []
     fringe.append(start_node)
     visited.append(start_node.cid)
     while len(fringe) != 0:
+        if stop():
+            finish(None, 0, 0)
+
         node = remove_first(fringe)
         current = list(node.predecessors)
         current.append(node.cid)
@@ -420,3 +440,9 @@ def selection(cities, population, pop_size, temperature):
                     break
                 tries += 1
     return new_population
+
+
+def finish(cities, cost, start_time):
+    if cities is not None:
+        cities.append(cities[0])  # To return to start city
+    return Output(cities, cost, time.time() - start_time)
