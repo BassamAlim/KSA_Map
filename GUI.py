@@ -65,9 +65,8 @@ def run():
     if running:
         stop = True
     else:
-        global thread
         stop = False
-        thread.start()
+        threading.Thread(target=runner).start()
         running = True
 
 
@@ -166,7 +165,7 @@ def config():
     canvas.bind('<Configure>', on_frame_configure)
     algo_list.config(background=surface, font=('Times new roman', 12))
     result_tv.tag_configure(CENTER, justify=CENTER)
-    speed_bar.set(90)
+    speed_bar.set(100)
 
 
 def put():
@@ -317,8 +316,6 @@ def formulate_route(route):
         string += data[element]['name'] + ' ← '
     return string[:-3]
 
-
-thread = threading.Thread(target=runner)
 
 function_finder = {
     'Breadth First Search': processor.bfs,

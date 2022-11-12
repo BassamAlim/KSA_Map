@@ -250,19 +250,16 @@ def genetic(cities, visualize, stop):
 
     population = populate(cities, POP_SIZE)
 
-    no_change = 0
     gen = 1
-    while gen <= GENERATIONS and no_change < int(GENERATIONS / pow(gen, 1/3)):
+    while gen <= GENERATIONS and temperature > len(cities):
+        print(f"{temperature} / {POP_SIZE}")
         if stop():
             return finish(solution.gnome, solution.fitness, start_time)
 
-        population = selection(cities, population, POP_SIZE, temperature)
+        population = selection(population, POP_SIZE, temperature)
         minimum = min(population)
         if minimum.fitness < solution.fitness:
             solution = minimum
-            no_change = 0
-        else:
-            no_change += 1
 
         visualize(minimum.gnome, minimum.fitness, perc=gen / GENERATIONS * 100)
 
@@ -370,7 +367,7 @@ def get_prob(old, new, tmp):
 
 
 def cooldown(temp):
-    return temp * 0.995
+    return temp * 0.997
 
 
 def mutate(gnome):
@@ -398,22 +395,25 @@ def populate(cities, pop_size):
     return population
 
 
-def selection(cities, population, pop_size, temperature):
+def selection(population, pop_size, temperature):
     new_population = []
     for i in range(pop_size):
         tries = 0
         while True:
             new_g = mutate(population[i].gnome)
             new_gnome = Chromosome(new_g, get_fitness(new_g))
+
             if new_gnome.fitness <= population[i].fitness:
                 new_population.append(new_gnome)
                 break
             else:
                 prob = get_prob(population[i].fitness, new_gnome.fitness, temperature)
-                if prob > 0.5 or tries == pow(len(cities), 2):
+                # print(f"ITS {prob + tries / 750} / {0.5}")
+                if prob + tries / 10000 > 0.5:
                     new_population.append(new_gnome)
                     break
-                tries += 1
+            tries += 1
+
     return new_population
 
 
