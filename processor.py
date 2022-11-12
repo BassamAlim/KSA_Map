@@ -24,15 +24,16 @@ with open('table.json', encoding='utf-8') as file:
     table = json.load(file)
 
 
+def create():
+    global algorithm
+    return time.time(), Fringe(algorithm), [], Output()
+
+
 def bfs(cities, visualize, stop):
     global algorithm
     algorithm = Algorithms.BFS
-    start_time = time.time()
-    start_node = Node(cities[0], 0)
-    fringe = Fringe(algorithm)
-    visited = []
-    output = Output()
-    fringe.put(start_node)
+    start_time, fringe, visited, output = create()
+    fringe.put(Node(cities[0], 0))  # start node
     visited.append(cities[0])
     while not fringe.empty():
         if stop():
@@ -55,11 +56,8 @@ def bfs(cities, visualize, stop):
 def ucs(cities, visualize, stop):
     global algorithm
     algorithm = Algorithms.UCS
-    start_time = time.time()
-    fringe = Fringe(algorithm)
-    visited = []
-    output = Output()
-    fringe.put((0, 0, Node(cities[0], 0)))
+    start_time, fringe, visited, output = create()
+    fringe.put((0, 0, Node(cities[0], 0)))  # start node
     visited.append((cities[0], 0))
     while not fringe.empty():
         if stop():
@@ -100,13 +98,10 @@ def ids(cities, visualize, stop):
 def greedy(cities, visualize, stop):
     global x2, y2, algorithm
     algorithm = Algorithms.Greedy
-    start_time = time.time()
+    start_time, fringe, visited, output = create()
     x2 = data[cities[1]]['x']
     y2 = data[cities[1]]['y']
-    fringe = Fringe(algorithm)
-    visited = []
-    output = Output()
-    fringe.put((0, 0, Node(cities[0], 0)))
+    fringe.put((0, 0, Node(cities[0], 0)))  # start node
     visited.append(cities[0])
     while not fringe.empty():
         if stop():
@@ -130,13 +125,10 @@ def greedy(cities, visualize, stop):
 def a_star(cities, visualize, stop):
     global x2, y2, algorithm
     algorithm = Algorithms.A_Star
-    start_time = time.time()
+    start_time, fringe, visited, output = create()
     x2 = data[cities[1]]['x']
     y2 = data[cities[1]]['y']
-    fringe = Fringe(algorithm)
-    visited = []
-    output = Output()
-    fringe.put((0, 0, Node(cities[0], 0)))
+    fringe.put((0, 0, Node(cities[0], 0)))  # start node
     visited.append((cities[0], 0))
     while not fringe.empty():
         if stop():
