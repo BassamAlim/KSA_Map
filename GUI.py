@@ -11,17 +11,15 @@ from tkintermapview import TkinterMapView
 import processor
 from Algorithms import Algorithms
 
+
 algorithm = Algorithms.Empty
-processor = processor
-showed = False
 RANDOM_SELECTION_SIZE = 20
-thread = None
+showed = False
 stop = False
 running = False
 
 with open('Cities.json', encoding='utf-8') as file:
     data = json.load(file)
-
 with open('table.json', encoding='utf-8') as file:
     table = json.load(file)
 
@@ -65,16 +63,15 @@ def clear_selection():
 def run():
     global running, stop
     if running:
-        global stop
         stop = True
     else:
         global thread
         stop = False
-        thread = threading.Thread(target=runner)
         thread.start()
         running = True
 
 
+# colors
 bg = '#7E899C'
 primary = '#C6CFDC'
 surface = '#E1E7EF'
@@ -162,9 +159,9 @@ def populate(population):
 
 
 def config():
+    global cf
     root.configure(background=bg)
     canvas.configure(yscrollcommand=scrollbar.set)
-    global cf
     cf = canvas.create_window((0, 0), window=frame, anchor=NW)
     canvas.bind('<Configure>', on_frame_configure)
     algo_list.config(background=surface, font=('Times new roman', 12))
@@ -321,6 +318,8 @@ def formulate_route(route):
     return string[:-3]
 
 
+thread = threading.Thread(target=runner)
+
 function_finder = {
     'Breadth First Search': processor.bfs,
     'Uniform Cost Search': processor.ucs,
@@ -331,5 +330,6 @@ function_finder = {
     'Simulated Annealing': processor.simulated_annealing,
     'Genetic Algorithm': processor.genetic
 }
+
 
 start()

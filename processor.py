@@ -1,14 +1,15 @@
 import itertools
 import json
 import math
-import queue
 import time
 
 import geopy.distance
 import numpy as np  # A library that provides fast and efficient methods for arrays, random, ...
 
 from Algorithms import Algorithms
+from Fringe import Fringe
 from models import Chromosome, Node, Output
+
 
 algorithm = Algorithms.Empty
 
@@ -28,7 +29,7 @@ def bfs(cities, visualize, stop):
     algorithm = Algorithms.BFS
     start_time = time.time()
     start_node = Node(cities[0], 0)
-    fringe = queue.Queue()
+    fringe = Fringe(algorithm)
     visited = []
     output = Output()
     fringe.put(start_node)
@@ -37,7 +38,7 @@ def bfs(cities, visualize, stop):
         if stop():
             return finish(None, 0, 0)
 
-        node = remove_first(fringe)
+        node = fringe.remove_first()
         current = list(node.predecessors)
         current.append(node.cid)
         visualize(current, node.path_cost, len(visited) / len(data) * 100)
@@ -55,7 +56,7 @@ def ucs(cities, visualize, stop):
     global algorithm
     algorithm = Algorithms.UCS
     start_time = time.time()
-    fringe = queue.PriorityQueue()
+    fringe = Fringe(algorithm)
     visited = []
     output = Output()
     fringe.put((0, 0, Node(cities[0], 0)))
@@ -64,7 +65,7 @@ def ucs(cities, visualize, stop):
         if stop():
             return finish(None, 0, 0)
 
-        node = remove_first(fringe)
+        node = fringe.remove_first()
         current = list(node.predecessors)
         current.append(node.cid)
         visualize(current, node.path_cost, len(visited) / len(data) * 100)
@@ -102,7 +103,7 @@ def greedy(cities, visualize, stop):
     start_time = time.time()
     x2 = data[cities[1]]['x']
     y2 = data[cities[1]]['y']
-    fringe = queue.PriorityQueue()
+    fringe = Fringe(algorithm)
     visited = []
     output = Output()
     fringe.put((0, 0, Node(cities[0], 0)))
@@ -111,7 +112,7 @@ def greedy(cities, visualize, stop):
         if stop():
             return finish(None, 0, 0)
 
-        node = remove_first(fringe)
+        node = fringe.remove_first()
         visited.append(node.cid)
         current = list(node.predecessors)
         current.append(node.cid)
@@ -132,7 +133,7 @@ def a_star(cities, visualize, stop):
     start_time = time.time()
     x2 = data[cities[1]]['x']
     y2 = data[cities[1]]['y']
-    fringe = queue.PriorityQueue()
+    fringe = Fringe(algorithm)
     visited = []
     output = Output()
     fringe.put((0, 0, Node(cities[0], 0)))
@@ -141,7 +142,7 @@ def a_star(cities, visualize, stop):
         if stop():
             return finish(None, 0, 0)
 
-        node = remove_first(fringe)
+        node = fringe.remove_first()
         current = list(node.predecessors)
         current.append(node.cid)
         visualize(current, node.path_cost, len(visited) / len(data) * 100)
@@ -213,7 +214,7 @@ def simulated_annealing(cities, visualize, stop):
     while i < PERSISTENCE and no_change < PERSISTENCE:
         old_cost = current_cost
         tries = 0
-        while tries < len(cities):
+        while tries < PERSISTENCE:
             if stop():
                 return finish(best_sol, best_sol_cost, start_time)
 
@@ -280,15 +281,15 @@ def genetic(cities, visualize, stop):
 
 
 def dls(start_node, destination_city, output, limit, visualize, stop):
-    fringe = []
+    fringe = Fringe(algorithm)
     visited = []
-    fringe.append(start_node)
+    fringe.put(start_node)
     visited.append(start_node.cid)
-    while len(fringe) != 0:
+    while not fringe.empty():
         if stop():
             finish(None, 0, 0)
 
-        node = remove_first(fringe)
+        node = fringe.remove_first()
         current = list(node.predecessors)
         current.append(node.cid)
         visualize(current, node.path_cost, len(visited) / len(data) * 100)
@@ -307,32 +308,23 @@ def expand(node, fringe, visited, output):
         current = list(node.predecessors)
         current.append(node.cid)
 
-        if algorithm == Algorithms.BFS:
-            fringe.put(Node(neighbor[0], path_cost, current, node.depth + 1))
-            visited.append(neighbor[0])
-
-        elif algorithm == Algorithms.UCS:
-            fringe.put((path_cost, next(tie_breaker), Node(neighbor[0], path_cost, current, node.depth + 1)))
-            visited.append((neighbor[0], path_cost))
-
-        elif algorithm == Algorithms.IDS:
-            fringe.append(Node(neighbor[0], path_cost, current, node.depth + 1))
-            visited.append(neighbor[0])
-
-        elif algorithm == Algorithms.Greedy:
-            h = calc_heuristic(data[neighbor[0]]['x'], data[neighbor[0]]['y'])
-            fringe.put((h, next(tie_breaker), Node(neighbor[0], path_cost, current, node.depth + 1)))
-
-        elif algorithm == Algorithms.A_Star:
-            h = calc_heuristic(data[neighbor[0]]['x'], data[neighbor[0]]['y'])
-            fringe.put((path_cost + h, next(tie_breaker), Node(neighbor[0], path_cost, current, node.depth + 1)))
-            visited.append((neighbor[0], path_cost))
+        match algorithm:
+            case Algorithms.BFS | Algorithms.IDS:
+                fringe.put(Node(neighbor[0], path_cost, current, node.depth + 1))
+                visited.append(neighbor[0])
+            case Algorithms.UCS:
+                fringe.put((path_cost, next(tie_breaker), Node(neighbor[0], path_cost, current, node.depth + 1)))
+                visited.append((neighbor[0], path_cost))
+            case Algorithms.Greedy:
+                h = calc_heuristic(data[neighbor[0]]['x'], data[neighbor[0]]['y'])
+                fringe.put((h, next(tie_breaker), Node(neighbor[0], path_cost, current, node.depth + 1)))
+            case Algorithms.A_Star:
+                h = calc_heuristic(data[neighbor[0]]['x'], data[neighbor[0]]['y'])
+                fringe.put((path_cost + h, next(tie_breaker), Node(neighbor[0], path_cost, current, node.depth + 1)))
+                visited.append((neighbor[0], path_cost))
 
         output.nodes_num += 1
-    if algorithm == Algorithms.IDS:
-        output.fringe_max_size = max(output.fringe_max_size, len(fringe))
-    else:
-        output.fringe_max_size = max(output.fringe_max_size, fringe.qsize())
+        output.fringe_max_size = max(output.fringe_max_size, fringe.size())
 
 
 def successor_function(parent, visited):
@@ -349,15 +341,6 @@ def successor_function(parent, visited):
 
 def calc_heuristic(x1, y1):
     return geopy.distance.distance((x1, y1), (x2, y2)).km
-
-
-def remove_first(fringe):
-    if algorithm == Algorithms.BFS:
-        return fringe.get()
-    elif algorithm == Algorithms.IDS:
-        return fringe.pop()
-    else:
-        return fringe.get()[2]
 
 
 def in_history(cid, visited, cost):
