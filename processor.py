@@ -95,6 +95,28 @@ def ids(cities, visualize, stop):
         depth += 1
 
 
+def dls(start_node, destination_city, output, limit, visualize, stop):
+    fringe = Fringe(algorithm)
+    visited = []
+    fringe.put(start_node)
+    visited.append(start_node.cid)
+    while not fringe.empty():
+        if stop():
+            finish(None, 0, 0)
+
+        node = fringe.remove_first()
+        current = list(node.predecessors)
+        current.append(node.cid)
+        visualize(current, node.path_cost, len(visited) / len(data) * 100)
+
+        if goal_test(destination_city, node.cid):
+            return node
+        elif node.depth != limit:
+            expand(node, fringe, visited, output)
+
+    return None
+
+
 def greedy(cities, visualize, stop):
     global x2, y2, algorithm
     algorithm = Algorithms.Greedy
@@ -146,6 +168,69 @@ def a_star(cities, visualize, stop):
             output.run_time = time.time() - start_time
             return output
         expand(node, fringe, visited, output)
+
+
+def expand(node, fringe, visited, output):
+    for neighbor in successor_function(node, visited):
+        path_cost = node.path_cost + neighbor[1]
+        current = list(node.predecessors)
+        current.append(node.cid)
+
+        match algorithm:
+            case Algorithms.BFS | Algorithms.IDS:
+                fringe.put(Node(neighbor[0], path_cost, current, node.depth + 1))
+                visited.append(neighbor[0])
+            case Algorithms.UCS:
+                fringe.put((path_cost, next(tie_breaker), Node(neighbor[0], path_cost, current, node.depth + 1)))
+                visited.append((neighbor[0], path_cost))
+            case Algorithms.Greedy:
+                h = calc_heuristic(data[neighbor[0]]['x'], data[neighbor[0]]['y'])
+                fringe.put((h, next(tie_breaker), Node(neighbor[0], path_cost, current, node.depth + 1)))
+            case Algorithms.A_Star:
+                h = calc_heuristic(data[neighbor[0]]['x'], data[neighbor[0]]['y'])
+                fringe.put((path_cost + h, next(tie_breaker), Node(neighbor[0], path_cost, current, node.depth + 1)))
+                visited.append((neighbor[0], path_cost))
+
+        output.nodes_num += 1
+        output.fringe_max_size = max(output.fringe_max_size, fringe.size())
+
+
+def successor_function(parent, visited):
+    neighbors = []
+    for neighbor in data[parent.cid]['neighbors']:
+        cost = parent.path_cost + neighbor['distance']
+        if algorithm == Algorithms.A_Star or algorithm == Algorithms.UCS:
+            if not in_history(neighbor['cid'], visited, cost):
+                neighbors.append((neighbor['cid'], neighbor['distance']))
+        elif not in_history(neighbor['cid'], visited, cost):
+            neighbors.append((neighbor['cid'], neighbor['distance']))
+    return neighbors
+
+
+def in_history(cid, visited, cost):
+    counter = 0
+    for city in visited:
+        if algorithm == Algorithms.A_Star or algorithm == Algorithms.UCS:
+            if city[0] == cid:
+                if cost > city[1]:
+                    return True
+                else:
+                    visited.pop(counter)
+        else:
+            if city == cid:
+                return True
+        counter += 1
+    return False
+
+
+def calc_heuristic(x1, y1):
+    return geopy.distance.distance((x1, y1), (x2, y2)).km
+
+
+def goal_test(destination, cid):
+    if cid == destination:
+        return True
+    return False
 
 
 def hill_climbing(cities, visualize, stop):
@@ -214,7 +299,8 @@ def simulated_annealing(cities, visualize, stop):
             swapped = list(cities)
             swapped[ss[0]], swapped[ss[1]] = swapped[ss[1]], swapped[ss[0]]  # swap
             new_cost = get_fitness(swapped)
-            if current_cost - new_cost > 0 or np.random.random() < get_prob(current_cost, new_cost, temperature):
+            prob = get_prob(current_cost, new_cost, temperature)
+            if current_cost - new_cost > 0 or prob + tries / 50000 > 0.5:
                 cities = swapped
                 current_cost = new_cost
                 break
@@ -252,7 +338,6 @@ def genetic(cities, visualize, stop):
 
     gen = 1
     while gen <= GENERATIONS and temperature > len(cities):
-        print(f"{temperature} / {POP_SIZE}")
         if stop():
             return finish(solution.gnome, solution.fitness, start_time)
 
@@ -267,122 +352,6 @@ def genetic(cities, visualize, stop):
         gen += 1
 
     return finish(solution.gnome, solution.fitness, start_time)
-
-
-def dls(start_node, destination_city, output, limit, visualize, stop):
-    fringe = Fringe(algorithm)
-    visited = []
-    fringe.put(start_node)
-    visited.append(start_node.cid)
-    while not fringe.empty():
-        if stop():
-            finish(None, 0, 0)
-
-        node = fringe.remove_first()
-        current = list(node.predecessors)
-        current.append(node.cid)
-        visualize(current, node.path_cost, len(visited) / len(data) * 100)
-
-        if goal_test(destination_city, node.cid):
-            return node
-        elif node.depth != limit:
-            expand(node, fringe, visited, output)
-
-    return None
-
-
-def expand(node, fringe, visited, output):
-    for neighbor in successor_function(node, visited):
-        path_cost = node.path_cost + neighbor[1]
-        current = list(node.predecessors)
-        current.append(node.cid)
-
-        match algorithm:
-            case Algorithms.BFS | Algorithms.IDS:
-                fringe.put(Node(neighbor[0], path_cost, current, node.depth + 1))
-                visited.append(neighbor[0])
-            case Algorithms.UCS:
-                fringe.put((path_cost, next(tie_breaker), Node(neighbor[0], path_cost, current, node.depth + 1)))
-                visited.append((neighbor[0], path_cost))
-            case Algorithms.Greedy:
-                h = calc_heuristic(data[neighbor[0]]['x'], data[neighbor[0]]['y'])
-                fringe.put((h, next(tie_breaker), Node(neighbor[0], path_cost, current, node.depth + 1)))
-            case Algorithms.A_Star:
-                h = calc_heuristic(data[neighbor[0]]['x'], data[neighbor[0]]['y'])
-                fringe.put((path_cost + h, next(tie_breaker), Node(neighbor[0], path_cost, current, node.depth + 1)))
-                visited.append((neighbor[0], path_cost))
-
-        output.nodes_num += 1
-        output.fringe_max_size = max(output.fringe_max_size, fringe.size())
-
-
-def successor_function(parent, visited):
-    neighbors = []
-    for neighbor in data[parent.cid]['neighbors']:
-        cost = parent.path_cost + neighbor['distance']
-        if algorithm == Algorithms.A_Star or algorithm == Algorithms.UCS:
-            if not in_history(neighbor['cid'], visited, cost):
-                neighbors.append((neighbor['cid'], neighbor['distance']))
-        elif not in_history(neighbor['cid'], visited, cost):
-            neighbors.append((neighbor['cid'], neighbor['distance']))
-    return neighbors
-
-
-def calc_heuristic(x1, y1):
-    return geopy.distance.distance((x1, y1), (x2, y2)).km
-
-
-def in_history(cid, visited, cost):
-    counter = 0
-    for city in visited:
-        if algorithm == Algorithms.A_Star or algorithm == Algorithms.UCS:
-            if city[0] == cid:
-                if cost > city[1]:
-                    return True
-                else:
-                    visited.pop(counter)
-        else:
-            if city == cid:
-                return True
-        counter += 1
-    return False
-
-
-def find_swap(length):
-    while True:
-        r1 = np.random.randint(0, length - 1)
-        r2 = np.random.randint(0, length - 1)
-        if r1 != r2:
-            return r1, r2
-
-
-def goal_test(destination, cid):
-    if cid == destination:
-        return True
-    return False
-
-
-def get_prob(old, new, tmp):
-    return math.exp(-abs(new - old) / tmp)
-
-
-def cooldown(temp):
-    return temp * 0.997
-
-
-def mutate(gnome):
-    gnome = list(gnome)
-    swap = find_swap(len(gnome))
-    gnome[swap[0]], gnome[swap[1]] = gnome[swap[1]], gnome[swap[0]]
-    return gnome
-
-
-def get_fitness(route):
-    cost = 0
-    for i in range(0, len(route) - 1):
-        cost += table[route[i]][route[i + 1]]
-    cost += table[route[len(route) - 1]][route[0]]  # To return to the start city
-    return cost
 
 
 def populate(cities, pop_size):
@@ -408,13 +377,43 @@ def selection(population, pop_size, temperature):
                 break
             else:
                 prob = get_prob(population[i].fitness, new_gnome.fitness, temperature)
-                # print(f"ITS {prob + tries / 750} / {0.5}")
-                if prob + tries / 10000 > 0.5:
+                if prob + tries / 50000 > 0.5:
                     new_population.append(new_gnome)
                     break
             tries += 1
 
     return new_population
+
+
+def mutate(gnome):
+    gnome = list(gnome)
+    swap = find_swap(len(gnome))
+    gnome[swap[0]], gnome[swap[1]] = gnome[swap[1]], gnome[swap[0]]
+    return gnome
+
+
+def get_prob(old, new, tmp):
+    return math.exp(-abs(new - old) / tmp)
+
+
+def cooldown(temp):
+    return temp * 0.998
+
+
+def find_swap(length):
+    while True:
+        r1 = np.random.randint(0, length - 1)
+        r2 = np.random.randint(0, length - 1)
+        if r1 != r2:
+            return r1, r2
+
+
+def get_fitness(route):
+    cost = 0
+    for i in range(0, len(route) - 1):
+        cost += table[route[i]][route[i + 1]]
+    cost += table[route[len(route) - 1]][route[0]]  # To return to the start city
+    return cost
 
 
 def finish(cities, cost, start_time):
