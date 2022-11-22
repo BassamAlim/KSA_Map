@@ -291,7 +291,7 @@
                 "sha256:ffde4c6fabb52891d81606411cbfaf77756e3b561b566efd270b3ed3791fde4e"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==9.1.1"
+            "version": "==9.2.0"
         },
         "pyperclip": {
             "hashes": [
