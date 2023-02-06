@@ -6,10 +6,10 @@ import time
 import geopy.distance
 import numpy as np  # A library that provides fast and efficient methods for arrays, random, ...
 
+from Network import Network
 from Algorithms import Algorithms
 from Fringe import Fringe
 from models import Chromosome, Node, Output
-
 
 algorithm = Algorithms.Empty
 
@@ -18,8 +18,8 @@ tie_breaker = itertools.count()
 x2 = 0.0
 y2 = 0.0
 
-with open('Cities.json', encoding='utf-8') as file:
-    data = json.load(file)
+G = Network().buildGraph()
+
 with open('table.json', encoding='utf-8') as file:
     table = json.load(file)
 
@@ -42,7 +42,7 @@ def bfs(cities, visualize, stop):
         node = fringe.remove_first()
         current = list(node.predecessors)
         current.append(node.cid)
-        visualize(current, node.path_cost, len(visited) / len(data) * 100)
+        visualize(current, node.path_cost, len(visited) / len(G.nodes) * 100)
 
         if goal_test(cities[1], node.cid):
             output.distance = node.path_cost
@@ -66,7 +66,7 @@ def ucs(cities, visualize, stop):
         node = fringe.remove_first()
         current = list(node.predecessors)
         current.append(node.cid)
-        visualize(current, node.path_cost, len(visited) / len(data) * 100)
+        visualize(current, node.path_cost, len(visited) / len(G.nodes) * 100)
 
         if goal_test(cities[1], node.cid):
             output.distance = node.path_cost
@@ -107,7 +107,7 @@ def dls(start_node, destination_city, output, limit, visualize, stop):
         node = fringe.remove_first()
         current = list(node.predecessors)
         current.append(node.cid)
-        visualize(current, node.path_cost, len(visited) / len(data) * 100)
+        visualize(current, node.path_cost, len(visited) / len(G.nodes) * 100)
 
         if goal_test(destination_city, node.cid):
             return node
@@ -121,8 +121,8 @@ def greedy(cities, visualize, stop):
     global x2, y2, algorithm
     algorithm = Algorithms.Greedy
     start_time, fringe, visited, output = create()
-    x2 = data[cities[1]]['x']
-    y2 = data[cities[1]]['y']
+    x2 = G.nodes[cities[1]]['lat']
+    y2 = G.nodes[cities[1]]['lon']
     fringe.put((0, 0, Node(cities[0], 0)))  # start node
     visited.append(cities[0])
     while not fringe.empty():
@@ -133,7 +133,7 @@ def greedy(cities, visualize, stop):
         visited.append(node.cid)
         current = list(node.predecessors)
         current.append(node.cid)
-        visualize(current, node.path_cost, len(visited) / len(data) * 100)
+        visualize(current, node.path_cost, len(visited) / len(G.nodes) * 100)
 
         if goal_test(cities[1], node.cid):
             output.distance = node.path_cost
@@ -148,8 +148,8 @@ def a_star(cities, visualize, stop):
     global x2, y2, algorithm
     algorithm = Algorithms.A_Star
     start_time, fringe, visited, output = create()
-    x2 = data[cities[1]]['x']
-    y2 = data[cities[1]]['y']
+    x2 = G.nodes[cities[1]]['lat']
+    y2 = G.nodes[cities[1]]['lon']
     fringe.put((0, 0, Node(cities[0], 0)))  # start node
     visited.append((cities[0], 0))
     while not fringe.empty():
@@ -159,7 +159,7 @@ def a_star(cities, visualize, stop):
         node = fringe.remove_first()
         current = list(node.predecessors)
         current.append(node.cid)
-        visualize(current, node.path_cost, len(visited) / len(data) * 100)
+        visualize(current, node.path_cost, len(visited) / len(G.nodes) * 100)
 
         if goal_test(cities[1], node.cid):
             output.distance = node.path_cost
@@ -184,10 +184,10 @@ def expand(node, fringe, visited, output):
                 fringe.put((path_cost, next(tie_breaker), Node(neighbor[0], path_cost, current, node.depth + 1)))
                 visited.append((neighbor[0], path_cost))
             case Algorithms.Greedy:
-                h = calc_heuristic(data[neighbor[0]]['x'], data[neighbor[0]]['y'])
+                h = calc_heuristic(G.nodes[neighbor[0]]['lat'], G.nodes[neighbor[0]]['lon'])
                 fringe.put((h, next(tie_breaker), Node(neighbor[0], path_cost, current, node.depth + 1)))
             case Algorithms.A_Star:
-                h = calc_heuristic(data[neighbor[0]]['x'], data[neighbor[0]]['y'])
+                h = calc_heuristic(G.nodes[neighbor[0]]['lat'], G.nodes[neighbor[0]]['lon'])
                 fringe.put((path_cost + h, next(tie_breaker), Node(neighbor[0], path_cost, current, node.depth + 1)))
                 visited.append((neighbor[0], path_cost))
 
@@ -197,7 +197,7 @@ def expand(node, fringe, visited, output):
 
 def successor_function(parent, visited):
     neighbors = []
-    for neighbor in data[parent.cid]['neighbors']:
+    for neighbor in G.nodes[parent.cid]['neighbors']:
         cost = parent.path_cost + neighbor['distance']
         if algorithm == Algorithms.A_Star or algorithm == Algorithms.UCS:
             if not in_history(neighbor['cid'], visited, cost):
