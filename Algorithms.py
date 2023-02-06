@@ -10,4 +10,4 @@ class Algorithms(Enum):
     A_Star = 'A*'
     HC = 'Hill Climbing'
     SA = 'Simulated Annealing'
-    GA ='Genetic Algorithm'
+    GA = 'Genetic Algorithm'
