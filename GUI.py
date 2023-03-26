@@ -27,9 +27,8 @@ with open('table.json', encoding='utf-8') as file:
 def on_search(name, index, op):
     for widgets in frame.winfo_children():
         widgets.destroy()
-
-    text = entry.get()
     pop = []
+    text = entry.get()
     for i in range(0, len(data)):
         city = data[i]
         if len(text) < 1 or city['name'].__contains__(text):
@@ -71,11 +70,11 @@ def run():
 
 
 # colors
-bg = '#7E899C'
-primary = '#C6CFDC'
-surface = '#E1E7EF'
-accent = '#14213d'
-active = '#D18E21'
+bg ='#7E899C'
+primary ='#C6CFDC'
+surface ='#E1E7EF'
+accent ='#14213d'
+active ='#D18E21'
 
 root = tk.Tk()
 
