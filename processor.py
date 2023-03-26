@@ -4,7 +4,7 @@ import math
 import time
 
 import geopy.distance
-import numpy as np  # A library that provides fast and efficient methods for arrays, random, ...
+import numpy as np
 
 from Network import Network
 from Algorithms import Algorithms
